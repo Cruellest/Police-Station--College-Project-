@@ -1,0 +1,56 @@
+#include <stdio.h>
+
+int menu()
+{
+
+    /*
+    op = opção;
+    */
+    int op;
+
+    do{
+
+        printf("\n1 - Viatura Login");
+        printf("\n1 - Viatura em Uso");
+        printf("\n3 - COPOM");
+        printf("\n4 - Policial Militar");
+        printf("\n5 - Oficial");
+        printf("\n6 - Comandante Geral");
+        printf("\n0 - Encerrar Programa");
+        printf("\nOpção: ");
+        scanf("%d", &op);
+
+        if(op == 1) //Viatura Login
+        {
+
+        }
+        else if(op == 2) //Viatura em Uso
+        {
+
+        }
+        else if(op == 3) //COPOM
+        {
+
+
+        }
+        else if(op == 4) //Policial Militar
+        {
+
+
+        }
+        else if(op == 5) //Oficial
+        {
+
+
+        }
+        else if(op == 5) //Comandante Geral
+        {
+
+
+        }
+
+    }while(op != 0);
+
+
+    return 0;
+}
