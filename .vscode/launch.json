@@ -7,9 +7,9 @@
       "request": "launch",
       "args": [],
       "stopAtEntry": false,
-      "externalConsole": true,
-      "cwd": "c:/Users/ferna/OneDrive/Documentos/Police-Station--College-Project-",
-      "program": "c:/Users/ferna/OneDrive/Documentos/Police-Station--College-Project-/build/Debug/outDebug",
+      "externalConsole": false,
+      "cwd": "/home/cruellest/Police-Station--College-Project-/codes",
+      "program": "/home/cruellest/Police-Station--College-Project-/codes/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
