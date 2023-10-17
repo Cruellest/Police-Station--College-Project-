@@ -6,10 +6,10 @@
   * Gabriel Paes Duarte Baltazar (Cruellest)
   * Maria Fernanda Colombo (mafecolombo)
 
-  Subject:
+  Subject
   ===
   * Algorithms and Programming II
  
-  Professor:
+  Professor
   ===
   * Dr. Graziela Santos de Araújo
