@@ -14,7 +14,7 @@
   ===
  Dr. Graziela Santos de Araújo
 
-  Diadram
+  Diagram
   ===
  https://drive.google.com/file/d/1QJuEzcHrIsTvqcnI0e5OPz7L4Ns0jDML/view?usp=sharing
  
