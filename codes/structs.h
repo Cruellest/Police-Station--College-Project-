@@ -14,6 +14,7 @@ struct tViatura
     int quantidadePM;
 
     char listaPM[maxPM];
+
 };
 
 

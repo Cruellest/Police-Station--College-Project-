@@ -1,7 +1,10 @@
 #include <stdio.h>
+#include "Loader.cpp"
 
-int menu()
-{
+
+tViatura teste[60];
+
+int main(int argc, const char** argv){
 
     /*
     op = opção;
