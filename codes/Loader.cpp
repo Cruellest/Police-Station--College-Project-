@@ -40,6 +40,7 @@ int loadViaturas(tViatura *local){
     int i = 0;
 
 
+
     viaturas = fopen("viaturas.txt","r");
     if(viaturas == NULL){
         return 1;//return that the function have failed
