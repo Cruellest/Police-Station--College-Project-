@@ -5,7 +5,13 @@ void decript(char *senha, char *var){
     for (int i = 0; senha[i] != '\0'; i++)
     {
         if((senha[i]> 64 && senha[i] < 91)||(senha[i]> 96 && senha[i] < 123)){
+            if (senha[i]<=67||senha[i]<=99) {
+                senha[i] = senha[i] +23;
+            }
+
+            else{
             senha[i] = senha[i] - 3;
+            }
     }
     m++;
     }
@@ -15,7 +21,6 @@ void decript(char *senha, char *var){
 }
     var[m] = '\0';
 }
-
 
 int main(int argc, char const *argv[])
 {

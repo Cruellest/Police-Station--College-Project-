@@ -1,5 +1,9 @@
+//This file is used as an structs header
+
+
 #define maxPM 4
 
+//Struct of the officers cars
 struct tViatura
 {
     int codigo;
@@ -17,7 +21,8 @@ struct tViatura
 
 };
 
-struct PM{
+//Struct of the officers
+struct Policiais{
     char nome[26];
 
     int cpf;

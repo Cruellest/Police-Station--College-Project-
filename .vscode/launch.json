@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": false,
-      "cwd": "/home/cruellest/Police-Station--College-Project--1/codes",
-      "program": "/home/cruellest/Police-Station--College-Project--1/codes/build/Debug/outDebug",
+      "cwd": "/home/cruellest/Police-Station--College-Project--1/Tests",
+      "program": "/home/cruellest/Police-Station--College-Project--1/Tests/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
