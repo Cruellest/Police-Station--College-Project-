@@ -17,4 +17,20 @@ struct tViatura
 
 };
 
+struct PM{
+    char nome[26];
+
+    int cpf;
+
+    char guerra[16];
+
+    char cidade[26];
+
+    int idade;
+
+    char cargo[26];
+
+    char senha[17];
+
+};
 

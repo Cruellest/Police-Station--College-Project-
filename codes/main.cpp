@@ -1,6 +1,5 @@
 #include <stdio.h>
-#include "Loader.cpp"
-
+#include "viaturaLogin.cpp"
 
 tViatura teste[60];
 
@@ -14,7 +13,7 @@ int main(int argc, const char** argv){
     do{
 
         printf("\n1 - Viatura Login");
-        printf("\n1 - Viatura em Uso");
+        printf("\n2 - Viatura em Uso");
         printf("\n3 - COPOM");
         printf("\n4 - Policial Militar");
         printf("\n5 - Oficial");
@@ -25,7 +24,8 @@ int main(int argc, const char** argv){
 
         if(op == 1) //Viatura Login
         {
-
+            loadViaturas(teste);
+            viaturaLogin(teste,10);
         }
         else if(op == 2) //Viatura em Uso
         {
