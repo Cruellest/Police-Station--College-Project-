@@ -1,15 +1,15 @@
 #include <stdio.h>
 #include "viaturaLogin.cpp"
 
-tViatura teste[60];
-
 int main(int argc, const char** argv){
 
     /*
     op = opção;
     */
     int op;
-
+    tViatura *viatura = (tViatura*) calloc(amountofViaturas(),sizeof(tViatura));
+    
+    
     do{
 
         printf("\n1 - Viatura Login");
@@ -24,8 +24,9 @@ int main(int argc, const char** argv){
 
         if(op == 1) //Viatura Login
         {
-            loadViaturas(teste);
-            viaturaLogin(teste,10);
+            loadViaturas(viatura);
+            viaturaLogin(viatura,amountofViaturas());
+           
         }
         else if(op == 2) //Viatura em Uso
         {
@@ -54,6 +55,6 @@ int main(int argc, const char** argv){
 
     }while(op != 0);
 
-
+    free(viatura);
     return 0;
 }

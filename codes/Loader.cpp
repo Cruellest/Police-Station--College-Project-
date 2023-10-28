@@ -6,10 +6,12 @@
 #include <string.h>
 #include "structs.h"
 
-//Function used to load the app data from a txt file
-int loadViaturas(tViatura *local){
-
+//function used to know the amount of viatures data the file stores
+int amountofViaturas(){
+   
     FILE *viaturas;
+    int size = 1;
+    char line;
 
     viaturas = fopen("viaturas.txt","r");
     if(viaturas == NULL){
@@ -17,8 +19,32 @@ int loadViaturas(tViatura *local){
         return -1;
     }
 
+    //returns the amount of lines that the file have
+    do {
+        line = fgetc(viaturas);
+        if(line == '\n'){
+            size++;
+        }
+    }
+    while (line != EOF);
+    //Amount of viatures (assuming that the user wrote it down correctly)
+    return size/2;
 
+}
+
+//Function used to load the app data from a txt file
+int loadViaturas(tViatura *local){
+
+    FILE *viaturas;
     int i = 0;
+
+
+    viaturas = fopen("viaturas.txt","r");
+    if(viaturas == NULL){
+        fclose(viaturas);
+        return 1;//return that the function have failed
+    }
+
     while(feof(viaturas) == 0){
 
         fscanf(viaturas,"%d",&local[i].codigo);
@@ -35,7 +61,7 @@ int loadViaturas(tViatura *local){
     }
     
     fclose(viaturas);
-    return 0;
+    return 0;//return the amount of viatures
 }
 
 //Function used to decrypt the passwords that will be used in the next function
@@ -62,8 +88,12 @@ void decript(char *senha, char *var){
     var[m] = '\0';
 }
 
+int ammountofPoliceOfficers(){
+    
+}
+
 //Function used to load the data of the police officers found in "policiais.txt"
-int loadPM(Policiais *local){
+int loadPoliceOfficers(Policiais *local){
     FILE *policiais;
 
     policiais = fopen("policiais.txt","r");
