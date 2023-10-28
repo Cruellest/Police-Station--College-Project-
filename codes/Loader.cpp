@@ -76,10 +76,10 @@ int loadPM(Policiais *local){
     while(feof(policiais) == 0){
 
         fscanf(policiais,"%s",local[i].nome);
-        fscanf(policiais,"%d",local[i].cpf);
+        fscanf(policiais,"%d",&local[i].cpf);
         fscanf(policiais,"%s",local[i].guerra);
         fscanf(policiais,"%s",local[i].cidade);
-        fscanf(policiais,"%d",local[i].idade);
+        fscanf(policiais,"%d",&local[i].idade);
         char holder[26];
         fscanf(policiais,"%s",holder);
         decript(holder,local[i].senha);
