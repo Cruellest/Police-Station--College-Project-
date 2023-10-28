@@ -15,7 +15,6 @@ int amountofViaturas(){
 
     viaturas = fopen("viaturas.txt","r");
     if(viaturas == NULL){
-        fclose(viaturas);
         return -1;
     }
 
@@ -28,6 +27,8 @@ int amountofViaturas(){
     }
     while (line != EOF);
     //Amount of viatures (assuming that the user wrote it down correctly)
+
+    fclose(viaturas);
     return size/2;
 
 }
@@ -41,7 +42,6 @@ int loadViaturas(tViatura *local){
 
     viaturas = fopen("viaturas.txt","r");
     if(viaturas == NULL){
-        fclose(viaturas);
         return 1;//return that the function have failed
     }
 
@@ -89,7 +89,29 @@ void decript(char *senha, char *var){
 }
 
 int ammountofPoliceOfficers(){
-    
+    FILE *policiais;
+    int size = 1;
+    char line;
+
+    policiais = fopen("policiais.txt","r");
+    if(policiais == NULL){
+        return 1;
+    }
+
+    //returns the amount of lines that the file have
+    do {
+        line = fgetc(policiais);
+        if(line == '\n'){
+            size++;
+        }
+    }
+    while (line != EOF);
+
+    //Amount of viatures (assuming that the user wrote it down correctly)
+
+    fclose(policiais);
+    return size/7;
+
 }
 
 //Function used to load the data of the police officers found in "policiais.txt"
@@ -98,20 +120,20 @@ int loadPoliceOfficers(Policiais *local){
 
     policiais = fopen("policiais.txt","r");
     if(policiais == NULL){
-        fclose(policiais);
         return -1;
     }
 
     int i = 0;
     while(feof(policiais) == 0){
 
-        fscanf(policiais,"%s",local[i].nome);
-        fscanf(policiais,"%d",&local[i].cpf);
-        fscanf(policiais,"%s",local[i].guerra);
-        fscanf(policiais,"%s",local[i].cidade);
-        fscanf(policiais,"%d",&local[i].idade);
+        fscanf(policiais,"%[^\n]\n",local[i].nome);
+        fscanf(policiais,"%ld\n",&local[i].cpf);
+        fscanf(policiais,"%[^\n]\n",local[i].guerra);
+        fscanf(policiais,"%[^\n]\n",local[i].cidade);
+        fscanf(policiais,"%d\n",&local[i].idade);
+        fscanf(policiais,"%[^\n]\n",local[i].cargo);
         char holder[26];
-        fscanf(policiais,"%s",holder);
+        fscanf(policiais,"%[^\n]\n",holder);
         decript(holder,local[i].senha);
        
         i++;

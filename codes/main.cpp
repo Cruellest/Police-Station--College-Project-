@@ -8,7 +8,9 @@ int main(int argc, const char** argv){
     */
     int op;
     tViatura *viatura = (tViatura*) calloc(amountofViaturas(),sizeof(tViatura));
-    
+    loadViaturas(viatura);
+    Policiais *policiais = (Policiais*) calloc(ammountofPoliceOfficers(),sizeof(Policiais));
+    loadPoliceOfficers(policiais);
     
     do{
 
@@ -24,7 +26,6 @@ int main(int argc, const char** argv){
 
         if(op == 1) //Viatura Login
         {
-            loadViaturas(viatura);
             viaturaLogin(viatura,amountofViaturas());
            
         }

@@ -25,9 +25,9 @@ struct tViatura
 struct Policiais{
     char nome[26];
 
-    int cpf;
+    long cpf;
 
-    char guerra[16];
+    char guerra[26];
 
     char cidade[26];
 
@@ -35,7 +35,7 @@ struct Policiais{
 
     char cargo[26];
 
-    char senha[17];
+    char senha[26];
 
 };
 
