@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include "viaturaLogin.cpp"
+#include "structs.h"
 
-int main(int argc, const char** argv){
+int main(){
 
     /*
     op = opção;
@@ -11,6 +12,10 @@ int main(int argc, const char** argv){
     loadViaturas(viatura);
     Policiais *policiais = (Policiais*) calloc(ammountofPoliceOfficers(),sizeof(Policiais));
     loadPoliceOfficers(policiais);
+
+    tViaturaLogin *i, *f;
+    i = NULL;   
+    f = NULL;
     
     do{
 
@@ -26,7 +31,10 @@ int main(int argc, const char** argv){
 
         if(op == 1) //Viatura Login
         {
-            viaturaLogin(viatura,amountofViaturas());
+            viaturaLogin(viatura, i, f);
+            for(tViaturaLogin *inicio = i; inicio->prox != NULL; inicio = inicio->prox){
+                printf("%d", inicio->viatura->codigo);
+            }
            
         }
         else if(op == 2) //Viatura em Uso

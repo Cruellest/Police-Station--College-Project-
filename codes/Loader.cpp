@@ -48,10 +48,10 @@ int loadViaturas(tViatura *local){
 
     while(feof(viaturas) == 0){
 
-        fscanf(viaturas,"%d",&local[i].codigo);
+        fscanf(viaturas, "%d", &local[i].codigo);
         char holder[16];
-        fscanf(viaturas,"%s",holder);
-        if(strcmp(holder,"especializada") == 0){
+        fscanf(viaturas, "%s", holder);
+        if(strcmp(holder, "especializada") == 0){
             local[i].tipo = 2;
         }
 
