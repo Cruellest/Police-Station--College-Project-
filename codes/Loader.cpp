@@ -4,8 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h> //This includes need to be optimized
 #include <string.h>
-#include "structs.h"
-
+#include "buscaBinaria.cpp"
 //function used to know the amount of viatures data the file stores
 int amountofViaturas(){
    

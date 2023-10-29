@@ -1,7 +1,5 @@
 #include <stdio.h>
 #include  "Loader.cpp"
-#include  "buscaBinaria.cpp"
-#include "structs.h"
 
 void logar(struct tViatura *viatura, int quantidadePM, struct tViaturaLogin *&I, struct tViaturaLogin *&F){
     struct tViaturaLogin *nova;

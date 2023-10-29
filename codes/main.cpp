@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include "viaturaLogin.cpp"
-#include "structs.h"
 
 int main(){
 
