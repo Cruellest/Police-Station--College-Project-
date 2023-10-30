@@ -58,3 +58,4 @@ void viaturaLogin(struct Viatura viaturas[], int size)
 
 
 }
+}

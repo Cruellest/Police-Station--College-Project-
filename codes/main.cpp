@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "viaturaLogin.cpp"
 
-int main(){
+int main(int argc, const char** argv){
 
     /*
     op = opção;
@@ -14,6 +14,7 @@ int main(){
     Policial *policiais = (Policial*) calloc(ammountofPoliceOfficers(),sizeof(Policial));
     loadPoliceOfficers(policiais);
     
+
     //(WIP) UI for menu
     do{
 
