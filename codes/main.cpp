@@ -22,7 +22,7 @@ int main(int argc, const char** argv){
     especialViatura *especiais =(especialViatura *) malloc(sizeEspecial * sizeof(especialViatura));
     
     int sizeRegular = 1;
-    especialViatura *regulares =(regularViatura *) malloc(sizeRegular * sizeof(regularViatura));
+    regularViatura *regulares = (regularViatura *) malloc(sizeRegular * sizeof(regularViatura));
 
     //(WIP) UI for menu
     do{
@@ -40,7 +40,7 @@ int main(int argc, const char** argv){
         if(op == 1) //Viatura Login
         {
             //loads functions from Viatura Login
-            viaturaLogin(viatura, 10);
+            viaturaLogin(viaturas, amountofViaturas(),regulares,sizeRegular,especiais,sizeEspecial);
            
         }
         else if(op == 2) //Viatura em Uso
@@ -107,8 +107,8 @@ int main(int argc, const char** argv){
                 printf("\nArray POS\n");
                 scanf(" %d", &POS);
 
-                printf("\nCodigo: %d\n",viatura[POS].codigo);
-                printf("Tipo: %d\n",viatura[POS].tipo);
+                printf("\nCodigo: %d\n",viaturas[POS].codigo);
+                printf("Tipo: %d\n",viaturas[POS].tipo);
                 getchar();
                 getchar();
             }
