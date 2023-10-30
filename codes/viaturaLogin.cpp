@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include  "Loader.cpp"
-
-void logar(struct tViatura *viatura, int quantidadePM, struct tViaturaLogin *&I, struct tViaturaLogin *&F){
+/*
+void logar(struct Viatura *viatura, int quantidadePM, struct tViaturaLogin *&I, struct tViaturaLogin *&F){
     struct tViaturaLogin *nova;
     char nomes[26+1];
 
@@ -28,11 +28,12 @@ void logar(struct tViatura *viatura, int quantidadePM, struct tViaturaLogin *&I,
 
 
 }
+*/
 
-void viaturaLogin(struct tViatura viaturas[], struct tViaturaLogin *&I, struct tViaturaLogin *&F) 
+void viaturaLogin(struct Viatura viaturas[], int size) 
 {
     int op;
-    int viaturacode, quantidadePM;
+    int viaturacode, quantidadePM, aux;
 
     printf("\n Policia Regular - 1");
     printf("\n Policia Especializada - 2");
@@ -42,7 +43,6 @@ void viaturaLogin(struct tViatura viaturas[], struct tViaturaLogin *&I, struct t
 
     printf("\n Código da Viatura: ");
     scanf(" %d", &viaturacode);
-    
     //validar se é do tipo correto e se já não está sendo utilizada.
 
     printf("\n Quantidade de PMs: ");
@@ -54,10 +54,7 @@ void viaturaLogin(struct tViatura viaturas[], struct tViaturaLogin *&I, struct t
         printf("\n Quantidade de PMs invalida! Autorização de embarque negada.");
         printf("\n Quantidade de PMs: ");
         scanf(" %d", &quantidadePM);
-    }
 
-    int viaturaID = busca_binaria_R(0, 10, viaturas, viaturacode);
 
-    logar(&viaturas[viaturaID], quantidadePM, I, F);
 
 }

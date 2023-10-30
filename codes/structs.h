@@ -1,7 +1,7 @@
 //This file is used as an structs header
 
 //Struct of the officers cars
-struct tViatura{
+struct Viatura{
     int codigo;
 
     int tipo; /* 1 = Policial Regular
@@ -10,7 +10,7 @@ struct tViatura{
 };
 
 //Struct of the officers
-struct Policiais{
+struct Policial{
     char nome[26];
 
     long cpf;
@@ -27,15 +27,13 @@ struct Policiais{
 
 };
 
-struct tChamada{
+struct prioritariaChamada{
     int id;
 
     int tipo;  /* 1 = Policial Regular
                  2 = Policia Especializada */
 
-    int prioridade;
-
-    struct tViatura *viaturas[26];
+    struct Viatura *viaturas[26];
 
     char descricao[1000];
 
@@ -45,16 +43,47 @@ struct tChamada{
 
     bool acaoPolicial = false;
 
-    struct tChamada *prox;
+    struct prioritariaChamada *prox;
 
 };
 
-struct tViaturaLogin{
+struct Chamada{
+    int id;
 
-    struct tViatura *viatura;
+    int tipo;  /* 1 = Policial Regular
+                 2 = Policia Especializada */
+
+    struct Viatura *viaturas[26];
+
+    char descricao[1000];
+
+    char loc[1000];
+
+    bool reforco = false;
+
+    bool acaoPolicial = false;
+
+    struct Chamada *prox;
+
+};
+
+struct regularViatura{
+
+    struct Viatura *viatura;
     
     char policiais[4];
 
     struct tViaturaLogin *prox;
 
 };
+
+struct especialViatura{
+
+    struct Viatura *viatura;
+    
+    char policiais[4];
+
+    struct tViaturaLogin *prox;
+
+};
+

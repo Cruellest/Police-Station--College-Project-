@@ -1,6 +1,6 @@
 #include "structs.h"
 
-int busca_binaria_R(int esq, int dir, struct tViatura viaturas[], int x)
+int buscaViatura(int esq, int dir, struct Viatura viaturas[], int x)
     {
         int meio;
 
@@ -9,8 +9,8 @@ int busca_binaria_R(int esq, int dir, struct tViatura viaturas[], int x)
         else {
             meio = (esq + dir) / 2;
             if (viaturas[meio].codigo < x)
-                return busca_binaria_R(meio, dir, viaturas, x);
+                return buscaViatura(meio, dir, viaturas, x);
             else
-                return busca_binaria_R(esq, meio, viaturas, x);
+                return buscaViatura(esq, meio, viaturas, x);
     }
 }

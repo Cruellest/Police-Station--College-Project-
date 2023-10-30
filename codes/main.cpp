@@ -9,15 +9,10 @@ int main(){
     int op;
 
     //This piece of code dynamicaly alocates all the files arrays and load the data from the files
-    tViatura *viatura = (tViatura*) calloc(amountofViaturas(),sizeof(tViatura));
+    Viatura *viatura = (Viatura*) calloc(amountofViaturas(),sizeof(Viatura));
     loadViaturas(viatura);
-    Policiais *policiais = (Policiais*) calloc(ammountofPoliceOfficers(),sizeof(Policiais));
+    Policial *policiais = (Policial*) calloc(ammountofPoliceOfficers(),sizeof(Policial));
     loadPoliceOfficers(policiais);
-
-    //Meu amor comenta aqui por favor te amo S2 <3
-    tViaturaLogin *i, *f;
-    i = NULL;   
-    f = NULL;
     
     //(WIP) UI for menu
     do{
@@ -35,11 +30,7 @@ int main(){
         if(op == 1) //Viatura Login
         {
             //loads functions from Viatura Login
-            viaturaLogin(viatura, i, f);
-            //PFV EXPLICA ISSO TBM LINDA TE AMO
-            for(tViaturaLogin *inicio = i; inicio->prox != NULL; inicio = inicio->prox){
-                printf("%d", inicio->viatura->codigo);
-            }
+            viaturaLogin(viatura, 10);
            
         }
         else if(op == 2) //Viatura em Uso

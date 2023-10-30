@@ -33,7 +33,7 @@ int amountofViaturas(){
 }
 
 //Function used to load the app data from a txt file
-int loadViaturas(tViatura *local){
+int loadViaturas(Viatura *local){
 
     FILE *viaturas;
     int i = 0;
@@ -115,7 +115,7 @@ int ammountofPoliceOfficers(){
 }
 
 //Function used to load the data of the police officers found in "policiais.txt"
-int loadPoliceOfficers(Policiais *local){
+int loadPoliceOfficers(Policial *local){
     FILE *policiais;
 
     policiais = fopen("policiais.txt","r");
