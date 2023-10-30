@@ -73,7 +73,7 @@ struct regularViatura{
     
     char policiais[4];
 
-    struct tViaturaLogin *prox;
+    int chamadas;
 
 };
 
@@ -83,7 +83,7 @@ struct especialViatura{
     
     char policiais[4];
 
-    struct tViaturaLogin *prox;
+    int chamadas;
 
 };
 

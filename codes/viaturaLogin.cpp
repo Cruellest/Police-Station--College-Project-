@@ -30,16 +30,18 @@ void logar(struct Viatura *viatura, int quantidadePM, struct tViaturaLogin *&I, 
 }
 */
 
-void viaturaLogin(struct Viatura viaturas[], int size) 
+void viaturaLogin(Viatura *viaturas, int size, regularViatura *regulares, int sizeRegular, especialViatura *especiais, int sizeEspecial) 
 {
-    int op;
+    int op1, op2;
     int viaturacode, quantidadePM, aux;
 
-    printf("\n Policia Regular - 1");
-    printf("\n Policia Especializada - 2");
+    printf("\n SPM - Viatura Login");
+
+    printf("\n\n 1 - Policia Regular");
+    printf("\n 2 - Policia Especializada");
     
-    printf("\n Selecione o tipo da aviatura: ");
-    scanf(" %d", &op);
+    printf("\n\n Selecione o tipo de viatura: ");
+    scanf(" %d", &op1);
 
     printf("\n Código da Viatura: ");
     scanf(" %d", &viaturacode);
@@ -48,14 +50,85 @@ void viaturaLogin(struct Viatura viaturas[], int size)
     printf("\n Quantidade de PMs: ");
     scanf(" %d", &quantidadePM);
 
-    for(;(op == 1 && quantidadePM < 2) || (quantidadePM > 4)
-        || (op == 2 && quantidadePM != 4);){
+    for(;(op1 == 1 && quantidadePM < 2) || (quantidadePM > 4)
+        || (op1 == 2 && quantidadePM != 4);){
 
         printf("\n Quantidade de PMs invalida! Autorização de embarque negada.");
         printf("\n Quantidade de PMs: ");
         scanf(" %d", &quantidadePM);
+    }
 
+    char PMs[quantidadePM];
 
+    printf("\n Identificação dos PMs: ");
+    for (int i = 0; i < quantidadePM; i++)
+    {
+        scanf(" %[^\n]", PMs[i]);
+    }
 
-}
+    printf("\n SPM - Viatura Estado Neutro");
+
+    printf("\n\n 1 - Apto para atender ocorrência");
+    printf("\n 2 - Cancelar Embarcação\n");
+    scanf(" %d", &op2);
+
+    if (op2 == 1)
+    {
+        aux = buscaViatura(0, size, viaturas, viaturacode);
+
+        if (op1 == 1)
+        {
+            if (sizeRegular == 1)
+            {
+                regulares[0].viatura = &viaturas[aux];
+
+                for (int i = 0; i < quantidadePM; i++)
+                {
+                    regulares[0].policiais[i] = PMs[i];
+                }
+
+                sizeRegular++;
+
+            } else {
+                regulares = (regularViatura *) realloc(regulares, 1 * sizeof(regularViatura));
+
+                regulares[sizeRegular - 1].viatura = &viaturas[aux];
+
+                for (int i = 0; i < quantidadePM; i++)
+                {
+                    regulares[sizeRegular - 1].policiais[i] = PMs[i];
+                }
+
+                sizeRegular++;
+            }
+        } else {
+            
+            if (sizeEspecial == 1)
+            {
+                especiais[0].viatura = &viaturas[aux];
+
+                for (int i = 0; i < quantidadePM; i++)
+                {
+                    especiais[0].policiais[i] = PMs[i];
+                }
+
+                sizeEspecial++;
+
+            } else {
+                especiais = (especialViatura *) realloc(especiais, 1 * sizeof(especialViatura));
+
+                especiais[sizeEspecial - 1].viatura = &viaturas[aux];
+
+                for (int i = 0; i < quantidadePM; i++)
+                {
+                    especiais[sizeEspecial - 1].policiais[i] = PMs[i];
+                }
+
+                sizeEspecial++;
+            }
+        }
+    
+    //implementar as chamadas e modo ronda!
+
+    } 
 }
