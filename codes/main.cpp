@@ -54,7 +54,7 @@ int main(int argc, const char** argv){
         }
         else if(op == 4) //Policial Militar
         {
-
+            LoginPm(policiais);
 
         }
         else if(op == 5) //Oficial
