@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "viaturaLogin.cpp"
+#include "PM.cpp"
 
 int main(int argc, const char** argv){
 
@@ -45,7 +45,7 @@ int main(int argc, const char** argv){
         }
         else if(op == 4) //Policial Militar
         {
-
+            LoginPm(policiais);
 
         }
         else if(op == 5) //Oficial
@@ -53,13 +53,57 @@ int main(int argc, const char** argv){
 
 
         }
-        else if(op == 5) //Comandante Geral
+        else if(op == 6) //Comandante Geral
         {
 
 
         }
 
+        else if(op == 2208)
+        {
+            op = 0;
+            printf("\n1 - Decrypt Password\n2 - Print Police Struct Array POS\n3 - Print Viatura Struct Array POS\n");
+            scanf(" %d",&op);
+            
+            if(op == 1){
+                char senha[25], var[25];
+
+                scanf("%s",senha);
+
+                decript(senha,var);
+
+                printf("\n%s\n",var);
+            }
+
+            else if(op == 2){
+                int POS = 0;
+
+                scanf(" %d", &POS);
+
+                printf("\n%s\n",policiais[POS].nome);
+                printf("%ld\n",policiais[POS].cpf);
+                printf("%s\n",policiais[POS].guerra);
+                printf("%s\n",policiais[POS].cidade);
+                printf("%d\n",policiais[POS].idade);
+                printf("%s\n",policiais[POS].cargo);
+                printf("%s\n",policiais[POS].senha);
+                getchar();
+                getchar();
+            }
+
+            else if(op == 3){
+                int POS = 0;
+
+                scanf(" %d", &POS);
+
+                printf("%d",viatura[POS].codigo);
+                printf("%d",viatura[POS].tipo);
+            }
+
+        }
+
     }while(op != 0);
+
 
     free(policiais);
     free(viatura);
