@@ -78,6 +78,7 @@ int main(int argc, const char** argv){
             else if(op == 2){
                 int POS = 0;
 
+                printf("\nArray POS\n");
                 scanf(" %d", &POS);
 
                 printf("\n%s\n",policiais[POS].nome);
@@ -94,10 +95,13 @@ int main(int argc, const char** argv){
             else if(op == 3){
                 int POS = 0;
 
+                printf("\nArray POS\n");
                 scanf(" %d", &POS);
 
-                printf("%d",viatura[POS].codigo);
-                printf("%d",viatura[POS].tipo);
+                printf("\nCodigo: %d\n",viatura[POS].codigo);
+                printf("\nTipo: %d\n",viatura[POS].tipo);
+                getchar();
+                getchar();
             }
 
         }
