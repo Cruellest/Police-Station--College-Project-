@@ -118,6 +118,6 @@ int main(int argc, const char** argv){
     }while(op != 0);
 
     free(policiais);
-    free(viatura);
+    free(viaturas);
     return 0;
 }
