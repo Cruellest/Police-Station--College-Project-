@@ -7,6 +7,9 @@ int main(int argc, const char** argv){
     op = opção;
     */
     int op;
+    {
+        
+    }
     
     
 
@@ -15,8 +18,6 @@ int main(int argc, const char** argv){
     loadViaturas(viaturas);
     Policial *policiais = (Policial*) calloc(ammountofPoliceOfficers(),sizeof(Policial));
     loadPoliceOfficers(policiais);
-    
-    int size = amountofViaturas();
 
     int sizeEspecial = 1;
     especialViatura *especiais =(especialViatura *) malloc(sizeEspecial * sizeof(especialViatura));
@@ -40,8 +41,13 @@ int main(int argc, const char** argv){
         if(op == 1) //Viatura Login
         {
             //loads functions from Viatura Login
-            viaturaLogin(viaturas, amountofViaturas(),regulares,sizeRegular,especiais,sizeEspecial);
-           
+            viaturaLogin(viaturas, amountofViaturas(), regulares, sizeRegular, especiais, sizeEspecial);
+            for(int i = 0; i < sizeRegular; i++) {
+                printf("%d", regulares[i].viatura->codigo);
+            }
+            for(int i = 0; i < sizeRegular; i++) {
+                printf("%d", especiais[i].viatura->codigo);
+            }
         }
         else if(op == 2) //Viatura em Uso
         {

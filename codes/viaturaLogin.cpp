@@ -1,6 +1,16 @@
 #include <stdio.h>
+#include <string.h>
 #include  "Loader.cpp"
 /*
+
+            viaturaLogin(viaturas, size, regulares, sizeRegular, especiais, sizeEspecial);
+            for(int i = 0; i < sizeRegular; i++) {
+                printf("%d", regulares[i].viatura->codigo);
+            }
+            for(int i = 0; i < sizeRegular; i++) {
+                printf("%d", especiais[i].viatura->codigo);
+            }
+
 void logar(struct Viatura *viatura, int quantidadePM, struct tViaturaLogin *&I, struct tViaturaLogin *&F){
     struct tViaturaLogin *nova;
     char nomes[26+1];
@@ -30,7 +40,7 @@ void logar(struct Viatura *viatura, int quantidadePM, struct tViaturaLogin *&I, 
 }
 */
 
-void viaturaLogin(Viatura *viaturas, int size, regularViatura *regulares, int sizeRegular, especialViatura *especiais, int sizeEspecial) 
+void viaturaLogin(Viatura *viaturas, int size, regularViatura *regulares, int &sizeRegular, especialViatura *especiais, int &sizeEspecial) 
 {
     int op1, op2;
     int viaturacode, quantidadePM, aux;
@@ -58,7 +68,7 @@ void viaturaLogin(Viatura *viaturas, int size, regularViatura *regulares, int si
         scanf(" %d", &quantidadePM);
     }
 
-    char PMs[quantidadePM];
+    char PMs[quantidadePM + 1][26];
 
     printf("\n Identificação dos PMs: ");
     for (int i = 0; i < quantidadePM; i++)
@@ -84,7 +94,7 @@ void viaturaLogin(Viatura *viaturas, int size, regularViatura *regulares, int si
 
                 for (int i = 0; i < quantidadePM; i++)
                 {
-                    regulares[0].policiais[i] = PMs[i];
+                    strcpy(PMs[i], regulares[0].policiais[i]);
                 }
 
                 sizeRegular++;
@@ -96,7 +106,7 @@ void viaturaLogin(Viatura *viaturas, int size, regularViatura *regulares, int si
 
                 for (int i = 0; i < quantidadePM; i++)
                 {
-                    regulares[sizeRegular - 1].policiais[i] = PMs[i];
+                    strcpy(PMs[i], regulares[sizeRegular - 1].policiais[i]);
                 }
 
                 sizeRegular++;
@@ -109,7 +119,7 @@ void viaturaLogin(Viatura *viaturas, int size, regularViatura *regulares, int si
 
                 for (int i = 0; i < quantidadePM; i++)
                 {
-                    especiais[0].policiais[i] = PMs[i];
+                    strcpy(PMs[i], especiais[0].policiais[i]);
                 }
 
                 sizeEspecial++;
@@ -121,7 +131,7 @@ void viaturaLogin(Viatura *viaturas, int size, regularViatura *regulares, int si
 
                 for (int i = 0; i < quantidadePM; i++)
                 {
-                    especiais[sizeEspecial - 1].policiais[i] = PMs[i];
+                    strcpy(PMs[i], especiais[sizeEspecial - 1].policiais[i]);
                 }
 
                 sizeEspecial++;
