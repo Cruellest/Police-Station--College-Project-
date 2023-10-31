@@ -1,15 +1,12 @@
 #include <stdio.h>
 #include "PM.cpp"
 
-int main(int argc, const char** argv){
+int main(){
 
     /*
     op = opção;
     */
-    int op;
-    {
-        
-    }
+    int op = NULL;
     
     
 
@@ -18,12 +15,14 @@ int main(int argc, const char** argv){
     loadViaturas(viaturas);
     Policial *policiais = (Policial*) calloc(ammountofPoliceOfficers(),sizeof(Policial));
     loadPoliceOfficers(policiais);
+    
+    int size = amountofViaturas();
 
     int sizeEspecial = 1;
-    especialViatura *especiais =(especialViatura *) malloc(sizeEspecial * sizeof(especialViatura));
+    especialViatura *especiais =(especialViatura *) calloc(sizeEspecial,sizeof(especialViatura));
     
     int sizeRegular = 1;
-    regularViatura *regulares = (regularViatura *) malloc(sizeRegular * sizeof(regularViatura));
+    regularViatura *regulares = (regularViatura *) calloc(sizeRegular,sizeof(regularViatura));
 
     //(WIP) UI for menu
     do{
@@ -68,7 +67,7 @@ int main(int argc, const char** argv){
 
 
         }
-        else if(op == 5) //Comandante Geral
+        else if(op == 6) //Comandante Geral
         {
 
 
@@ -76,11 +75,12 @@ int main(int argc, const char** argv){
 
         else if(op == 2208)
         {
-            op = 0;
-            printf("\n1 - Decrypt Password\n2 - Print Police Struct Array POS\n3 - Print Viatura Struct Array POS\n");
-            scanf(" %d",&op);
+            int opdeb = 0;
             
-            if(op == 1){
+            printf("\n1 - Decrypt Password\n2 - Print Police Struct Array POS\n3 - Print Viatura Struct Array POS\n4 - Print Ammount of Officers\n5 - Print Ammount of Viaturas\n");
+            scanf(" %d",&opdeb);
+            
+            if(opdeb == 1){
                 char senha[25], var[25];
 
                 scanf("%s",senha);
@@ -90,7 +90,7 @@ int main(int argc, const char** argv){
                 printf("\n%s\n",var);
             }
 
-            else if(op == 2){
+            else if(opdeb == 2){
                 int POS = 0;
 
                 printf("\nArray POS\n");
@@ -107,7 +107,7 @@ int main(int argc, const char** argv){
                 getchar();
             }
 
-            else if(op == 3){
+            else if(opdeb == 3){
                 int POS = 0;
 
                 printf("\nArray POS\n");
@@ -119,9 +119,21 @@ int main(int argc, const char** argv){
                 getchar();
             }
 
+            else if(opdeb == 4){
+                printf("%d\n",ammountofPoliceOfficers());
+                getchar();
+                getchar();
+            }
+
+            else if(opdeb == 5){
+                printf("%d\n",amountofViaturas());
+                getchar();
+                getchar();
+            }
+
         }
 
-    }while(op != 0);
+    }while(0 != op);
 
     free(policiais);
     free(viaturas);

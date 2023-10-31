@@ -95,7 +95,7 @@ int ammountofPoliceOfficers(){
 
     policiais = fopen("policiais.txt","r");
     if(policiais == NULL){
-        return 1;
+        return -1;
     }
 
     //returns the amount of lines that the file have
@@ -141,4 +141,4 @@ int loadPoliceOfficers(Policial *local){
     
     fclose(policiais);
     return 0;
-};
+}
