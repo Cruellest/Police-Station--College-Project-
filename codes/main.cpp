@@ -39,12 +39,6 @@ int main(){
         {
             //loads functions from Viatura Login
             viaturaLogin(viaturas, amountofViaturas(), regulares, sizeRegular, especiais, sizeEspecial);
-            for(int i = 0; i < sizeRegular; i++) {
-                printf("%d", regulares[i].viatura->codigo);
-            }
-            for(int i = 0; i < sizeRegular; i++) {
-                printf("%d", especiais[i].viatura->codigo);
-            }
         }
         else if(op == 2) //Viatura em Uso
         {

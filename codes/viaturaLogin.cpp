@@ -68,7 +68,8 @@ void viaturaLogin(Viatura *viaturas, int size, regularViatura *regulares, int &s
         scanf(" %d", &quantidadePM);
     }
 
-        aux = buscaViatura(0, size, viaturas, viaturacode);
+        aux = buscaViatura(viaturas, size, viaturacode);
+        printf("VETOR %d", aux);
 
         if (op1 == 1)
         {
@@ -76,12 +77,10 @@ void viaturaLogin(Viatura *viaturas, int size, regularViatura *regulares, int &s
             {
                 regulares[0].viatura = &viaturas[aux];
 
-                printf("\n Identificação dos PMs: ");
-                for (int i = 0; i == quantidadePM; i++)
+                printf("\n Identificação dos PMs:");
+                for (int i = 0; i < quantidadePM; i++)
                 {
-                    printf(" %[^\n]", regulares[i].policiais[i]);
-
-    
+                    scanf(" %[^\n]", regulares[0].policiais[i]);
                 }
 
                 sizeRegular++;
@@ -91,8 +90,8 @@ void viaturaLogin(Viatura *viaturas, int size, regularViatura *regulares, int &s
 
                 regulares[sizeRegular - 1].viatura = &viaturas[aux];
 
-                printf("\n Identificação dos PMs: ");
-                for (int i = 0; i == quantidadePM; i++)
+                printf("\n Identificação dos PMs:");
+                for (int i = 0; i < quantidadePM; i++)
                 {
                     scanf(" %[^\n]", regulares[sizeRegular - 1].policiais[i]);;
                 }
@@ -105,9 +104,9 @@ void viaturaLogin(Viatura *viaturas, int size, regularViatura *regulares, int &s
                 especiais[0].viatura = &viaturas[aux];
 
                 printf("\n Identificação dos PMs:");
-                for (int i = 0; i == quantidadePM; i++)
+                for (int i = 0; i < quantidadePM; i++)
                 {
-                    scanf("%[^\n]", especiais[0].policiais[i]);
+                    scanf(" %[^\n]", especiais[0].policiais[i]);
                 }
 
                 sizeEspecial++;
@@ -118,9 +117,9 @@ void viaturaLogin(Viatura *viaturas, int size, regularViatura *regulares, int &s
                 especiais[sizeEspecial - 1].viatura = &viaturas[aux];
 
                 printf("\n Identificação dos PMs:");
-                for (int i = 0; i == quantidadePM; i++)
+                for (int i = 0; i < quantidadePM; i++)
                 {
-                    scanf("%[^\n]", especiais[sizeEspecial - 1].policiais[i]);
+                    scanf(" %[^\n]", especiais[sizeEspecial - 1].policiais[i]);
                 }
 
                 sizeEspecial++;
