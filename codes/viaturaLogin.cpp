@@ -68,22 +68,6 @@ void viaturaLogin(Viatura *viaturas, int size, regularViatura *regulares, int &s
         scanf(" %d", &quantidadePM);
     }
 
-    char PMs[quantidadePM + 1][26];
-
-    printf("\n Identificação dos PMs: ");
-    for (int i = 0; i < quantidadePM; i++)
-    {
-        scanf(" %[^\n]", PMs[i]);
-    }
-
-    printf("\n SPM - Viatura Estado Neutro");
-
-    printf("\n\n 1 - Apto para atender ocorrência");
-    printf("\n 2 - Cancelar Embarcação\n");
-    scanf(" %d", &op2);
-
-    if (op2 == 1)
-    {
         aux = buscaViatura(0, size, viaturas, viaturacode);
 
         if (op1 == 1)
@@ -92,9 +76,12 @@ void viaturaLogin(Viatura *viaturas, int size, regularViatura *regulares, int &s
             {
                 regulares[0].viatura = &viaturas[aux];
 
-                for (int i = 0; i < quantidadePM; i++)
+                printf("\n Identificação dos PMs: ");
+                for (int i = 0; i == quantidadePM; i++)
                 {
-                    strcpy(PMs[i], regulares[0].policiais[i]);
+                    printf(" %[^\n]", regulares[i].policiais[i]);
+
+    
                 }
 
                 sizeRegular++;
@@ -104,22 +91,23 @@ void viaturaLogin(Viatura *viaturas, int size, regularViatura *regulares, int &s
 
                 regulares[sizeRegular - 1].viatura = &viaturas[aux];
 
-                for (int i = 0; i < quantidadePM; i++)
+                printf("\n Identificação dos PMs: ");
+                for (int i = 0; i == quantidadePM; i++)
                 {
-                    strcpy(PMs[i], regulares[sizeRegular - 1].policiais[i]);
+                    scanf(" %[^\n]", regulares[sizeRegular - 1].policiais[i]);;
                 }
 
                 sizeRegular++;
             }
         } else {
-            
             if (sizeEspecial == 1)
             {
                 especiais[0].viatura = &viaturas[aux];
 
-                for (int i = 0; i < quantidadePM; i++)
+                printf("\n Identificação dos PMs:");
+                for (int i = 0; i == quantidadePM; i++)
                 {
-                    strcpy(PMs[i], especiais[0].policiais[i]);
+                    scanf("%[^\n]", especiais[0].policiais[i]);
                 }
 
                 sizeEspecial++;
@@ -129,16 +117,31 @@ void viaturaLogin(Viatura *viaturas, int size, regularViatura *regulares, int &s
 
                 especiais[sizeEspecial - 1].viatura = &viaturas[aux];
 
-                for (int i = 0; i < quantidadePM; i++)
+                printf("\n Identificação dos PMs:");
+                for (int i = 0; i == quantidadePM; i++)
                 {
-                    strcpy(PMs[i], especiais[sizeEspecial - 1].policiais[i]);
+                    scanf("%[^\n]", especiais[sizeEspecial - 1].policiais[i]);
                 }
 
                 sizeEspecial++;
             }
         }
-    
-    //implementar as chamadas e modo ronda!
 
-    } 
+    printf("\n SPM - Viatura Estado Neutro");
+
+    printf("\n\n 1 - Apto para atender ocorrência");
+    printf("\n 2 - Cancelar Embarcação\n");
+    scanf(" %d", &op2);
+
+    if(op2 == 2)
+    {
+        if(op1 == 1)
+        {
+            regulares = (regularViatura *) realloc(regulares, sizeRegular - 1 * sizeof(regularViatura));
+        } else {
+            especiais = (especialViatura *) realloc(especiais, sizeEspecial - 1 * sizeof(especialViatura));
+
+        }
+    }
+
 }

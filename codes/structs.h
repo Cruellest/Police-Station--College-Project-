@@ -71,7 +71,7 @@ struct regularViatura{
 
     struct Viatura *viatura;
     
-    char policiais[4];
+    char policiais[4][26];
 
     int chamadas;
 
@@ -81,7 +81,7 @@ struct especialViatura{
 
     struct Viatura *viatura;
     
-    char policiais[4];
+    char policiais[4][26];
 
     int chamadas;
 

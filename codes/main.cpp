@@ -6,7 +6,7 @@ int main(){
     /*
     op = opção;
     */
-    int op = NULL;
+    int op;
     
     
 
@@ -15,11 +15,9 @@ int main(){
     loadViaturas(viaturas);
     Policial *policiais = (Policial*) calloc(ammountofPoliceOfficers(),sizeof(Policial));
     loadPoliceOfficers(policiais);
-    
-    int size = amountofViaturas();
 
     int sizeEspecial = 1;
-    especialViatura *especiais =(especialViatura *) calloc(sizeEspecial,sizeof(especialViatura));
+    especialViatura *especiais = (especialViatura *) calloc(sizeEspecial,sizeof(especialViatura));
     
     int sizeRegular = 1;
     regularViatura *regulares = (regularViatura *) calloc(sizeRegular,sizeof(regularViatura));
