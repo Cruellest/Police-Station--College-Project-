@@ -17,7 +17,7 @@ void viaturaLogin(Viatura *viaturas, int size, regularViatura *regulares, int &s
     printf("\n\n Selecione o tipo de viatura: ");
     scanf(" %d", &op1);
     
-    while(op1 != 1 || op1 != 2) //error handling:
+    while(op1 < 1 || op1 > 2) //error handling:
     {
         printf("\n Tipo inexistente.");
         printf("\n Selecione o tipo de viatura: ");
