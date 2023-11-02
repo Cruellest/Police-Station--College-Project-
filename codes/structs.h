@@ -27,13 +27,12 @@ struct Policial{
 
 };
 
-struct prioritariaChamada{
-    int id;
+struct Chamada{
 
-    int tipo;  /* 1 = Policial Regular
+    int tipo;  /* 1 = Policia Regular
                  2 = Policia Especializada */
 
-    struct Viatura *viaturas[26];
+    int prioridade = 0; /*0 = Sem prioridade*/
 
     char descricao[1000];
 
@@ -43,28 +42,13 @@ struct prioritariaChamada{
 
     bool acaoPolicial = false;
 
-    struct prioritariaChamada *prox;
+    int qntViaturas;
 
 };
 
-struct Chamada{
-    int id;
-
-    int tipo;  /* 1 = Policial Regular
-                 2 = Policia Especializada */
-
-    struct Viatura *viaturas[26];
-
-    char descricao[1000];
-
-    char loc[1000];
-
-    bool reforco = false;
-
-    bool acaoPolicial = false;
-
-    struct Chamada *prox;
-
+struct listaChamada{
+    struct Chamada *chamada;
+    struct listaChamada *prox;
 };
 
 struct regularViatura{
@@ -73,7 +57,13 @@ struct regularViatura{
     
     char policiais[4][26];
 
-    int chamadas;
+    struct listaChamada *listaPrioritarias;
+
+    struct listaChamada *listaChamadas;
+
+    struct listaChamada *listaReforco;
+
+    int qntChamadas;
 
 };
 
@@ -83,7 +73,11 @@ struct especialViatura{
     
     char policiais[4][26];
 
-    int chamadas;
+    struct listaChamada *listaChamadas;
+
+    struct listaChamada *listaReforco;
+
+    int qntChamadas;
 
 };
 
