@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include  "viaturaLogin.cpp"
 
+//fazer alg de ordenação das viaturas .
+
 void distribui_chamada(struct listaChamada *listaChamadas, regularViatura *regulares, especialViatura *especiais)
 {
     struct listaChamada *copia, *novo, *auxiliar;
@@ -115,16 +117,20 @@ void inserir_reforco_especial(struct Chamada *codChamada, struct especialViatura
 
 
 
-
-void cadastrarChamada(struct listaChamada *listaChamada, struct regularViatura *regulares, struct especialViatura *especiais)
+void cadastrarChamada(struct listaChamada *listaChamadas, struct regularViatura *regulares, struct especialViatura *especiais)
 {  
     int op1;
+    Chamada *novaChamada;
+    listaChamada *copia = listaChamadas;
+
     bool reforco; 
     struct Chamada *codChamada, *auxiliar;
-    verif_reforco(listaChamada, reforco, codChamada);
+    printf("\n SPM - COPOM");
+
+    verif_reforco(listaChamadas, reforco, codChamada);
 
     while (reforco == true){
-        printf("\n SOLICITAÇÃO DE REFORÇO!");
+        printf("\n\n SOLICITAÇÃO DE REFORÇO!");
         printf("\n 1 - Atender");
         printf("\n 2 - Negar");
         scanf("%d", &op1);
@@ -138,8 +144,48 @@ void cadastrarChamada(struct listaChamada *listaChamada, struct regularViatura *
                 inserir_reforco_especial(codChamada, especiais);
             }
         }
-        verif_reforco(listaChamada, reforco, codChamada);
+        verif_reforco(listaChamadas, reforco, codChamada);
     }
 
+    printf("\n\n Cadastrar nova chamada:");
+    printf("\n 1 - Polícia Regular");
+    printf("\n 2 - Polícia Especializada");
+    
+    printf("\n\n Selecione o tipo de polícia: ");
+    scanf("%d", novaChamada->tipo);
+
+    if(novaChamada->tipo == 1)
+    {
+        printf("\n 1 - Chamada Prioritária");
+        printf("\n 2 - Chamada Não Prioritária");
+    
+        printf("\n\n Selecione a prioridade da chamada: ");
+        scanf("%d", novaChamada->tipo);
+    }
+
+    printf("\n 1 - Viaturas Necessárias");
+    scanf("%d", &novaChamada->qntViaturas);
+
+    printf("/n Descrição: ");
+    scanf(" %[^\n]", novaChamada->descricao);
+
+    printf("/n Localização: ");
+    scanf(" %[^\n]", novaChamada->loc);
+
+    listaChamada *nova = (listaChamada *) malloc(sizeof(listaChamada));
+            nova->prox = NULL;
+            nova->chamada = novaChamada;
+    
+
+    if (listaChamadas == NULL)
+    {
+        listaChamadas = nova;
+    } else {
+        while(copia != NULL)
+        {
+        copia = copia->prox;
+        }
+        copia->prox = nova;
+    }
 
 }
