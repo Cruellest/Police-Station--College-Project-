@@ -1,81 +1,85 @@
 #include <stdio.h>
 #include <string.h>
 #include  "Loader.cpp"
-/*
-
-            viaturaLogin(viaturas, size, regulares, sizeRegular, especiais, sizeEspecial);
-            for(int i = 0; i < sizeRegular; i++) {
-                printf("%d", regulares[i].viatura->codigo);
-            }
-            for(int i = 0; i < sizeRegular; i++) {
-                printf("%d", especiais[i].viatura->codigo);
-            }
-
-void logar(struct Viatura *viatura, int quantidadePM, struct tViaturaLogin *&I, struct tViaturaLogin *&F){
-    struct tViaturaLogin *nova;
-    char nomes[26+1];
-
-    nova = (struct tViaturaLogin *) malloc(sizeof (struct tViaturaLogin));
-    nova->viatura = viatura;
-    
-    printf("\nIdentificação dos PMs: ");
-
-    for (int i = 0; i < quantidadePM; i++)
-    {
-        scanf(" %[^\n]", nomes);
-        nova->policiais[i] = nomes[i];
-    }
-
-    nova->prox = NULL;
-
-    if (I == NULL)
-        I = F = nova;
-    else
-    {
-    F->prox = nova;
-    F = nova;
-    }
-
-
-}
-*/
 
 void viaturaLogin(Viatura *viaturas, int size, regularViatura *regulares, int &sizeRegular, especialViatura *especiais, int &sizeEspecial) 
 {
+    /*Starting variables:*/
     int op1, op2;
-    int viaturacode, quantidadePM, aux;
+    int viaturaCode, quantidadePM, viaturaVetor, verifRegular, verifEspecial;
 
+
+    /*Collecting user input:*/
     printf("\n SPM - Viatura Login");
-
     printf("\n\n 1 - Policia Regular");
     printf("\n 2 - Policia Especializada");
     
     printf("\n\n Selecione o tipo de viatura: ");
     scanf(" %d", &op1);
+    
+    while(op1 != 1 || op1 != 2) //error handling:
+    {
+        printf("\n Tipo inexistente.");
+        printf("\n Selecione o tipo de viatura: ");
+        scanf(" %d", &op1);
+    }
 
     printf("\n Código da Viatura: ");
-    scanf(" %d", &viaturacode);
-    //validar se é do tipo correto e se já não está sendo utilizada.
+    scanf(" %d", &viaturaCode);
+
+
+    /*Search for the vehicle index in the list of vehicles*/
+    viaturaVetor = buscaBinaria(viaturas, size, viaturaCode);
+
+    //checks and error handling:
+    for(;(op1 == 1 && viaturas[viaturaVetor].tipo != 1) || (op1 == 2 && viaturas[viaturaVetor].tipo != 2);)
+    {
+        printf("\nO código inserido não corresponde a uma viatura do tipo selecionado.");   
+        printf("\n Código da Viatura: ");
+        scanf(" %d", &viaturaCode);
+        viaturaVetor = buscaBinaria(viaturas, size, viaturaCode);
+    }
+
+    if (op1 == 1 && sizeRegular != 1)
+    {
+        verifRegular = buscaBinariaRegular(regulares, sizeRegular, viaturaCode);
+        while(verifRegular != -1){
+            printf("\nViatura selecionada em uso.");   
+            printf("\n Código da Viatura: ");
+            scanf(" %d", &viaturaCode);
+            verifRegular = buscaBinariaRegular(regulares, sizeRegular, viaturaCode); 
+        }
+    } else if (op1 == 2 && sizeEspecial != 1) 
+    {
+        verifEspecial = buscaBinariaEspecial(especiais, sizeEspecial, viaturaCode);
+        while(verifEspecial != -1){
+            printf("\nViatura selecionada em uso.");   
+            printf("\n Código da Viatura: ");
+            scanf(" %d", &viaturaCode);
+            verifEspecial = buscaBinariaEspecial(especiais, sizeRegular, viaturaCode); 
+        }
+    }
 
     printf("\n Quantidade de PMs: ");
     scanf(" %d", &quantidadePM);
 
+    //checks and error handling:
     for(;(op1 == 1 && quantidadePM < 2) || (quantidadePM > 4)
-        || (op1 == 2 && quantidadePM != 4);){
+        || (op1 == 2 && quantidadePM != 4);)
+    {
 
         printf("\n Quantidade de PMs invalida! Autorização de embarque negada.");
         printf("\n Quantidade de PMs: ");
         scanf(" %d", &quantidadePM);
     }
 
-        aux = buscaViatura(viaturas, size, viaturacode);
-        printf("VETOR %d", aux);
 
-        if (op1 == 1)
-        {
+    /*Saving data into their corresponding vectors:*/
+    if (op1 == 1)
+    {
             if (sizeRegular == 1)
             {
-                regulares[0].viatura = &viaturas[aux];
+                regulares[0].viatura = &viaturas[viaturaVetor];
 
                 printf("\n Identificação dos PMs:");
                 for (int i = 0; i < quantidadePM; i++)
@@ -86,22 +90,21 @@ void viaturaLogin(Viatura *viaturas, int size, regularViatura *regulares, int &s
                 sizeRegular++;
 
             } else {
-                regulares = (regularViatura *) realloc(regulares, 1 * sizeof(regularViatura));
+                regulares = (regularViatura *) realloc(regulares, sizeRegular * sizeof(regularViatura));
 
-                regulares[sizeRegular - 1].viatura = &viaturas[aux];
+                regulares[sizeRegular - 1].viatura = &viaturas[viaturaVetor];
 
                 printf("\n Identificação dos PMs:");
                 for (int i = 0; i < quantidadePM; i++)
                 {
                     scanf(" %[^\n]", regulares[sizeRegular - 1].policiais[i]);;
                 }
-
                 sizeRegular++;
             }
         } else {
             if (sizeEspecial == 1)
             {
-                especiais[0].viatura = &viaturas[aux];
+                especiais[0].viatura = &viaturas[viaturaVetor];
 
                 printf("\n Identificação dos PMs:");
                 for (int i = 0; i < quantidadePM; i++)
@@ -112,16 +115,15 @@ void viaturaLogin(Viatura *viaturas, int size, regularViatura *regulares, int &s
                 sizeEspecial++;
 
             } else {
-                especiais = (especialViatura *) realloc(especiais, 1 * sizeof(especialViatura));
+                especiais = (especialViatura *) realloc(especiais, sizeEspecial * sizeof(especialViatura));
 
-                especiais[sizeEspecial - 1].viatura = &viaturas[aux];
+                especiais[sizeEspecial - 1].viatura = &viaturas[viaturaVetor];
 
                 printf("\n Identificação dos PMs:");
                 for (int i = 0; i < quantidadePM; i++)
                 {
                     scanf(" %[^\n]", especiais[sizeEspecial - 1].policiais[i]);
                 }
-
                 sizeEspecial++;
             }
         }
@@ -132,6 +134,9 @@ void viaturaLogin(Viatura *viaturas, int size, regularViatura *regulares, int &s
     printf("\n 2 - Cancelar Embarcação\n");
     scanf(" %d", &op2);
 
+    //if(op2 == 1){implementar após criar função COPOM};
+
+    /*Removing discarded data:*/
     if(op2 == 2)
     {
         if(op1 == 1)
