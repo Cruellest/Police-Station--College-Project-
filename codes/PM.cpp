@@ -6,28 +6,37 @@ int LoginPm(Policial *local){
 
     printf("\e[1;1H\e[2J");
 
-    printf("Usuario:");
+    printf("Usuario: ");
     scanf(" %s", usuario);
 
-    printf("Senha:");
+    printf("Senha: ");
     scanf(" %s", senha);
 
     for(int i = 0; i < ammountofPoliceOfficers(); i++)
     {
-        if(local[i].guerra == usuario){
-            if (local[i].senha == senha){
-                printf("Login Correto");
+        if(strcmp(local[i].guerra,usuario) == 0){
+            if (strcmp(local[i].senha,senha) == 0){
+                printf("Login Correto\n");
+                getchar();
+                getchar();
+                printf("\e[1;1H\e[2J");
                 return 0;
             }
 
             else{
-                printf("Senha Incorreta");
+                printf("Senha Incorreta\n");
+                getchar();
+                getchar();
+                printf("\e[1;1H\e[2J");
                 return 1;
             }
         }
+        
     }
-    
-    printf("Login Inexistente");
+    printf("Login Inexistente\n");
+    getchar();
+    getchar();
+    printf("\e[1;1H\e[2J");
     return 1;
+    }
 
-}
