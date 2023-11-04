@@ -32,7 +32,8 @@ struct Chamada{
     int tipo;  /* 1 = Policia Regular
                  2 = Policia Especializada */
 
-    int prioridade = 0; /*0 = Sem prioridade*/
+    int prioridade; /* 1 = Prioritária
+                       2 = Não prioritária */
 
     char descricao[1000];
 
@@ -63,7 +64,7 @@ struct regularViatura{
 
     struct listaChamada *listaReforco;
 
-    int qntChamadas;
+    int qntChamadas = 0;
 
 };
 
@@ -77,7 +78,7 @@ struct especialViatura{
 
     struct listaChamada *listaReforco;
 
-    int qntChamadas;
+    int qntChamadas = 0;
 
 };
 

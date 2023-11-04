@@ -22,6 +22,8 @@ int main(){
     int sizeRegular = 1;
     regularViatura *regulares = (regularViatura *) calloc(sizeRegular,sizeof(regularViatura));
 
+    listaChamada *chamadas = NULL;
+
     //(WIP) UI for menu
     do{
 
@@ -38,7 +40,7 @@ int main(){
         if(op == 1) //Viatura Login
         {
             //loads functions from Viatura Login
-            viaturaLogin(viaturas, amountofViaturas(), regulares, sizeRegular, especiais, sizeEspecial);
+            viaturaLogin(viaturas, amountofViaturas(), regulares, sizeRegular, especiais, sizeEspecial, chamadas);
         }
         else if(op == 2) //Viatura em Uso
         {

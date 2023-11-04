@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include  "viaturaLogin.cpp"
+#include  "Loader.cpp"
 
 //fazer alg de ordenação das viaturas .
 
@@ -23,30 +23,41 @@ void distribui_chamada(struct listaChamada *listaChamadas, regularViatura *regul
                 {
                     if(regulares[0].listaPrioritarias == NULL){
                         regulares[0].listaPrioritarias = novo;
+                        regulares[0].qntChamadas = regulares[0].qntChamadas + 1;
                     } else {
                         auxiliar = regulares[0].listaPrioritarias;
-                        while(auxiliar->prox != NULL){
+                        regulares[0].qntChamadas = regulares[0].qntChamadas + 1;
+                        while(auxiliar->prox != NULL)
+                        {
                             auxiliar = auxiliar->prox;
                         }
                         auxiliar->prox = novo; 
                     }
                 } else {
-                    if(regulares[0].listaChamadas == NULL){
+                    if(regulares[0].listaChamadas == NULL)
+                    {
                         regulares[0].listaChamadas = novo;
+                        regulares[0].qntChamadas = regulares[0].qntChamadas + 1;
                     } else {
                         auxiliar = regulares[0].listaChamadas;
-                        while(auxiliar->prox != NULL){
+                        regulares[0].qntChamadas = regulares[0].qntChamadas + 1;
+                        while(auxiliar->prox != NULL)
+                        {
                             auxiliar = auxiliar->prox;
                         }
                         auxiliar->prox = novo; 
                     }
                 }
             } else {
-                if(especiais[0].listaChamadas == NULL){
+                if(especiais[0].listaChamadas == NULL)
+                {
                     especiais[0].listaChamadas = novo;
+                    especiais[0].qntChamadas = regulares[0].qntChamadas + 1;
                 } else {
                     auxiliar = especiais[0].listaChamadas;
-                    while(auxiliar->prox != NULL){
+                    especiais[0].qntChamadas = regulares[0].qntChamadas + 1;
+                    while(auxiliar->prox != NULL)
+                    {
                         auxiliar = auxiliar->prox;
                     }
                     auxiliar->prox = novo; 
@@ -86,11 +97,13 @@ void inserir_reforco_regular(struct Chamada *codChamada, struct regularViatura *
     novo->prox = NULL;
     novo->chamada = codChamada;
 
-    if (regulares[0].listaReforco == NULL){
+    if (regulares[0].listaReforco == NULL)
+    {
         regulares[0].listaReforco = novo;
     } else {
         auxiliar = regulares[0].listaReforco;
-        while(auxiliar->prox != NULL){
+        while(auxiliar->prox != NULL)
+        {
             auxiliar = auxiliar->prox;
         }
         auxiliar->prox = novo; 
@@ -104,11 +117,13 @@ void inserir_reforco_especial(struct Chamada *codChamada, struct especialViatura
     novo->prox = NULL;
     novo->chamada = codChamada;
 
-    if (especiais[0].listaReforco == NULL){
+    if (especiais[0].listaReforco == NULL)
+    {
         especiais[0].listaReforco = novo;
     } else {
         auxiliar = especiais[0].listaReforco;
-        while(auxiliar->prox != NULL){
+        while(auxiliar->prox != NULL)
+        {
             auxiliar = auxiliar->prox;
         }
         auxiliar->prox = novo; 
@@ -124,7 +139,7 @@ void cadastrarChamada(struct listaChamada *listaChamadas, struct regularViatura 
     listaChamada *copia = listaChamadas;
 
     bool reforco; 
-    struct Chamada *codChamada, *auxiliar;
+    struct Chamada *codChamada;
     printf("\n SPM - COPOM");
 
     verif_reforco(listaChamadas, reforco, codChamada);
