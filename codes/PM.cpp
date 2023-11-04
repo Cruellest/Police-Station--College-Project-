@@ -20,7 +20,7 @@ int LoginPm(Policial *local){
                 getchar();
                 getchar();
                 printf("\e[1;1H\e[2J");
-                return 0;
+                return i;
             }
 
             else{
@@ -28,7 +28,7 @@ int LoginPm(Policial *local){
                 getchar();
                 getchar();
                 printf("\e[1;1H\e[2J");
-                return 1;
+                return -1;
             }
         }
         
@@ -37,6 +37,6 @@ int LoginPm(Policial *local){
     getchar();
     getchar();
     printf("\e[1;1H\e[2J");
-    return 1;
+    return -1;
     }
 
