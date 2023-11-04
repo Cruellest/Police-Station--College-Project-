@@ -178,6 +178,15 @@ void viaturaLogin(Viatura *viaturas, int size, regularViatura *regulares, int &s
             {
                 regulares[0].viatura = &viaturas[viaturaVetor];
 
+                regulares[0].listaChamadas = (listaChamada *) malloc(sizeof(listaChamada));
+                regulares[0].listaChamadas = NULL;
+
+                regulares[0].listaPrioritarias = (listaChamada *) malloc(sizeof(listaChamada));
+                regulares[0].listaPrioritarias = NULL;
+
+                regulares[0].listaReforco = (listaChamada *) malloc(sizeof(listaChamada));
+                regulares[0].listaReforco = NULL;
+
                 printf("\n Identificação dos PMs:");
                 for (int i = 0; i < quantidadePM; i++)
                 {
@@ -191,6 +200,15 @@ void viaturaLogin(Viatura *viaturas, int size, regularViatura *regulares, int &s
 
                 regulares[sizeRegular - 1].viatura = &viaturas[viaturaVetor];
 
+                regulares[sizeRegular - 1].listaChamadas = (listaChamada *) malloc(sizeof(listaChamada));
+                regulares[sizeRegular - 1].listaChamadas = NULL;
+
+                regulares[sizeRegular - 1].listaPrioritarias = (listaChamada *) malloc(sizeof(listaChamada));
+                regulares[sizeRegular - 1].listaPrioritarias = NULL;
+
+                regulares[sizeRegular - 1].listaReforco = (listaChamada *) malloc(sizeof(listaChamada));
+                regulares[sizeRegular - 1].listaReforco = NULL;
+
                 printf("\n Identificação dos PMs:");
                 for (int i = 0; i < quantidadePM; i++)
                 {
@@ -202,6 +220,12 @@ void viaturaLogin(Viatura *viaturas, int size, regularViatura *regulares, int &s
             if (sizeEspecial == 1)
             {
                 especiais[0].viatura = &viaturas[viaturaVetor];
+
+                especiais[0].listaChamadas = (listaChamada *) malloc(sizeof(listaChamada));
+                especiais[0].listaChamadas = NULL;
+
+                especiais[0].listaReforco = (listaChamada *) malloc(sizeof(listaChamada));
+                especiais[0].listaReforco = NULL;
 
                 printf("\n Identificação dos PMs:");
                 for (int i = 0; i < quantidadePM; i++)
@@ -215,6 +239,12 @@ void viaturaLogin(Viatura *viaturas, int size, regularViatura *regulares, int &s
                 especiais = (especialViatura *) realloc(especiais, sizeEspecial * sizeof(especialViatura));
 
                 especiais[sizeEspecial - 1].viatura = &viaturas[viaturaVetor];
+
+                especiais[sizeEspecial - 1].listaChamadas = (listaChamada *) malloc(sizeof(listaChamada));
+                especiais[sizeEspecial - 1].listaChamadas = NULL;
+
+                especiais[sizeEspecial - 1].listaReforco = (listaChamada *) malloc(sizeof(listaChamada));
+                especiais[sizeEspecial - 1].listaReforco = NULL;
 
                 printf("\n Identificação dos PMs:");
                 for (int i = 0; i < quantidadePM; i++)

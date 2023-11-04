@@ -22,7 +22,8 @@ int main(){
     int sizeRegular = 1;
     regularViatura *regulares = (regularViatura *) calloc(sizeRegular,sizeof(regularViatura));
 
-    listaChamada *chamadas = NULL;
+    listaChamada *chamadas;
+    chamadas = NULL;
 
     //(WIP) UI for menu
     do{
@@ -74,7 +75,7 @@ int main(){
         {
             int opdeb = 0;
             
-            printf("\n1 - Decrypt Password\n2 - Print Police Struct Array POS\n3 - Print Viatura Struct Array POS\n4 - Print Ammount of Officers\n5 - Print Ammount of Viaturas\n6 - Print regularViatura Struct Array");
+            printf("\n1 - Decrypt Password\n2 - Print Police Struct Array POS\n3 - Print Viatura Struct Array POS\n4 - Print Ammount of Officers\n5 - Print Ammount of Viaturas\n6 - Print regularViatura Struct Array\n7 - Print especialViatura Array\n8 - Print chamadas Array\n");
             scanf(" %d",&opdeb);
             
             if(opdeb == 1){
@@ -136,9 +137,50 @@ int main(){
                 scanf(" %d", &POS);
 
                 printf("\nCodigo: %d\n",regulares[POS].viatura->codigo);
-                printf("Quantidade de chamadas: %d\n",regulares[POS].qntChamadas);
-                getchar();
-                getchar();
+                printf("Quantidade de chamadas: %d\n", regulares[POS].qntChamadas);
+
+                listaChamada *copia;
+
+                copia = regulares[POS].listaChamadas;
+
+                if (copia != NULL)
+                {
+                    while(copia->prox != NULL)
+                    {
+                        printf("%s", copia->chamada.descricao);
+                        copia = copia->prox;
+                    }
+                    printf("%s", copia->chamada.descricao);
+
+                    copia = regulares->listaPrioritarias;
+
+                    while(copia->prox != NULL)
+                    {
+                        printf("%s", copia->chamada.descricao);
+                        copia = copia->prox;
+                    }
+                    printf("%s", copia->chamada.descricao);
+
+                    getchar();
+                    getchar();
+                } else {
+                    printf("\nSem chamadas.");
+                }
+            } else if (opdeb == 8){
+                listaChamada *copia = chamadas;
+
+
+                if (copia != NULL)
+                {
+                    while(copia->prox != NULL)
+                    {
+                        printf("%s", copia->chamada.descricao);
+                        copia = copia->prox;
+                    }
+                    printf("%s", copia->chamada.descricao);
+                } else {
+                    printf("Sem chamadas.");
+                }
             }
 
         }

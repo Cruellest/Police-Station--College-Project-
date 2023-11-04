@@ -45,12 +45,12 @@ struct Chamada{
 
     bool acaoPolicial = false;
 
-    int qntViaturas;
+    int qntViaturas = 0;
 
 };
 
 struct listaChamada{
-    struct Chamada *chamada;
+    struct Chamada chamada;
     struct listaChamada *prox;
 };
 

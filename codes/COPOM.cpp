@@ -5,22 +5,23 @@
 
 void distribui_chamada(struct listaChamada *listaChamadas, regularViatura *regulares, especialViatura *especiais)
 {
+    
     struct listaChamada *copia, *novo, *auxiliar;
 
     copia = listaChamadas;
 
-    if (listaChamadas != NULL)
+    if (copia != NULL)
     {
         if(copia->prox == NULL){
-            if(copia->chamada->qntViaturas > 0)
+            if(copia->chamada.qntViaturas > 0)
             {
                 novo = (listaChamada *) malloc(sizeof(listaChamada));
                 novo->prox = NULL;
                 novo->chamada = copia->chamada;
 
-                if(copia->chamada->tipo == 1)
+                if(copia->chamada.tipo == 1)
                 {
-                    if(copia->chamada->prioridade == 1)
+                    if(copia->chamada.prioridade == 1)
                     {
                         if(regulares[0].listaPrioritarias == NULL){
                             regulares[0].listaPrioritarias = novo;
@@ -64,21 +65,21 @@ void distribui_chamada(struct listaChamada *listaChamadas, regularViatura *regul
                         auxiliar->prox = novo; 
                     }
                 }
+                copia->chamada.qntViaturas = copia->chamada.qntViaturas - 1;
             }
-            copia->chamada->qntViaturas = copia->chamada->qntViaturas - 1;
             copia = copia->prox;
         } else {
             while(copia->prox != NULL)
             {
-                if(copia->chamada->qntViaturas > 0)
+                if(copia->chamada.qntViaturas > 0)
                 {
                     novo = (listaChamada *) malloc(sizeof(listaChamada));
                     novo->prox = NULL;
                     novo->chamada = copia->chamada;
 
-                    if(copia->chamada->tipo == 1)
+                    if(copia->chamada.tipo == 1)
                     {
-                        if(copia->chamada->prioridade == 1)
+                        if(copia->chamada.prioridade == 1)
                         {
                             if(regulares[0].listaPrioritarias == NULL){
                                 regulares[0].listaPrioritarias = novo;
@@ -122,8 +123,8 @@ void distribui_chamada(struct listaChamada *listaChamadas, regularViatura *regul
                             auxiliar->prox = novo; 
                         }
                     }
+                    copia->chamada.qntViaturas = copia->chamada.qntViaturas - 1;
                 }
-                copia->chamada->qntViaturas = copia->chamada->qntViaturas - 1;
                 copia = copia->prox;
             }
         }
@@ -131,25 +132,30 @@ void distribui_chamada(struct listaChamada *listaChamadas, regularViatura *regul
 }
 
 
-void verif_reforco(struct listaChamada *listaChamada, bool &reforcoLocal, struct Chamada *codChamada)
+void verif_reforco(struct listaChamada *listaChamadas, bool &reforcoLocal, struct Chamada *codChamada)
 {
     struct listaChamada *copia;
 
-    copia = listaChamada;
+    copia = listaChamadas;
 
-    if (listaChamada != NULL)
-    {
-        while(copia->prox != NULL){
-            if (listaChamada->chamada->reforco == true) 
+    if(copia != NULL){
+        if(copia->prox == NULL){
+            reforcoLocal = true;
+            copia->chamada.reforco = false;
+            codChamada = &copia->chamada;
+        } else {
+            while(copia->prox != NULL)
             {
-                reforcoLocal = true;
-                listaChamada->chamada->reforco = false;
-                codChamada = listaChamada->chamada;
-                copia = copia->prox;
-            } else {
-                copia = copia->prox;
+                if (copia->chamada.reforco == true) 
+                {
+                    reforcoLocal = true;
+                    copia->chamada.reforco = false;
+                    codChamada = &copia->chamada;
+                    copia = copia->prox;
+                } else {
+                    copia = copia->prox;
+                }
             }
-
         }
     }
 }
@@ -159,7 +165,7 @@ void inserir_reforco_regular(struct Chamada *codChamada, struct regularViatura *
 
     novo = (listaChamada * ) malloc(sizeof(listaChamada));
     novo->prox = NULL;
-    novo->chamada = codChamada;
+    novo->chamada = *codChamada;
 
     if (regulares[0].listaReforco == NULL)
     {
@@ -179,7 +185,7 @@ void inserir_reforco_especial(struct Chamada *codChamada, struct especialViatura
 
     novo = (listaChamada * ) malloc(sizeof(listaChamada));
     novo->prox = NULL;
-    novo->chamada = codChamada;
+    novo->chamada = *codChamada;
 
     if (especiais[0].listaReforco == NULL)
     {
@@ -199,11 +205,15 @@ void inserir_reforco_especial(struct Chamada *codChamada, struct especialViatura
 void cadastrarChamada(struct listaChamada *listaChamadas, struct regularViatura *regulares, struct especialViatura *especiais)
 {  
     int op1;
-    Chamada novaChamada;
     listaChamada *copia = listaChamadas;
 
     bool reforco; 
-    struct Chamada *codChamada = NULL;
+
+    Chamada novaChamada;
+
+    Chamada *codChamada = (Chamada *) malloc(sizeof(Chamada));
+    codChamada = NULL;
+
     printf("\n SPM - COPOM");
 
     verif_reforco(listaChamadas, reforco, codChamada);
@@ -239,7 +249,7 @@ void cadastrarChamada(struct listaChamada *listaChamadas, struct regularViatura 
         printf("\n 2 - Chamada Não Prioritária");
     
         printf("\n\n Selecione a prioridade da chamada: ");
-        scanf("%d", &novaChamada.tipo);
+        scanf("%d", &novaChamada.prioridade);
     }
 
     printf("\n 1 - Viaturas Necessárias: ");
@@ -250,21 +260,20 @@ void cadastrarChamada(struct listaChamada *listaChamadas, struct regularViatura 
 
     printf("\n Localização: ");
     scanf(" %[^\n]", novaChamada.loc);
-
-    listaChamada *nova = (listaChamada *) malloc(sizeof(listaChamada));
-            nova->prox = NULL;
-            nova->chamada = &novaChamada;
     
+    listaChamada *nova = (listaChamada *) malloc(sizeof(listaChamada));
+    nova->chamada = novaChamada;
+    nova->prox = NULL;
 
     if (listaChamadas == NULL)
     {
         listaChamadas = nova;
     } else {
-        while(copia != NULL)
+        while(copia->prox != NULL)
         {
-        copia = copia->prox;
+            copia = copia->prox;
         }
-        copia->prox = nova;
+        copia = nova;
     }
 
 }
