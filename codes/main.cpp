@@ -46,10 +46,10 @@ int main(){
         {
 
         }
+
         else if(op == 3) //COPOM
         {
-
-
+            cadastrarChamada(chamadas, regulares, especiais);
         }
         else if(op == 4) //Policial Militar
         {
@@ -71,7 +71,7 @@ int main(){
         {
             int opdeb = 0;
             
-            printf("\n1 - Decrypt Password\n2 - Print Police Struct Array POS\n3 - Print Viatura Struct Array POS\n4 - Print Ammount of Officers\n5 - Print Ammount of Viaturas\n");
+            printf("\n1 - Decrypt Password\n2 - Print Police Struct Array POS\n3 - Print Viatura Struct Array POS\n4 - Print Ammount of Officers\n5 - Print Ammount of Viaturas\n6 - Print regularViatura Struct Array");
             scanf(" %d",&opdeb);
             
             if(opdeb == 1){
@@ -121,6 +121,18 @@ int main(){
 
             else if(opdeb == 5){
                 printf("%d\n",amountofViaturas());
+                getchar();
+                getchar();
+            }
+
+            else if(opdeb == 6){
+                int POS = 0;
+
+                printf("\nArray POS\n");
+                scanf(" %d", &POS);
+
+                printf("\nCodigo: %d\n",regulares[POS].viatura->codigo);
+                printf("Quantidade de chamadas: %d\n",regulares[POS].qntChamadas);
                 getchar();
                 getchar();
             }
