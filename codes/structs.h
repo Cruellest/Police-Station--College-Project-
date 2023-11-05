@@ -25,6 +25,8 @@ struct Policial{
 
     char senha[26];
 
+    bool logado = 0;
+
 };
 
 struct Chamada{
