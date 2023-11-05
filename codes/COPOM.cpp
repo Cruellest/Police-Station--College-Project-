@@ -202,7 +202,7 @@ void inserir_reforco_especial(struct Chamada *codChamada, struct especialViatura
 
 
 
-void cadastrarChamada(struct listaChamada *listaChamadas, struct regularViatura *regulares, struct especialViatura *especiais)
+void cadastrarChamada(struct listaChamada *&listaChamadas, struct regularViatura *regulares, struct especialViatura *especiais)
 {  
     int op1;
     listaChamada *copia = listaChamadas;
@@ -260,20 +260,21 @@ void cadastrarChamada(struct listaChamada *listaChamadas, struct regularViatura 
 
     printf("\n Localização: ");
     scanf(" %[^\n]", novaChamada.loc);
-    
-    listaChamada *nova = (listaChamada *) malloc(sizeof(listaChamada));
-    nova->chamada = novaChamada;
-    nova->prox = NULL;
 
     if (listaChamadas == NULL)
     {
-        listaChamadas = nova;
+        printf("Entrou em Lista == Null\n");
+        listaChamadas = (listaChamada *) malloc(sizeof(listaChamada));
+        listaChamadas->chamada = novaChamada;
+        listaChamadas->prox = NULL;
     } else {
         while(copia->prox != NULL)
         {
             copia = copia->prox;
         }
-        copia = nova;
+        copia = (listaChamada *) malloc(sizeof(listaChamada));
+        copia->chamada = novaChamada;
+        copia->prox = NULL;
     }
 
 }

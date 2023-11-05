@@ -51,7 +51,7 @@ struct Chamada{
 
 struct listaChamada{
     struct Chamada chamada;
-    struct listaChamada *prox;
+    struct listaChamada *prox = NULL;
 };
 
 struct regularViatura{
