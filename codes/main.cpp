@@ -52,8 +52,11 @@ int main(){
             cadastrarChamada(chamadas, regulares, especiais);
         }
         else if(op == 4) //Policial Militar
-        {
-            LoginPm(policiais);
+        {   
+            int LogTry = LoginPm(policiais);
+            if(LogTry != -1){
+                menuPM(policiais);
+            }
 
         }
         else if(op == 5) //Oficial
