@@ -136,7 +136,7 @@ void viaturaLogin(Viatura *viaturas, int size, regularViatura *regulares, int &s
         scanf(" %d", &viaturaCode);
         viaturaVetor = buscaBinaria(viaturas, size, viaturaCode);
     }
-
+/*
     if (op1 == 1 && sizeRegular != 1)
     {
         verifRegular = buscaBinariaRegular(regulares, sizeRegular, viaturaCode);
@@ -156,9 +156,9 @@ void viaturaLogin(Viatura *viaturas, int size, regularViatura *regulares, int &s
             verifEspecial = buscaBinariaEspecial(especiais, sizeRegular, viaturaCode); 
         }
     }
-
+*/
     printf("\n Quantidade de PMs: ");
-    scanf(" %d", &quantidadePM);
+    scanf("%d", &quantidadePM);
 
     //checks and error handling:
     for(;(op1 == 1 && quantidadePM < 2) || (quantidadePM > 4)
@@ -167,7 +167,7 @@ void viaturaLogin(Viatura *viaturas, int size, regularViatura *regulares, int &s
 
         printf("\n Quantidade de PMs invalida! Autorização de embarque negada.");
         printf("\n Quantidade de PMs: ");
-        scanf(" %d", &quantidadePM);
+        scanf("%d", &quantidadePM);
     }
 
 
@@ -261,14 +261,17 @@ void viaturaLogin(Viatura *viaturas, int size, regularViatura *regulares, int &s
     printf("\n 2 - Cancelar Embarcação\n");
     scanf(" %d", &op2);
 
-    distribui_chamada(listaChamadas, regulares, especiais);
-
+    printf("\n%d na celula %d", regulares[sizeRegular - 2].viatura->codigo, sizeRegular - 2);
     if (op1 == 1)
     {
         quicksortRegular(regulares, 0, sizeRegular);
     } else {
         quicksortEspecial(especiais, 0, sizeEspecial);
     }
+
+    printf("\n%d na celula %d", regulares[sizeRegular - 2].viatura->codigo, sizeRegular - 2);
+
+    distribui_chamada(listaChamadas, regulares, especiais);
 
     
 
