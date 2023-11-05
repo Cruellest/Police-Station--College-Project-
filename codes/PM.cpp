@@ -61,4 +61,5 @@ int menuPM (Policial *local){
     default:
         break;
     }
+    return 0;
 }
