@@ -140,9 +140,14 @@ void verif_reforco(struct listaChamada *listaChamadas, bool &reforcoLocal, struc
 
     if(copia != NULL){
         if(copia->prox == NULL){
-            reforcoLocal = true;
-            copia->chamada.reforco = false;
-            codChamada = &copia->chamada;
+            if (copia->chamada.reforco == true) 
+                {
+                    reforcoLocal = true;
+                    copia->chamada.reforco = false;
+                    codChamada = &copia->chamada;
+                }else {
+                    copia = copia->prox;
+                }
         } else {
             while(copia->prox != NULL)
             {
@@ -207,7 +212,7 @@ void cadastrarChamada(struct listaChamada *&listaChamadas, struct regularViatura
     int op1;
     listaChamada *copia = listaChamadas;
 
-    bool reforco; 
+    bool reforco = false; 
 
     Chamada novaChamada;
 
@@ -233,6 +238,7 @@ void cadastrarChamada(struct listaChamada *&listaChamadas, struct regularViatura
                 inserir_reforco_especial(codChamada, especiais);
             }
         }
+        reforco = false;
         verif_reforco(listaChamadas, reforco, codChamada);
     }
 

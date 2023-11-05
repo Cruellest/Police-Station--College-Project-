@@ -152,15 +152,6 @@ int main(){
                     }
                     printf("%s", copia->chamada.descricao);
 
-                    copia = regulares->listaPrioritarias;
-
-                    while(copia->prox != NULL)
-                    {
-                        printf("%s", copia->chamada.descricao);
-                        copia = copia->prox;
-                    }
-                    printf("%s", copia->chamada.descricao);
-
                     getchar();
                     getchar();
                 } else {
