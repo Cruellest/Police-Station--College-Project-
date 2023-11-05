@@ -45,17 +45,17 @@ int menuPM (Policial *local){
     int op;
     printf("Menu PM (WIP)\n");
     printf("1 - Visualizar ocorrencias sem boletim\n2 - Escrever boletim de ocorrencia\nOpção: ");
-    scanf("%d",&op);
+    scanf(" %d",&op);
 
     switch (op)
     {
-    case 1:{
+    case 1:
         for (int i = 0; i < ammountofPoliceOfficers(); i++)
         {
             printf("Just a place holder \n");
         }
         
-    }
+    
         
     
     default:

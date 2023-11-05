@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "PM.cpp"
+#include "Oficial.cpp"
 
 int main(){
 
@@ -61,7 +61,7 @@ int main(){
         }
         else if(op == 5) //Oficial
         {
-
+            officerLogin(policiais);
 
         }
         else if(op == 6) //Comandante Geral
