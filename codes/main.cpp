@@ -97,6 +97,7 @@ int main(){
                 printf("%d\n",policiais[POS].idade);
                 printf("%s\n",policiais[POS].cargo);
                 printf("%s\n",policiais[POS].senha);
+                printf("%s\n",policiais[POS].logado);
                 getchar();
                 getchar();
             }
