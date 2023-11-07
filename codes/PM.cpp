@@ -1,4 +1,11 @@
-#include "viaturaLogin.cpp"
+#ifndef STRUCTS_H
+#include "structs.h"
+#endif
+#include <stdio.h>
+#include <string.h>
+#ifndef LOADER_H
+#include "Loader.h"
+#endif
 
 int LoginPm(Policial *local){
 

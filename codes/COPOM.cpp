@@ -1,5 +1,10 @@
 #include <stdio.h>
-#include  "Loader.cpp"
+#include <stdlib.h>
+#ifndef STRUCTS_H
+#include "structs.h"
+#endif
+
+
 
 //fazer alg de ordenação das viaturas .
 

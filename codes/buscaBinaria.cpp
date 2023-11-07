@@ -1,4 +1,6 @@
+#ifndef STRUCTS_H
 #include "structs.h"
+#endif
 
 int buscaBinaria(struct Viatura *viaturas, int size, int chave) {
     int inicio = 0;

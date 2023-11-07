@@ -1,4 +1,12 @@
-#include "PM.cpp"
+#ifndef STRUCTS_H
+#include "structs.h"
+#endif
+
+#ifndef PM_H
+#include "PM.h"
+#endif
+
+#include <stdio.h>
 
 int officerLogin(Policial *local){
     

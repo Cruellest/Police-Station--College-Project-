@@ -1,5 +1,17 @@
 #include <stdio.h>
-#include "Commandante.cpp"
+#include<stdlib.h>
+#ifndef PM_H
+#include "PM.h"
+#endif
+#ifndef LOADER_H
+#include "Loader.h"
+#endif
+#include "viaturaLogin.h"
+#ifndef COPOM_H
+#include "COPOM.h"
+#endif
+#include "Oficial.h"
+#include "Commandante.h"
 
 int main(){
 

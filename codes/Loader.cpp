@@ -1,10 +1,13 @@
 //This file is used to store the loader for all the structs that
 //need to be loaded from a file
-
+#ifndef STRUCTS_H
+#include "structs.h"
+#endif
 #include <stdio.h>
 #include <stdlib.h> //This includes need to be optimized
 #include <string.h>
-#include "buscaBinaria.cpp"
+
+
 //function used to know the amount of viatures data the file stores
 int amountofViaturas(){
    

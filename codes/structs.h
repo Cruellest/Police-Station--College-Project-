@@ -1,3 +1,5 @@
+#ifndef STRUCTS_H
+#define STRUCTS_H
 //This file is used as an structs header
 
 //Struct of the officers cars
@@ -51,7 +53,7 @@ struct Chamada{
 
 struct listaChamada{
     struct Chamada chamada;
-    struct listaChamada *prox = NULL;
+    struct listaChamada *prox;
 };
 
 struct regularViatura{
@@ -84,3 +86,4 @@ struct especialViatura{
 
 };
 
+#endif

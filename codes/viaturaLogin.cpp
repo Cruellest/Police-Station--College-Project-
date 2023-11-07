@@ -1,6 +1,14 @@
+#ifndef STRUCTS_H
+#include "structs.h"
+#endif
 #include <stdio.h>
 #include <string.h>
-#include "COPOM.cpp"
+#include <stdlib.h>
+#include "buscaBinaria.h"
+#ifndef COPOM_H
+#include "COPOM.h"
+#endif
+
 
 int separaRegular(int p, int sizeVetor, regularViatura *vetor)
 {
