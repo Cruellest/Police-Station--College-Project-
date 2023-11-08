@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
+
 #ifndef STRUCTS_H
 #include "structs.h"
 #endif
-
 
 
 int distribui_chamada(struct listaChamada *listaChamadas, regularViatura *regulares, especialViatura *especiais)
@@ -214,7 +214,7 @@ void inserir_reforco_especial(struct Chamada *codChamada, struct especialViatura
     }
 }
 
-
+//passar nome policial
 
 void cadastrarChamada(struct listaChamada *&listaChamadas, struct regularViatura *regulares, struct especialViatura *especiais)
 {  

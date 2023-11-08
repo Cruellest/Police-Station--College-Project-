@@ -1,13 +1,21 @@
 #ifndef STRUCTS_H
 #include "structs.h"
 #endif
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #include "buscaBinaria.h"
+
 #ifndef COPOM_H
 #include "COPOM.h"
+#endif
+
+#ifndef VIATURAFUNCIONALIDADE_H
 #include "viaturaFuncionalidade.h"
+#endif
+
+#ifndef QUICKSORTVIATURA_H
 #include "quicksortViatura.h"
 #endif
 
@@ -16,7 +24,7 @@ void viaturaLogin(Viatura *viaturas, int size, regularViatura *regulares, int &s
 {
     /*Starting variables:*/
     int tipo;
-    int viaturaCode, quantidadePM, viaturaVetor, verifRegular, verifEspecial;
+    int viaturaCode, quantidadePM, viaturaVetor;
 
 
     /*Collecting user input:*/
@@ -49,27 +57,7 @@ void viaturaLogin(Viatura *viaturas, int size, regularViatura *regulares, int &s
         scanf(" %d", &viaturaCode);
         viaturaVetor = buscaBinaria(viaturas, size, viaturaCode);
     }
-/*
-    if (op1 == 1 && sizeRegular != 1)
-    {
-        verifRegular = buscaBinariaRegular(regulares, sizeRegular, viaturaCode);
-        while(verifRegular != -1){
-            printf("\nViatura selecionada em uso.");   
-            printf("\n Código da Viatura: ");
-            scanf(" %d", &viaturaCode);
-            verifRegular = buscaBinariaRegular(regulares, sizeRegular, viaturaCode); 
-        }
-    } else if (op1 == 2 && sizeEspecial != 1) 
-    {
-        verifEspecial = buscaBinariaEspecial(especiais, sizeEspecial, viaturaCode);
-        while(verifEspecial != -1){
-            printf("\nViatura selecionada em uso.");   
-            printf("\n Código da Viatura: ");
-            scanf(" %d", &viaturaCode);
-            verifEspecial = buscaBinariaEspecial(especiais, sizeRegular, viaturaCode); 
-        }
-    }
-*/
+
     printf("\n Quantidade de PMs: ");
     scanf("%d", &quantidadePM);
 

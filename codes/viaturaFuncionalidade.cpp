@@ -1,54 +1,18 @@
 #ifndef STRUCTS_H
 #include "structs.h"
 #endif
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include "buscaBinaria.h"
+
 #ifndef COPOM_H
 #include "COPOM.h"
-#include "quicksortViatura.h"
 #endif
 
-void viaturaEstadoNeutro(regularViatura *regulares, int sizeRegular, especialViatura *especiais, int sizeEspecial, listaChamada *&chamadas, int tipo, int viaturaCode)
-{
-    int op2;
-
-    printf("\n SPM - Viatura Estado Neutro");
-
-    printf("\n\n 1 - Apto para atender ocorrência");
-    printf("\n 2 - Cancelar Embarcação\n");
-    scanf(" %d", &op2);
-
-    if(op2 == 1){
-        /*tirar*/printf("\n%d na celula %d", regulares[sizeRegular - 2].viatura->codigo, sizeRegular - 2);
-        if (tipo == 1)
-        {
-            quicksortRegular(regulares, 0, sizeRegular);
-        } else {
-            quicksortEspecial(especiais, 0, sizeEspecial);
-        }
-
-        printf("\n%d na celula %d", regulares[sizeRegular - 2].viatura->codigo, sizeRegular - 2);
-
-        int distribuiu = distribui_chamada(chamadas, regulares, especiais);
-
-        if (distribuiu < 0){
-            viaturaModoRonda();
-        } else {
-
-        }
-    } else {
-        if(tipo == 1)
-        {
-            regulares = (regularViatura *) realloc(regulares, sizeRegular - 1 * sizeof(regularViatura));
-        } else {
-            especiais = (especialViatura *) realloc(especiais, sizeEspecial - 1 * sizeof(especialViatura));
-
-        }
-    }
-
-}
+#ifndef QUICKSORTVIATURA_H
+#include "quicksortViatura.h"
+#endif
 
 void viaturaModoRonda()
 {
@@ -62,14 +26,59 @@ void viaturaModoRonda()
 
 }
 
+void viaturaEstadoNeutro(regularViatura *regulares, int sizeRegular, especialViatura *especiais, int sizeEspecial, listaChamada *&chamadas, int tipo, int viaturaCode)
+{
+    int op2;
+
+    printf("\n SPM - Viatura Estado Neutro");
+
+    printf("\n\n 1 - Apto para atender ocorrência");
+    printf("\n 2 - Cancelar Embarcação\n");
+    scanf(" %d", &op2);
+
+    if(op2 == 1){
+ 
+        if (tipo == 1)
+        {
+            quicksortRegular(regulares, 0, sizeRegular);
+        } else {
+            quicksortEspecial(especiais, 0, sizeEspecial);
+        }
+
+        printf("\n%d na celula %d", regulares[sizeRegular - 2].viatura->codigo, sizeRegular - 2);
+
+        int distribuiu = distribui_chamada(chamadas, regulares, especiais);
+
+        if (distribuiu < 0){
+            //viaturaModoRonda();
+            printf("\nNão tem chamada.");
+        } else {
+            printf("\nTem chamada.");
+            viaturaChamada(regulares, sizeRegular, especiais, sizeEspecial, chamadas, tipo, viaturaCode);
+        }
+
+    } else {
+        if(tipo == 1)
+        {
+            regulares = (regularViatura *) realloc(regulares, sizeRegular - 1 * sizeof(regularViatura));
+        } else {
+            especiais = (especialViatura *) realloc(especiais, sizeEspecial - 1 * sizeof(especialViatura));
+
+        }
+    }
+
+}
+
+
+
+
 void viaturaChamada(regularViatura *regulares, int sizeRegular, especialViatura *especiais, int sizeEspecial, listaChamada *&chamadas, int tipo, int viaturaCode)
 {
 
     int indice, acao;
 
-    switch(tipo)
+    if(tipo == 1)
     {
-        case 1:
             for(int i = 0; i < sizeRegular; i++)
             {
                 if (viaturaCode == regulares[i].viatura->codigo)
@@ -94,30 +103,67 @@ void viaturaChamada(regularViatura *regulares, int sizeRegular, especialViatura 
                 } else {
                     viaturaEstadoNeutro(regulares, sizeRegular, especiais, sizeEspecial, chamadas, tipo, viaturaCode);
                 }
+
+            } else if (viaturaLogada->listaPrioritarias == NULL && viaturaLogada->listaChamadas != NULL){
+                printf("\n Descricao: %c", viaturaLogada->listaChamadas->chamada.descricao); 
+                printf("\n Localização: %c", viaturaLogada->listaChamadas->chamada.loc);   
+
+                printf("\n 1 - Confirmada Ação Policial\n 2 - Ação Policial Dispensada");
+
+                scanf("%d", &acao);
+
+                if(acao == 1){
+                    viaturaOcorrencia();
+                } else {
+                    viaturaEstadoNeutro(regulares, sizeRegular, especiais, sizeEspecial, chamadas, tipo, viaturaCode);
+                }
+
+            } else if (viaturaLogada->listaPrioritarias == NULL && viaturaLogada->listaChamadas != NULL && viaturaLogada->listaReforco != NULL) {
+                //implementar  reforco
             }
 
-            break
-
         
-        case 2:
+    } else {
 
+            for(int i = 0; i < sizeEspecial; i++)
+            {
+                if (viaturaCode == especiais[i].viatura->codigo)
+                {
+                    indice = i;
+                    break;
+                }
+            }
 
+            especialViatura *viaturaLogada = &especiais[indice];
+
+            if(viaturaLogada->listaChamadas != NULL){
+                printf("\n Descricao: %c", viaturaLogada->listaChamadas->chamada.descricao); 
+                printf("\n Localização: %c", viaturaLogada->listaChamadas->chamada.loc);   
+
+                printf("\n 1 - Confirmada Ação Policial\n 2 - Ação Policial Dispensada");
+
+                scanf("%d", &acao);
+
+                if(acao == 1){
+                    viaturaOcorrencia();
+                } else {
+                    viaturaEstadoNeutro(regulares, sizeRegular, especiais, sizeEspecial, chamadas, tipo, viaturaCode);
+                }
+
+            } else if (viaturaLogada->listaChamadas != NULL && viaturaLogada->listaReforco != NULL) {
+                //implementar  reforco
+            }
 
     }
 
-
-
-
 }
+
 
 void viaturaOcorrencia(){}
 void solicitarReforcoRegular(){}
 void prisaoRegular(){}
 void encerrarOcorrenciaRegular(){}
-
-void viaturaChamadaEspecial(regularViatura especiais){}
 void encerrarOcorrenciaEspecial(){}
 void prisaoEspecial(){}
 void solicitarReforcoEspecial(){}
-
 void pesquisarCPF(){}

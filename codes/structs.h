@@ -43,6 +43,8 @@ struct Chamada{
 
     char loc[1000];
 
+    char policiais[4][26];
+
     bool reforco = false;
 
     bool acaoPolicial = false;
