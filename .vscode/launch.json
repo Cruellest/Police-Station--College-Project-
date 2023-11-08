@@ -7,9 +7,9 @@
       "request": "launch",
       "args": [],
       "stopAtEntry": false,
-      "externalConsole": false,
-      "cwd": "/home/cruellest/Police-Station--College-Project-/codes",
-      "program": "/home/cruellest/Police-Station--College-Project-/codes/build/Debug/outDebug",
+      "externalConsole": true,
+      "cwd": ".",
+      "program": "build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

@@ -4,7 +4,7 @@
 
 #include "COPOM.cpp"
 
-void distribui_chamada(struct listaChamada *listaChamadas, regularViatura *regulares, especialViatura *especiais);
+int distribui_chamada(struct listaChamada *listaChamadas, regularViatura *regulares, especialViatura *especiais);
 
 void verif_reforco(struct listaChamada *listaChamadas, bool &reforcoLocal, struct Chamada *codChamada);
 

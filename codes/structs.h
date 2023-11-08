@@ -49,10 +49,17 @@ struct Chamada{
 
     int qntViaturas = 0;
 
+    int estado = 0; /*0 = Não inicializada 
+                1 = Inicializada
+                2 =  Prisão em andamento
+                3 = Encerrada */
+
 };
 
 struct listaChamada{
     struct Chamada chamada;
+    int qntChamada;
+    int qntAtendida;
     struct listaChamada *prox;
 };
 
@@ -70,6 +77,8 @@ struct regularViatura{
 
     int qntChamadas = 0;
 
+    int estado;
+
 };
 
 struct especialViatura{
@@ -83,6 +92,10 @@ struct especialViatura{
     struct listaChamada *listaReforco;
 
     int qntChamadas = 0;
+
+    int estado;  /*0 = Em ronda (Livre)
+                1 =  Atendendo chamada
+                2 = Levando para a DP */
 
 };
 

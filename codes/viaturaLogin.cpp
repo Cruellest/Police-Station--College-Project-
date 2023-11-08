@@ -7,110 +7,15 @@
 #include "buscaBinaria.h"
 #ifndef COPOM_H
 #include "COPOM.h"
+#include "viaturaFuncionalidade.h"
+#include "quicksortViatura.h"
 #endif
-
-
-int separaRegular(int p, int sizeVetor, regularViatura *vetor)
-{
-    int x, i, j, aux;
-
-    x = vetor[p].qntChamadas;
-    i = p - 1;
-    j = sizeVetor + 1;
-
-    while(1)
-    {
-        do 
-        {
-            j--;
-
-        } while (vetor[j].qntChamadas > x);
-        do 
-        {
-            i++;
-        } while (vetor[i].qntChamadas > x);
-
-        if(i < j)
-        {
-            aux = vetor[i].qntChamadas;
-            vetor[i].qntChamadas = vetor[j].qntChamadas;
-            vetor[j].qntChamadas = aux;
-        } else {
-            return j;
-        }
-
-    } 
-
-
-}
-
-void quicksortRegular(regularViatura *vetor, int p, int sizeVetor)
-{
-
-    int q;
-
-    if(p < sizeVetor)
-    {
-        q = separaRegular(p, sizeVetor, vetor);
-        quicksortRegular(vetor, p, q);
-        quicksortRegular(vetor, q + 1, sizeVetor);
-    }
-
-}
-
-int separaEspecial(int p, int sizeVetor, especialViatura *vetor)
-{
-    int x, i, j, aux;
-
-    x = vetor[p].qntChamadas;
-    i = p - 1;
-    j = sizeVetor + 1;
-
-    while(1)
-    {
-        do 
-        {
-            j--;
-
-        } while (vetor[j].qntChamadas > x);
-        do 
-        {
-            i++;
-        } while (vetor[i].qntChamadas > x);
-
-        if(i < j)
-        {
-            aux = vetor[i].qntChamadas;
-            vetor[i].qntChamadas = vetor[j].qntChamadas;
-            vetor[j].qntChamadas = aux;
-        } else {
-            return j;
-        }
-
-    } 
-
-
-}
-
-void quicksortEspecial(especialViatura *vetor, int p, int sizeVetor)
-{
-
-    int q;
-
-    if(p < sizeVetor)
-    {
-        q = separaEspecial(p, sizeVetor, vetor);
-        quicksortEspecial(vetor, p, q);
-        quicksortEspecial(vetor, q + 1, sizeVetor);
-    }
-
-}
 
 
 void viaturaLogin(Viatura *viaturas, int size, regularViatura *regulares, int &sizeRegular, especialViatura *especiais, int &sizeEspecial, listaChamada *listaChamadas) 
 {
     /*Starting variables:*/
-    int op1, op2;
+    int tipo;
     int viaturaCode, quantidadePM, viaturaVetor, verifRegular, verifEspecial;
 
 
@@ -120,13 +25,13 @@ void viaturaLogin(Viatura *viaturas, int size, regularViatura *regulares, int &s
     printf("\n 2 - Polícia Especializada");
     
     printf("\n\n Selecione o tipo de viatura: ");
-    scanf(" %d", &op1);
+    scanf(" %d", &tipo);
     
-    while(op1 < 1 || op1 > 2) //error handling:
+    while(tipo < 1 || tipo > 2) //error handling:
     {
         printf("\n Tipo inexistente.");
         printf("\n Selecione o tipo de viatura: ");
-        scanf(" %d", &op1);
+        scanf(" %d", &tipo);
     }
 
     printf("\n Código da Viatura: ");
@@ -137,7 +42,7 @@ void viaturaLogin(Viatura *viaturas, int size, regularViatura *regulares, int &s
     viaturaVetor = buscaBinaria(viaturas, size, viaturaCode);
 
     //checks and error handling:
-    for(;(op1 == 1 && viaturas[viaturaVetor].tipo != 1) || (op1 == 2 && viaturas[viaturaVetor].tipo != 2);)
+    for(;(tipo == 1 && viaturas[viaturaVetor].tipo != 1) || (tipo == 2 && viaturas[viaturaVetor].tipo != 2);)
     {
         printf("\nO código inserido não corresponde a uma viatura do tipo selecionado.");   
         printf("\n Código da Viatura: ");
@@ -169,8 +74,8 @@ void viaturaLogin(Viatura *viaturas, int size, regularViatura *regulares, int &s
     scanf("%d", &quantidadePM);
 
     //checks and error handling:
-    for(;(op1 == 1 && quantidadePM < 2) || (quantidadePM > 4)
-        || (op1 == 2 && quantidadePM != 4);)
+    for(;(tipo == 1 && quantidadePM < 2) || (quantidadePM > 4)
+        || (tipo == 2 && quantidadePM != 4);)
     {
 
         printf("\n Quantidade de PMs invalida! Autorização de embarque negada.");
@@ -180,7 +85,7 @@ void viaturaLogin(Viatura *viaturas, int size, regularViatura *regulares, int &s
 
 
     /*Saving data into their corresponding vectors:*/
-    if (op1 == 1)
+    if (tipo == 1)
     {
             if (sizeRegular == 1)
             {
@@ -224,7 +129,7 @@ void viaturaLogin(Viatura *viaturas, int size, regularViatura *regulares, int &s
                 }
                 sizeRegular++;
             }
-        } else {
+    } else {
             if (sizeEspecial == 1)
             {
                 especiais[0].viatura = &viaturas[viaturaVetor];
@@ -262,39 +167,5 @@ void viaturaLogin(Viatura *viaturas, int size, regularViatura *regulares, int &s
                 sizeEspecial++;
             }
         }
-
-    printf("\n SPM - Viatura Estado Neutro");
-
-    printf("\n\n 1 - Apto para atender ocorrência");
-    printf("\n 2 - Cancelar Embarcação\n");
-    scanf(" %d", &op2);
-
-    printf("\n%d na celula %d", regulares[sizeRegular - 2].viatura->codigo, sizeRegular - 2);
-    if (op1 == 1)
-    {
-        quicksortRegular(regulares, 0, sizeRegular);
-    } else {
-        quicksortEspecial(especiais, 0, sizeEspecial);
-    }
-
-    printf("\n%d na celula %d", regulares[sizeRegular - 2].viatura->codigo, sizeRegular - 2);
-
-    distribui_chamada(listaChamadas, regulares, especiais);
-
-    
-
-    //if(op2 == 1){implementar após criar função COPOM};
-
-    /*Removing discarded data:*/
-    if(op2 == 2)
-    {
-        if(op1 == 1)
-        {
-            regulares = (regularViatura *) realloc(regulares, sizeRegular - 1 * sizeof(regularViatura));
-        } else {
-            especiais = (especialViatura *) realloc(especiais, sizeEspecial - 1 * sizeof(especialViatura));
-
-        }
-    }
-
+    viaturaEstadoNeutro(regulares, sizeRegular, especiais, sizeEspecial, listaChamadas, tipo, viaturaCode);
 }

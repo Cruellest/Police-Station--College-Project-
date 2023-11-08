@@ -6,16 +6,14 @@
 
 
 
-//fazer alg de ordenação das viaturas .
-
-void distribui_chamada(struct listaChamada *listaChamadas, regularViatura *regulares, especialViatura *especiais)
+int distribui_chamada(struct listaChamada *listaChamadas, regularViatura *regulares, especialViatura *especiais)
 {
     
     struct listaChamada *copia, *novo, *auxiliar;
 
     copia = listaChamadas;
 
-    if (copia != NULL)
+    if (copia != NULL || copia->qntAtendida < copia->qntChamada)
     {
         if(copia->prox == NULL){
             if(copia->chamada.qntViaturas > 0)
@@ -71,6 +69,7 @@ void distribui_chamada(struct listaChamada *listaChamadas, regularViatura *regul
                     }
                 }
                 copia->chamada.qntViaturas = copia->chamada.qntViaturas - 1;
+                copia->qntAtendida++;
             }
             copia = copia->prox;
         } else {
@@ -129,10 +128,15 @@ void distribui_chamada(struct listaChamada *listaChamadas, regularViatura *regul
                         }
                     }
                     copia->chamada.qntViaturas = copia->chamada.qntViaturas - 1;
+                    copia->qntAtendida++;
                 }
                 copia = copia->prox;
             }
-        }
+        } 
+        
+        return 1;
+    } else {
+        return -1;
     }
 }
 
@@ -277,6 +281,8 @@ void cadastrarChamada(struct listaChamada *&listaChamadas, struct regularViatura
         printf("Entrou em Lista == Null\n");
         listaChamadas = (listaChamada *) malloc(sizeof(listaChamada));
         listaChamadas->chamada = novaChamada;
+        listaChamadas->qntChamada = 1;
+        listaChamadas->qntAtendida = 0;
         listaChamadas->prox = NULL;
     } else {
         while(copia->prox != NULL)
@@ -285,6 +291,8 @@ void cadastrarChamada(struct listaChamada *&listaChamadas, struct regularViatura
         }
         copia = (listaChamada *) malloc(sizeof(listaChamada));
         copia->chamada = novaChamada;
+        copia->qntChamada++;
+        listaChamadas->qntAtendida = 0;
         copia->prox = NULL;
     }
 
