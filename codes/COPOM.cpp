@@ -8,7 +8,7 @@
 
 int distribui_chamada(struct listaChamada *listaChamadas, regularViatura *regulares, especialViatura *especiais)
 {
-    
+    printf("Entrou em distribui.");
     struct listaChamada *copia, *novo, *auxiliar;
 
     copia = listaChamadas;

@@ -1,26 +1,28 @@
-#ifndef VIATURAFUNCIONALIDADE_H 
-#define VIATURAFUNCIONALIDADE_H 
+#ifndef VIATURAFUNCIONALIDADE_H
+#define VIATURAFUNCIONALIDADE_H
+
 #include "viaturaFuncionalidade.cpp"
 
 
-void viaturaEstadoNeutro(regularViatura regulares[], int sizeRegular, especialViatura especiais[], int sizeEspecial, listaChamada chamadas[], int tipo, int viaturaCode);
+//void viaturaEstadoNeutro(regularViatura regulares[], int sizeRegular, especialViatura especiais[], int sizeEspecial, listaChamada chamadas[], int tipo, int viaturaCode);
 
-void viaturaChamada(regularViatura regulares[], int sizeRegular, especialViatura especiais[], int sizeEspecial, listaChamada chamadas[], int tipo, int viaturaCode);
+//void viaturaChamada(regularViatura regulares[], int sizeRegular, especialViatura especiais[], int sizeEspecial, listaChamada chamadas[], int tipo, int viaturaCode);
 
-void viaturaModoRonda();
+//void viaturaModoRonda();
 
-void viaturaOcorrencia();
+//void viaturaOcorrencia();
 
-void solicitarReforcoRegular();
-void prisaoRegular();
-void encerrarOcorrenciaRegular();
+//void solicitarReforcoRegular();
+//void prisaoRegular();
+//void encerrarOcorrenciaRegular();
 
 
-void encerrarOcorrenciaEspecial();
-void prisaoEspecial();
-void solicitarReforcoEspecial();
+//void encerrarOcorrenciaEspecial();
+//void prisaoEspecial();
+//void solicitarReforcoEspecial();
 
-void pesquisarCPF();
+//void pesquisarCPF();
 
-#endif
+#endif //!VIATURAFUNCIONALIDADE_H
+
 
