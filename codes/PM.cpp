@@ -64,13 +64,13 @@ int menuPM (Policial *local,int officer,listaChamada *localchamadas){
         }
         else{
             for(listaChamada *i = localchamadas; i == NULL; i = i->prox){
-            if(i->chamada.estado == 3 && i->chamada.Boletim == false){
+            if(i->chamada->estado == 3 && i->chamada->Boletim == false){
                 for (int j = 0; j < 4; j++)
                 {
-                    if (strcmp(local[officer].guerra,i->chamada.policiais[j])==0)
+                    if (strcmp(local[officer].guerra,i->chamada->policiais[j])==0)
                     {
-                        printf("%s\n",i->chamada.descricao);
-                        printf("%s\n\n",i->chamada.loc);
+                        printf("%s\n",i->chamada->descricao);
+                        printf("%s\n\n",i->chamada->loc);
                     }
                     
                 }
