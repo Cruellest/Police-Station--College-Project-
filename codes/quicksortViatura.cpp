@@ -101,3 +101,52 @@ void quicksortEspecial(especialViatura *vetor, int p, int sizeVetor)
     }
 
 }
+
+
+int separaViatura(int p, int sizeVetor, Viatura *vetor)
+{
+    int x, i, j, aux;
+
+    x = vetor[p].codigo;
+    i = p - 1;
+    j = sizeVetor + 1;
+
+    while(1)
+    {
+        do 
+        {
+            j--;
+
+        } while (vetor[j].codigo > x);
+        do 
+        {
+            i++;
+        } while (vetor[i].codigo > x);
+
+        if(i < j)
+        {
+            aux = vetor[i].codigo;
+            vetor[i].codigo = vetor[j].codigo;
+            vetor[j].codigo = aux;
+        } else {
+            return j;
+        }
+
+    } 
+
+
+}
+
+void quicksortViatura(Viatura *vetor, int p, int sizeVetor)
+{
+
+    int q;
+
+    if(p < sizeVetor)
+    {
+        q = separaViatura(p, sizeVetor, vetor);
+        quicksortViatura(vetor, p, q);
+        quicksortViatura(vetor, q + 1, sizeVetor);
+    }
+
+}

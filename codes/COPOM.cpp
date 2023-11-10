@@ -6,14 +6,16 @@
 #endif
 
 
-int distribui_chamada(struct listaChamada *listaChamadas, regularViatura *regulares, especialViatura *especiais)
+int distribui_chamada(struct listaChamada *chamadas, regularViatura *regulares, especialViatura *especiais)
 {
     printf("Entrou em distribui.");
     struct listaChamada *copia, *novo, *auxiliar;
 
-    copia = listaChamadas;
+    copia = chamadas;
 
-    if (copia != NULL || copia->qntAtendida < copia->qntChamada)
+    if (copia == NULL){
+        return - 1;
+    } else if (copia != NULL || copia->qntAtendida < copia->qntChamada)
     {
         if(copia->prox == NULL){
             if(copia->chamada.qntViaturas > 0)
@@ -135,9 +137,7 @@ int distribui_chamada(struct listaChamada *listaChamadas, regularViatura *regula
         } 
         
         return 1;
-    } else {
-        return -1;
-    }
+    } return -1;
 }
 
 

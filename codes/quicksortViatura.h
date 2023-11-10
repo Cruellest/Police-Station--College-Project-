@@ -10,4 +10,8 @@ int separaEspecial(int p, int sizeVetor, especialViatura *vetor);
 
 void quicksortEspecial(especialViatura *vetor, int p, int sizeVetor);
 
+int separaViatura(int p, int sizeVetor, Viatura *vetor);
+
+void quicksortViatura(Viatura *vetor, int p, int sizeVetor);
+
 #endif // !QUICKSORTVIATURA_H
