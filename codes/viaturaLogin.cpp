@@ -15,7 +15,38 @@
 #include "quicksortViatura.h"
 #endif
 
-//void pesquisaCPF(){};
+void pesquisarCPF(struct Pessoa *pessoas, int sizePessoas){
+
+    long cpfIndividuo;
+
+    printf("\n SPM - Viatura: Pesquisar por CPF");
+    printf("\n CPF: ");
+
+    printf("%ld", &cpfIndividuo);
+    int indice;
+
+    for(int i = 0; i < sizePessoas; i++){
+        if (pessoas[i].cpf == cpfIndividuo){
+            indice = i;
+        }
+    }
+
+    printf("\n Nome: %c", pessoas[indice].nome);
+    printf("\n CPF: %ld", pessoas[indice].cpf);
+    printf("\n Idade: %d", pessoas[indice].idade);
+    printf("\n Cidade: %c", pessoas[indice].cidade);
+    
+    printf("\n Inadimplencias: \n");
+    for (int i = 0; i < pessoas[indice].numInadimplencias; i++){
+        printf("%c\n", pessoas[indice].inadimplencias[i]);
+    }
+
+    printf("\n Passagens: ");
+    for (int i = 0; i < pessoas[indice].numPassagens; i++){
+        printf("\n%c", pessoas[indice].passagens[i]);
+    }
+
+}
 
 void solicitarReforco(int tipo, regularViatura *regulares, especialViatura *especiais, int indice, int prioridade)
 {
@@ -104,7 +135,7 @@ void viaturaModoRonda()
 
 void viaturaEstadoNeutro(regularViatura *regulares, int sizeRegular, especialViatura *especiais, int sizeEspecial, listaChamada *&chamadas, int tipo, int viaturaCode)
 {
-    int op2;
+    int op2, indice;
 
     printf("\n SPM - Viatura Estado Neutro");
 
@@ -127,124 +158,152 @@ void viaturaEstadoNeutro(regularViatura *regulares, int sizeRegular, especialVia
         int distribuiu = distribui_chamada(chamadas, regulares, especiais);
 
         if (distribuiu < 0){
+            
+            if(tipo == 1){
+                for(int i = 0; i < sizeRegular; i++)
+                {
+                    if (viaturaCode == regulares[i].viatura->codigo)
+                    {
+                        indice = i;
+                        break;
+                    }
+                }
+                    regulares[indice].estado = 0;
+            } else {
+                for(int i = 0; i < sizeEspecial; i++)
+                {
+                    if (viaturaCode == especiais[i].viatura->codigo)
+                    {
+                        indice = i;
+                        break;
+                    }
+                }
+                especiais[indice].estado = 0;
+            }
             viaturaModoRonda();
+
         } else {
             int indice, acao;
 
             if(tipo == 1)
             {
-                        for(int i = 0; i < sizeRegular; i++)
-                        {
-                            if (viaturaCode == regulares[i].viatura->codigo)
-                            {
-                                indice = i;
-                                break;
-                            }
-                        }
 
-                        regularViatura *viaturaLogada = &regulares[indice];
+                for(int i = 0; i < sizeRegular; i++)
+                {
+                    if (viaturaCode == regulares[i].viatura->codigo)
+                    {
+                        indice = i;
+                        break;
+                    }
+                }
+                regularViatura *viaturaLogada = &regulares[indice]; 
 
-                        if (viaturaLogada->listaReforco != NULL) {
-                            printf("\n Solicitação de Reforço Recebida.");
+                if (viaturaLogada->listaReforco != NULL) {
+                    printf("\n Solicitação de Reforço Recebida.");
                             
-                            printf("\n Descricao: %s", viaturaLogada->listaReforco->chamada->descricao); 
-                            printf("\n Localização: %s", viaturaLogada->listaReforco->chamada->loc);   
+                    printf("\n Descricao: %s", viaturaLogada->listaReforco->chamada->descricao); 
+                    printf("\n Localização: %s", viaturaLogada->listaReforco->chamada->loc);   
 
-                            printf("\n\n 1 - Confirmada Ação Policial\n 2 - Reforço Dispensado");
-                            printf("\n Opção: ");
+                    printf("\n\n 1 - Confirmada Ação Policial\n 2 - Reforço Dispensado");
+                    printf("\n Opção: ");
 
-                            scanf(" %d", &acao);
+                    scanf(" %d", &acao);
 
-                            if(acao == 1){
-                                int prioridade = 0;
-                                viaturaOcorrencia(regulares, sizeRegular, especiais, sizeEspecial, chamadas, tipo, indice, prioridade);
-                            } else {
-                                viaturaEstadoNeutro(regulares, sizeRegular, especiais, sizeEspecial, chamadas, tipo, viaturaCode);
-                            }
-                        } else if (viaturaLogada->listaPrioritarias != NULL && viaturaLogada->listaReforco == NULL){
-                            printf("\n Descricao: %s", viaturaLogada->listaPrioritarias->chamada->descricao); 
-                            printf("\n Localização: %s", viaturaLogada->listaPrioritarias->chamada->loc);   
+                    if(acao == 1){
+                        viaturaLogada->estado = 1;
+                        int prioridade = 0;
+                        viaturaOcorrencia(regulares, sizeRegular, especiais, sizeEspecial, chamadas, tipo, indice, prioridade);
+                    } else {
+                        viaturaEstadoNeutro(regulares, sizeRegular, especiais, sizeEspecial, chamadas, tipo, viaturaCode);
+                    }
+                
+                } else if (viaturaLogada->listaPrioritarias != NULL && viaturaLogada->listaReforco == NULL){
+                    printf("\n Descricao: %s", viaturaLogada->listaPrioritarias->chamada->descricao); 
+                    printf("\n Localização: %s", viaturaLogada->listaPrioritarias->chamada->loc);   
 
-                            printf("\n\n 1 - Confirmada Ação Policial\n 2 - Ação Policial Dispensado");
-                            printf("\n Opção: ");
+                    printf("\n\n 1 - Confirmada Ação Policial\n 2 - Ação Policial Dispensado");
+                    printf("\n Opção: ");
 
-                            scanf(" %d", &acao);
+                    scanf(" %d", &acao);
 
-                            if(acao == 1){
-                                int prioridade = 1;
-                                viaturaOcorrencia(regulares, sizeRegular, especiais, sizeEspecial, chamadas, tipo, indice, prioridade);
-                            } else {
-                                viaturaEstadoNeutro(regulares, sizeRegular, especiais, sizeEspecial, chamadas, tipo, viaturaCode);
-                            }
+                    if(acao == 1){
+                        int prioridade = 1;
+                        viaturaLogada->estado = 1;
+                        viaturaOcorrencia(regulares, sizeRegular, especiais, sizeEspecial, chamadas, tipo, indice, prioridade);
+                    } else {
+                        viaturaEstadoNeutro(regulares, sizeRegular, especiais, sizeEspecial, chamadas, tipo, viaturaCode);
+                    }
 
-                        } else if (viaturaLogada->listaPrioritarias == NULL && viaturaLogada->listaReforco == NULL && viaturaLogada->listaChamadas != NULL){
-                            printf("\n Descricao: %s", viaturaLogada->listaChamadas->chamada->descricao); 
-                            printf("\n Localização: %s", viaturaLogada->listaChamadas->chamada->loc);   
+                } else if (viaturaLogada->listaPrioritarias == NULL && viaturaLogada->listaReforco == NULL && viaturaLogada->listaChamadas != NULL){
+                    printf("\n Descricao: %s", viaturaLogada->listaChamadas->chamada->descricao); 
+                    printf("\n Localização: %s", viaturaLogada->listaChamadas->chamada->loc);   
  
-                            printf("\n\n 1 - Confirmada Ação Policial\n 2 - Ação Policial Dispensado");
-                            printf("\n Opção: ");
+                    printf("\n\n 1 - Confirmada Ação Policial\n 2 - Ação Policial Dispensado");
+                    printf("\n Opção: ");
 
-                            scanf(" %d", &acao);
+                    scanf(" %d", &acao);
 
-                            if(acao == 1){
-                                int prioridade = 2;
-                                viaturaOcorrencia(regulares, sizeRegular, especiais, sizeEspecial, chamadas, tipo, indice, prioridade);
-                            } else {
-                                viaturaEstadoNeutro(regulares, sizeRegular, especiais, sizeEspecial, chamadas, tipo, viaturaCode);
-                            }
+                    if(acao == 1){
+                        viaturaLogada->estado = 1;
+                        int prioridade = 2;
+                        viaturaOcorrencia(regulares, sizeRegular, especiais, sizeEspecial, chamadas, tipo, indice, prioridade);
+                    } else {
+                        viaturaEstadoNeutro(regulares, sizeRegular, especiais, sizeEspecial, chamadas, tipo, viaturaCode);
+                    }
+                }
 
                     
             } else {
 
-                        for(int i = 0; i < sizeEspecial; i++)
-                        {
-                            if (viaturaCode == especiais[i].viatura->codigo)
-                            {
-                                indice = i;
-                                break;
-                            }
-                        }
+                for(int i = 0; i < sizeEspecial; i++)
+                {
+                    if (viaturaCode == especiais[i].viatura->codigo)
+                    {
+                        indice = i;
+                        break;
+                    }
+                }
+                especialViatura *viaturaLogada = &especiais[indice];
 
-                        especialViatura *viaturaLogada = &especiais[indice];
 
-
-                        if (viaturaLogada->listaReforco != NULL) {
-                            printf("\n Solicitação de Reforço Recebida.");
+                if (viaturaLogada->listaReforco != NULL) {
+                    printf("\n Solicitação de Reforço Recebida.");
                             
-                            printf("\n Descricao: %s", viaturaLogada->listaReforco->chamada->descricao); 
-                            printf("\n Localização: %s", viaturaLogada->listaReforco->chamada->loc);   
+                    printf("\n Descricao: %s", viaturaLogada->listaReforco->chamada->descricao); 
+                    printf("\n Localização: %s", viaturaLogada->listaReforco->chamada->loc);   
 
-                            printf("\n\n 1 - Confirmada Ação Policial\n 2 - Reforço Dispensado");
-                            printf("\n Opção: ");
+                    printf("\n\n 1 - Confirmada Ação Policial\n 2 - Reforço Dispensado");
+                    printf("\n Opção: ");
 
-                            scanf(" %d", &acao);
+                    scanf(" %d", &acao);
 
-                            if(acao == 1){
-                                int prioridade = 0;
-                                viaturaOcorrencia(regulares, sizeRegular, especiais, sizeEspecial, chamadas, tipo, indice, prioridade);
-                            } else {
-                                viaturaEstadoNeutro(regulares, sizeRegular, especiais, sizeEspecial, chamadas, tipo, viaturaCode);
-                            }
-                        } else if (viaturaLogada->listaChamadas != NULL && viaturaLogada->listaReforco == NULL){
-                            printf("\n Descricao: %s", viaturaLogada->listaChamadas->chamada->descricao); 
-                            printf("\n Localização: %s", viaturaLogada->listaChamadas->chamada->loc);   
+                    if(acao == 1){
+                        viaturaLogada->estado = 1;
+                        int prioridade = 0;
+                        viaturaOcorrencia(regulares, sizeRegular, especiais, sizeEspecial, chamadas, tipo, indice, prioridade);
+                    } else {
+                        viaturaEstadoNeutro(regulares, sizeRegular, especiais, sizeEspecial, chamadas, tipo, viaturaCode);
+                    }
+                } else if (viaturaLogada->listaChamadas != NULL && viaturaLogada->listaReforco == NULL){
+                    printf("\n Descricao: %s", viaturaLogada->listaChamadas->chamada->descricao); 
+                    printf("\n Localização: %s", viaturaLogada->listaChamadas->chamada->loc);   
 
-                            printf("\n\n 1 - Confirmada Ação Policial\n 2 - Ação Policial Dispensado");
-                            printf("\n Opção: ");
+                    printf("\n\n 1 - Confirmada Ação Policial\n 2 - Ação Policial Dispensado");
+                    printf("\n Opção: ");
 
-                            scanf(" %d", &acao);
+                    scanf(" %d", &acao);
 
-                            if(acao == 1){
-                                int prioridade = 1;
-                                viaturaOcorrencia(regulares, sizeRegular, especiais, sizeEspecial, chamadas, tipo, indice, prioridade);
-                            } else {
-                                viaturaEstadoNeutro(regulares, sizeRegular, especiais, sizeEspecial, chamadas, tipo, viaturaCode);
-                            }
-
-                        }
+                    if(acao == 1){
+                        viaturaLogada->estado = 1;
+                        int prioridade = 1;
+                        viaturaOcorrencia(regulares, sizeRegular, especiais, sizeEspecial, chamadas, tipo, indice, prioridade);
+                    } else {
+                        viaturaEstadoNeutro(regulares, sizeRegular, especiais, sizeEspecial, chamadas, tipo, viaturaCode);
+                    }
+                }
             }
-
         }
+
 
     } else {
         if(tipo == 1)
@@ -252,12 +311,10 @@ void viaturaEstadoNeutro(regularViatura *regulares, int sizeRegular, especialVia
             regulares = (regularViatura *) realloc(regulares, sizeRegular - 1 * sizeof(regularViatura));
         } else {
             especiais = (especialViatura *) realloc(especiais, sizeEspecial - 1 * sizeof(especialViatura));
-
         }
     }
-
 }
-
+//alocar dinamicamente viaturas;
 
 void viaturaLogin(Viatura *viaturas, int size, regularViatura *regulares, int &sizeRegular, especialViatura *especiais, int &sizeEspecial, listaChamada *listaChamadas) 
 {
