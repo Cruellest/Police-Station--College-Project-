@@ -63,7 +63,7 @@ int menuPM (Policial *local,int officer,listaChamada *localchamadas){
             break;
         }
         else{
-            for(listaChamada* i = localchamadas; i == NULL; i = i->prox){
+            for(listaChamada *i = localchamadas; i == NULL; i = i->prox){
             if(i->chamada.estado == 3 && i->chamada.Boletim == false){
                 for (int j = 0; j < 4; j++)
                 {
