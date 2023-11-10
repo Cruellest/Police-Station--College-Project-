@@ -19,15 +19,17 @@ int main(){
     op = opção;
     */
     int op;
-    
-    
+    int qntViaturas = amountofViaturas();
+    int qntPoliceOfficers = ammountofPoliceOfficers();
+    int qntPessoas = amountofPeople();
 
     //This piece of code dynamicaly alocates all the files arrays and load the data from the files
-    Viatura *viaturas = (Viatura*) calloc(amountofViaturas(),sizeof(Viatura));
+    
+    Viatura *viaturas = (Viatura*) calloc(qntViaturas,sizeof(Viatura));
     loadViaturas(viaturas);
-    Policial *policiais = (Policial*) calloc(ammountofPoliceOfficers(),sizeof(Policial));
+    Policial *policiais = (Policial*) calloc(qntPoliceOfficers,sizeof(Policial));
     loadPoliceOfficers(policiais);
-    Pessoa *pessoas = (Pessoa*) calloc(amountofpeople(),sizeof(Pessoa));
+    Pessoa *pessoas = (Pessoa*) calloc(qntPessoas,sizeof(Pessoa));
     loadPeople(pessoas);
 
 
@@ -42,6 +44,7 @@ int main(){
 
     //(WIP) UI for menu
     do{
+        printf("\e[1;1H\e[2J");
 
         printf("\n1 - Viatura Login");
         printf("\n2 - Viatura em Uso");
@@ -56,7 +59,7 @@ int main(){
         if(op == 1) //Viatura Login
         {
             //loads functions from Viatura Login
-            viaturaLogin(viaturas, amountofViaturas(), regulares, sizeRegular, especiais, sizeEspecial, chamadas);
+            viaturaLogin(viaturas, qntViaturas, regulares, sizeRegular, especiais, sizeEspecial, chamadas);
         }
         else if(op == 2) //Viatura em Uso
         {
@@ -86,6 +89,7 @@ int main(){
 
         }
 
+        //debug menu
         else if(op == 2208)
         {
             int opdeb = 0;
@@ -116,7 +120,6 @@ int main(){
                 printf("%d\n",policiais[POS].idade);
                 printf("%s\n",policiais[POS].cargo);
                 printf("%s\n",policiais[POS].senha);
-                printf("%d\n",policiais[POS].logado);
                 getchar();
                 getchar();
             }
@@ -191,7 +194,7 @@ int main(){
 
         
         else if (opdeb == 9){
-                printf("%d\n",amountofpeople());
+                printf("%d\n",amountofPeople());
             }
 
          else if (opdeb == 10){
@@ -227,5 +230,8 @@ int main(){
     free(pessoas);
     free(policiais);
     free(viaturas);
+    free(especiais);
+    free(regulares);
+    free(chamadas);
     return 0;
 }

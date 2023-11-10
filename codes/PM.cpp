@@ -27,7 +27,6 @@ int LoginPm(Policial *local){
                 getchar();
                 getchar();
                 printf("\e[1;1H\e[2J");
-                local[i].logado = 1;
                 return i;
             }
 

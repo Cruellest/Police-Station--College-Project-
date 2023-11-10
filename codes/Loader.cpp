@@ -30,6 +30,7 @@ int amountofViaturas(){
     while (line != EOF);
     //Amount of viatures (assuming that the user wrote it down correctly)
 
+    //closing the file and returning the amount of viaturas
     fclose(viaturas);
     return size/2;
 
@@ -62,9 +63,9 @@ int loadViaturas(Viatura *local){
         }
         i++;
     }
-    
+    //closing the file
     fclose(viaturas);
-    return 0;//return the amount of viatures
+    return 0;
 }
 
 //Function used to decrypt the passwords that will be used in the next function
@@ -91,13 +92,14 @@ void decript(char *senha, char *var){
     var[m] = '\0';
 }
 
+//returns the ammount of police officers Data that the file contains
 int ammountofPoliceOfficers(){
     FILE *policiais;
     int size = 1;
     char line;
 
     policiais = fopen("policiais.txt","r");
-    if(policiais == NULL){
+    if(policiais == NULL){          //if the file opening fails it should return -1
         return -1;
     }
 
@@ -111,7 +113,7 @@ int ammountofPoliceOfficers(){
     while (line != EOF);
 
     //Amount of viatures (assuming that the user wrote it down correctly)
-
+    //and closing the file
     fclose(policiais);
     return size/7;
 
@@ -126,6 +128,7 @@ int loadPoliceOfficers(Policial *local){
         return -1;
     }
 
+    //Loading the police officers data in each field of the struct
     int i = 0;
     while(feof(policiais) == 0){
 
@@ -135,24 +138,27 @@ int loadPoliceOfficers(Policial *local){
         fscanf(policiais,"%[^\n]\n",local[i].cidade);
         fscanf(policiais,"%d\n",&local[i].idade);
         fscanf(policiais,"%[^\n]\n",local[i].cargo);
+        //loading and decrypting the password (I know that from a security point of view thats terrible butttttt it makes easier to debug)
         char holder[26];
         fscanf(policiais,"%[^\n]\n",holder);
         decript(holder,local[i].senha);
        
         i++;
     }
-    
+    //Closing the file
     fclose(policiais);
     return 0;
 }
 
-int amountofpeople(){
+//returns the ammount of people data that the file "Pessoas.txt" contains
+int amountofPeople(){
     FILE *pessoas;
     int size = 1,sizetemp = 1,timeskip = 0;
     char line;
 
+
     pessoas = fopen("pessoas.txt","r");
-    if(pessoas == NULL){
+    if(pessoas == NULL){    //if opening the file fails returns -1
         return -1;
     }
     
@@ -162,6 +168,7 @@ int amountofpeople(){
             size++;
             sizetemp++;
         }
+        //compensating the dynamic size variance
         if(sizetemp == 5){
             fscanf(pessoas,"%d",&timeskip);
            
@@ -184,18 +191,22 @@ int amountofpeople(){
     }
     while(line != EOF);
 
+    //closing the file and returning the amount of people
     fclose(pessoas);
     return size/4;
 }
 
+//loading people file data into a struct
 int loadPeople(Pessoa *local){
     FILE *pessoas;
 
+    //file opening
     pessoas = fopen("pessoas.txt","r");
-    if(pessoas == NULL){
+    if(pessoas == NULL){    //if it fails returns -1
         return -1;
     }
 
+    // loading the data into the correspondent fields of the struct
     int i = 0;
     while(feof(pessoas) == 0){
 
@@ -204,6 +215,8 @@ int loadPeople(Pessoa *local){
        fscanf(pessoas,"%[^\n]\n",local[i].cidade);
        fscanf(pessoas,"%d\n",&local[i].idade);
        fscanf(pessoas,"%d\n",&local[i].numPassagens);
+
+       //Loading the dynamically sized variables
        for (int j = 0; j < local[i].numPassagens; j++)
        {
         fscanf(pessoas,"%[^\n]\n",local[i].passagens[j]);
