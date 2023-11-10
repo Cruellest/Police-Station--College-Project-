@@ -8,8 +8,13 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": false,
+<<<<<<< HEAD
       "cwd": "/home/cruellest/Police-Station--College-Project-/codes",
       "program": "/home/cruellest/Police-Station--College-Project-/codes/build/Debug/outDebug",
+=======
+      "cwd": "/home/mafecolombo/Police-Station--College-Project--2/codes",
+      "program": "/home/mafecolombo/Police-Station--College-Project--2/codes/build/Debug/outDebug",
+>>>>>>> 230d320 (Updaating Reforco Function)
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

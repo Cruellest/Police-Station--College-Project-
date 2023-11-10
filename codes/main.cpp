@@ -165,10 +165,10 @@ int main(){
                 {
                     while(copia->prox != NULL)
                     {
-                        printf("%s", copia->chamada.descricao);
+                        printf("%s", copia->chamada->descricao);
                         copia = copia->prox;
                     }
-                    printf("%s", copia->chamada.descricao);
+                    printf("%s", copia->chamada->descricao);
 
                 } else {
                     printf("\nSem chamadas.");
@@ -184,10 +184,10 @@ int main(){
                 {
                     while(copia->prox != NULL)
                     {
-                        printf("%s", copia->chamada.descricao);
+                        printf("%s", copia->chamada->descricao);
                         copia = copia->prox;
                     }
-                    printf("%s", copia->chamada.descricao);
+                    printf("%s", copia->chamada->descricao);
                 } else {
                     printf("Sem chamadas.");
                 }

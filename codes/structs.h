@@ -74,7 +74,7 @@ struct Chamada{
 };
 
 struct listaChamada{
-    struct Chamada chamada;
+    struct Chamada *chamada;
     int qntChamada;
     int qntAtendida;
     struct listaChamada *prox;

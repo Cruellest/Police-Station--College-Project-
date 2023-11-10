@@ -4,9 +4,9 @@
 
 #include "COPOM.cpp"
 
-int distribui_chamada(struct listaChamada *listaChamadas, regularViatura *regulares, especialViatura *especiais);
+int distribui_chamada(struct listaChamada *&listaChamadas, regularViatura *regulares, especialViatura *especiais);
 
-void verif_reforco(struct listaChamada *listaChamadas, bool &reforcoLocal, struct Chamada *codChamada);
+int verif_reforco(struct listaChamada *&listaChamadas, struct Chamada *&codChamada);
 
 void inserir_reforco_regular(struct Chamada *codChamada, struct regularViatura *regulares);
 

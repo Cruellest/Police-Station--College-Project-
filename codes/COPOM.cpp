@@ -6,7 +6,7 @@
 #endif
 
 
-int distribui_chamada(struct listaChamada *chamadas, regularViatura *regulares, especialViatura *especiais)
+int distribui_chamada(struct listaChamada *&chamadas, regularViatura *regulares, especialViatura *especiais)
 {
     printf("Entrou em distribui.");
     struct listaChamada *copia, *novo, *auxiliar;
@@ -18,15 +18,15 @@ int distribui_chamada(struct listaChamada *chamadas, regularViatura *regulares, 
     } else if (copia != NULL || copia->qntAtendida < copia->qntChamada)
     {
         if(copia->prox == NULL){
-            if(copia->chamada.qntViaturas > 0)
+            if(copia->chamada->qntViaturas > 0)
             {
                 novo = (listaChamada *) malloc(sizeof(listaChamada));
                 novo->prox = NULL;
                 novo->chamada = copia->chamada;
 
-                if(copia->chamada.tipo == 1)
+                if(copia->chamada->tipo == 1)
                 {
-                    if(copia->chamada.prioridade == 1)
+                    if(copia->chamada->prioridade == 1)
                     {
                         if(regulares[0].listaPrioritarias == NULL){
                             regulares[0].listaPrioritarias = novo;
@@ -70,22 +70,22 @@ int distribui_chamada(struct listaChamada *chamadas, regularViatura *regulares, 
                         auxiliar->prox = novo; 
                     }
                 }
-                copia->chamada.qntViaturas = copia->chamada.qntViaturas - 1;
+                copia->chamada->qntViaturas = copia->chamada->qntViaturas - 1;
                 copia->qntAtendida++;
             }
             copia = copia->prox;
         } else {
             while(copia->prox != NULL)
             {
-                if(copia->chamada.qntViaturas > 0)
+                if(copia->chamada->qntViaturas > 0)
                 {
                     novo = (listaChamada *) malloc(sizeof(listaChamada));
                     novo->prox = NULL;
                     novo->chamada = copia->chamada;
 
-                    if(copia->chamada.tipo == 1)
+                    if(copia->chamada->tipo == 1)
                     {
-                        if(copia->chamada.prioridade == 1)
+                        if(copia->chamada->prioridade == 1)
                         {
                             if(regulares[0].listaPrioritarias == NULL){
                                 regulares[0].listaPrioritarias = novo;
@@ -129,7 +129,7 @@ int distribui_chamada(struct listaChamada *chamadas, regularViatura *regulares, 
                             auxiliar->prox = novo; 
                         }
                     }
-                    copia->chamada.qntViaturas = copia->chamada.qntViaturas - 1;
+                    copia->chamada->qntViaturas = copia->chamada->qntViaturas - 1;
                     copia->qntAtendida++;
                 }
                 copia = copia->prox;
@@ -141,7 +141,7 @@ int distribui_chamada(struct listaChamada *chamadas, regularViatura *regulares, 
 }
 
 
-void verif_reforco(struct listaChamada *listaChamadas, bool &reforcoLocal, struct Chamada *codChamada)
+int verif_reforco(struct listaChamada *&listaChamadas, struct Chamada *&codChamada)
 {
     struct listaChamada *copia;
 
@@ -149,29 +149,29 @@ void verif_reforco(struct listaChamada *listaChamadas, bool &reforcoLocal, struc
 
     if(copia != NULL){
         if(copia->prox == NULL){
-            if (copia->chamada.reforco == true) 
+            if (copia->chamada->reforco == true) 
                 {
-                    reforcoLocal = true;
-                    copia->chamada.reforco = false;
-                    codChamada = &copia->chamada;
+                    copia->chamada->reforco = false;
+                    codChamada = copia->chamada;
+                    return 1;
                 }else {
                     copia = copia->prox;
                 }
         } else {
             while(copia->prox != NULL)
             {
-                if (copia->chamada.reforco == true) 
+                if (copia->chamada->reforco == true) 
                 {
-                    reforcoLocal = true;
-                    copia->chamada.reforco = false;
-                    codChamada = &copia->chamada;
+                    copia->chamada->reforco = false;
+                    codChamada = copia->chamada;
                     copia = copia->prox;
+                    return 1;
                 } else {
                     copia = copia->prox;
                 }
-            }
-        }
-    }
+            } 
+        } return -1;
+    } return -1;
 }
 
 void inserir_reforco_regular(struct Chamada *codChamada, struct regularViatura *regulares){
@@ -179,7 +179,7 @@ void inserir_reforco_regular(struct Chamada *codChamada, struct regularViatura *
 
     novo = (listaChamada * ) malloc(sizeof(listaChamada));
     novo->prox = NULL;
-    novo->chamada = *codChamada;
+    novo->chamada = codChamada;
 
     if (regulares[0].listaReforco == NULL)
     {
@@ -199,7 +199,7 @@ void inserir_reforco_especial(struct Chamada *codChamada, struct especialViatura
 
     novo = (listaChamada * ) malloc(sizeof(listaChamada));
     novo->prox = NULL;
-    novo->chamada = *codChamada;
+    novo->chamada = codChamada;
 
     if (especiais[0].listaReforco == NULL)
     {
@@ -221,22 +221,26 @@ void cadastrarChamada(struct listaChamada *&listaChamadas, struct regularViatura
     int op1;
     listaChamada *copia = listaChamadas;
 
-    bool reforco = false; 
-
-    Chamada novaChamada;
+    Chamada *novaChamada;
 
     Chamada *codChamada = (Chamada *) malloc(sizeof(Chamada));
     codChamada = NULL;
 
     printf("\n SPM - COPOM");
 
-    verif_reforco(listaChamadas, reforco, codChamada);
+    int temReforco = verif_reforco(listaChamadas, codChamada);
 
-    while (reforco == true){
+    if (temReforco > 0){
+        printf("\nTem reforço.");
+    }
+
+    while (temReforco > 0){
         printf("\n\n SOLICITAÇÃO DE REFORÇO!");
         printf("\n 1 - Atender");
         printf("\n 2 - Negar");
-        scanf("%d", &op1);
+        printf("\n Opção: ");
+
+        scanf(" %d", &op1);
 
         if (op1 == 1){
             if(codChamada->tipo == 1)
@@ -247,34 +251,42 @@ void cadastrarChamada(struct listaChamada *&listaChamadas, struct regularViatura
                 inserir_reforco_especial(codChamada, especiais);
             }
         }
-        reforco = false;
-        verif_reforco(listaChamadas, reforco, codChamada);
+        temReforco = verif_reforco(listaChamadas, codChamada);
     }
 
     printf("\n\n Cadastrar nova chamada:");
     printf("\n 1 - Polícia Regular");
     printf("\n 2 - Polícia Especializada");
     
+    int tipo;
     printf("\n\n Selecione o tipo de polícia: ");
-    scanf("%d", &novaChamada.tipo);
+    scanf("%d", &tipo);
 
-    if(novaChamada.tipo == 1)
+    novaChamada->tipo = tipo;
+
+
+    if(novaChamada->tipo == 1)
     {
         printf("\n 1 - Chamada Prioritária");
         printf("\n 2 - Chamada Não Prioritária");
     
+        int prioridade;
         printf("\n\n Selecione a prioridade da chamada: ");
-        scanf("%d", &novaChamada.prioridade);
+        scanf("%d", &prioridade);
+
+        novaChamada->prioridade = prioridade;
     }
 
+    int qnt;
     printf("\n 1 - Viaturas Necessárias: ");
-    scanf("%d", &novaChamada.qntViaturas);
+    scanf("%d", &qnt);
+    novaChamada->qntViaturas = qnt;
 
     printf("\n Descrição: ");
-    scanf(" %[^\n]", novaChamada.descricao);
+    scanf(" %[^\n]", novaChamada->descricao);
 
     printf("\n Localização: ");
-    scanf(" %[^\n]", novaChamada.loc);
+    scanf(" %[^\n]", novaChamada->loc);
 
     if (listaChamadas == NULL)
     {
