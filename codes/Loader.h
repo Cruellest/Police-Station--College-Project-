@@ -12,5 +12,9 @@ int ammountofPoliceOfficers();
 
 int loadPoliceOfficers(Policial *local);
 
+int amountofpeople();
+
+int loadPeople(Pessoa *local);
+
 #endif
 

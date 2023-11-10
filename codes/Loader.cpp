@@ -145,3 +145,77 @@ int loadPoliceOfficers(Policial *local){
     fclose(policiais);
     return 0;
 }
+
+int amountofpeople(){
+    FILE *pessoas;
+    int size = 1,sizetemp = 1,timeskip = 0;
+    char line;
+
+    pessoas = fopen("pessoas.txt","r");
+    if(pessoas == NULL){
+        return -1;
+    }
+    
+    do{
+        line = fgetc(pessoas);
+        if(line == '\n'){
+            size++;
+            sizetemp++;
+        }
+        if(sizetemp == 5){
+            fscanf(pessoas,"%d",&timeskip);
+           
+            for(int i = -1; i<timeskip;){
+                line = fgetc(pessoas);
+                if(line == '\n'||line == EOF){
+                    i++;
+                }
+            } 
+         fscanf(pessoas,"%d",&timeskip);
+          for(int i = -1; i<timeskip;){
+                line = fgetc(pessoas);
+            if(line == '\n'||line == EOF){
+                i++;
+            }
+        sizetemp = 1;
+        }
+        
+    }
+    }
+    while(line != EOF);
+
+    fclose(pessoas);
+    return size/4;
+}
+
+int loadPeople(Pessoa *local){
+    FILE *pessoas;
+
+    pessoas = fopen("pessoas.txt","r");
+    if(pessoas == NULL){
+        return -1;
+    }
+
+    int i = 0;
+    while(feof(pessoas) == 0){
+
+       fscanf(pessoas,"%[^\n]\n",local[i].nome);
+       fscanf(pessoas,"%ld\n",&local[i].cpf);
+       fscanf(pessoas,"%[^\n]\n",local[i].cidade);
+       fscanf(pessoas,"%d\n",&local[i].idade);
+       fscanf(pessoas,"%d\n",&local[i].numPassagens);
+       for (int j = 0; j < local[i].numPassagens; j++)
+       {
+        fscanf(pessoas,"%[^\n]\n",local[i].passagens[j]);
+       }
+       fscanf(pessoas,"%d\n",&local[i].numInadimplencias);
+       for(int j = 0; j < local[i].numInadimplencias; j++)
+       {
+        fscanf(pessoas,"%[^\n]\n",local[i].inadimplencias[j]);
+       }
+       
+        i++;
+    }
+    fclose(pessoas);
+    return 0;
+}

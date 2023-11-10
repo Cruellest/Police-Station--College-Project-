@@ -31,6 +31,20 @@ struct Policial{
 
 };
 
+//Struct of the people
+struct Pessoa{
+    char nome[26];
+    long cpf;
+    char cidade[26];
+    int idade;
+    int numPassagens;
+    char passagens[10][26];
+    int numInadimplencias;
+    char inadimplencias[10][26];
+
+    
+};
+
 struct Chamada{
 
     int tipo;  /* 1 = Policia Regular

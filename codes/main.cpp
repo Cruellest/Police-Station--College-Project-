@@ -27,6 +27,9 @@ int main(){
     loadViaturas(viaturas);
     Policial *policiais = (Policial*) calloc(ammountofPoliceOfficers(),sizeof(Policial));
     loadPoliceOfficers(policiais);
+    Pessoa *pessoas = (Pessoa*) calloc(amountofpeople(),sizeof(Pessoa));
+    loadPeople(pessoas);
+
 
     int sizeEspecial = 1;
     especialViatura *especiais = (especialViatura *) calloc(sizeEspecial,sizeof(especialViatura));
@@ -87,7 +90,7 @@ int main(){
         {
             int opdeb = 0;
             
-            printf("\n1 - Decrypt Password\n2 - Print Police Struct Array POS\n3 - Print Viatura Struct Array POS\n4 - Print Ammount of Officers\n5 - Print Ammount of Viaturas\n6 - Print regularViatura Struct Array\n7 - Print especialViatura Array\n8 - Print chamadas Array\n");
+            printf("\n1 - Decrypt Password\n2 - Print Police Struct Array POS\n3 - Print Viatura Struct Array POS\n4 - Print Ammount of Officers\n5 - Print Ammount of Viaturas\n6 - Print regularViatura Struct Array\n7 - Print especialViatura Array\n8 - Print chamadas Array\n9 - Print Amount of People\n10 - Print pessoas array\n");
             scanf(" %d",&opdeb);
             
             if(opdeb == 1){
@@ -186,10 +189,42 @@ int main(){
                 }
             }
 
+        
+        else if (opdeb == 9){
+                printf("%d\n",amountofpeople());
+            }
+
+         else if (opdeb == 10){
+            int POS = 0;
+
+                printf("\nArray POS\n");
+                scanf(" %d", &POS);
+
+                printf("\n%s\n",pessoas[POS].nome);
+                printf("%ld\n",pessoas[POS].cpf);
+                printf("%s\n",pessoas[POS].cidade);
+                printf("%d\n",pessoas[POS].idade);
+                printf("%d\n",pessoas[POS].numPassagens);
+                for (int i = 0; i < pessoas[POS].numPassagens; i++)
+                {
+                printf("%s\n",pessoas[POS].passagens[i]);
+                }
+                printf("%d\n",pessoas[POS].numInadimplencias);
+                for (int i = 0; i < pessoas[POS].numInadimplencias; i++)
+                {
+                printf("%s\n",pessoas[POS].inadimplencias[i]);
+                }
+                getchar();
+                getchar();
+            }
+
+
         }
+    
 
     }while(0 != op);
 
+    free(pessoas);
     free(policiais);
     free(viaturas);
     return 0;
