@@ -74,7 +74,7 @@ int main(){
         {   
             int LogTry = LoginPm(policiais);
             if(LogTry != -1){
-                menuPM(policiais);
+                menuPM(policiais,LogTry,chamadas);
             }
 
         }
@@ -170,11 +170,12 @@ int main(){
                     }
                     printf("%s", copia->chamada.descricao);
 
-                    getchar();
-                    getchar();
                 } else {
                     printf("\nSem chamadas.");
+                    
                 }
+                getchar();
+                getchar();
             } else if (opdeb == 8){
                 listaChamada *copia = chamadas;
 
@@ -190,11 +191,15 @@ int main(){
                 } else {
                     printf("Sem chamadas.");
                 }
+                getchar();
+                getchar();
             }
 
         
         else if (opdeb == 9){
                 printf("%d\n",amountofPeople());
+                getchar();
+                getchar();
             }
 
          else if (opdeb == 10){

@@ -4,5 +4,5 @@
 
 int LoginPm(Policial *local);
 
-int menuPM (Policial *local);
+int menuPM (Policial *local,int officer,listaChamada *localchamadas);
 #endif

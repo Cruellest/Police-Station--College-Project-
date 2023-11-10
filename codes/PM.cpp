@@ -47,7 +47,7 @@ int LoginPm(Policial *local){
     return -1;
     }
 
-int menuPM (Policial *local){
+int menuPM (Policial *local,int officer,listaChamada *localchamadas){
     int op;
     printf("Menu PM (WIP)\n");
     printf("1 - Visualizar ocorrencias sem boletim\n2 - Escrever boletim de ocorrencia\nOpção: ");
@@ -56,12 +56,31 @@ int menuPM (Policial *local){
     switch (op)
     {
     case 1:
-        for (int i = 0; i < ammountofPoliceOfficers(); i++)
+
+        if(localchamadas == NULL)
         {
-            printf("Just a place holder \n");
+            printf("Não existem ocorrencias\n");
+            break;
         }
+        else{
+            for(listaChamada* i = localchamadas; i == NULL; i = i->prox){
+            if(i->chamada.estado == 3 && i->chamada.Boletim == false){
+                for (int j = 0; j < 4; j++)
+                {
+                    if (strcmp(local[officer].guerra,i->chamada.policiais[j])==0)
+                    {
+                        printf("%s\n",i->chamada.descricao);
+                        printf("%s\n\n",i->chamada.loc);
+                    }
+                    
+                }
+                
+            }    
+            }
+        break;
+        }
+
         
-    
         
     
     default:

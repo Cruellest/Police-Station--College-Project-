@@ -69,6 +69,8 @@ struct Chamada{
                 2 =  Prisão em andamento
                 3 = Encerrada */
 
+    bool Boletim = false;
+
 };
 
 struct listaChamada{

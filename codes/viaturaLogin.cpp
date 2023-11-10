@@ -79,7 +79,7 @@ void viaturaOcorrencia(regularViatura *regulares, int sizeRegular, especialViatu
             solicitarReforco(tipo, regulares, especiais, viaturaCode, prioridade);
         }
 
-        else if(op == 3) //Prisão em andaamento
+        else if(op == 3) //Prisão em andamento
         {
             
         }
