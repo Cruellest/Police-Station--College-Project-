@@ -1,4 +1,4 @@
 #include "viaturaLogin.cpp"
 
-void viaturaLogin(Viatura *viaturas, int size, regularViatura *regulares, int &sizeRegular, especialViatura *especiais, int &sizeEspecial, listaChamada *listaChamadas) ;
+void viaturaLogin(Viatura *viaturas, int size, regularViatura *regulares, int &sizeRegular, especialViatura *especiais, int &sizeEspecial, listaChamada *listaChamadas, Pessoa *pessoas, int sizePessoa);
 

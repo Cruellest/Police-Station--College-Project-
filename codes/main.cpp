@@ -44,7 +44,7 @@ int main(){
 
     //(WIP) UI for menu
     do{
-        printf("\e[1;1H\e[2J");
+        //printf("\e[1;1H\e[2J");
 
         printf("\n1 - Viatura Login");
         printf("\n2 - Viatura em Uso");
@@ -59,7 +59,7 @@ int main(){
         if(op == 1) //Viatura Login
         {
             //loads functions from Viatura Login
-            viaturaLogin(viaturas, qntViaturas, regulares, sizeRegular, especiais, sizeEspecial, chamadas);
+            viaturaLogin(viaturas, qntViaturas, regulares, sizeRegular, especiais, sizeEspecial, chamadas, pessoas, amountofPeople());
         }
         else if(op == 2) //Viatura em Uso
         {
@@ -68,7 +68,7 @@ int main(){
 
         else if(op == 3) //COPOM
         {
-            cadastrarChamada(chamadas, regulares, especiais);
+            cadastrarChamada(chamadas, sizeRegular, regulares, sizeEspecial, especiais);
         }
         else if(op == 4) //Policial Militar
         {   

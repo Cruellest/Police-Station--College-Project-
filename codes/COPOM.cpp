@@ -5,6 +5,10 @@
 #include "structs.h"
 #endif
 
+#ifndef QUICKSORTVIATURA_H
+#include "quicksortViatura.h"
+#endif
+
 
 int distribui_chamada(struct listaChamada *&chamadas, regularViatura *regulares, especialViatura *especiais)
 {
@@ -216,12 +220,12 @@ void inserir_reforco_especial(struct Chamada *codChamada, struct especialViatura
 
 //passar nome policial
 
-void cadastrarChamada(struct listaChamada *&listaChamadas, struct regularViatura *regulares, struct especialViatura *especiais)
+void cadastrarChamada(struct listaChamada *&listaChamadas, int sizeRegular, struct regularViatura *regulares, int sizeEspecial, struct especialViatura *especiais)
 {  
     int op1;
     listaChamada *copia = listaChamadas;
 
-    Chamada *novaChamada;
+    Chamada *novaChamada = (Chamada *) malloc(sizeof(Chamada));
 
     Chamada *codChamada = (Chamada *) malloc(sizeof(Chamada));
     codChamada = NULL;
@@ -263,7 +267,6 @@ void cadastrarChamada(struct listaChamada *&listaChamadas, struct regularViatura
     scanf("%d", &tipo);
 
     novaChamada->tipo = tipo;
-
 
     if(novaChamada->tipo == 1)
     {
