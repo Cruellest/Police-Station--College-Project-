@@ -55,7 +55,7 @@ void pesquisarCPF(struct Pessoa *pessoas, int sizePessoas){
     printf("\n SPM - Viatura: Pesquisar por CPF");
     printf("\n CPF: ");
 
-    printf("%ld", &cpfIndividuo);
+    scanf("%ld", &cpfIndividuo);
     int indice;
 
     for(int i = 0; i < sizePessoas; i++){
@@ -64,19 +64,19 @@ void pesquisarCPF(struct Pessoa *pessoas, int sizePessoas){
         }
     }
 
-    printf("\n Nome: %c", pessoas[indice].nome);
+    printf("\n Nome: %s", pessoas[indice].nome);
     printf("\n CPF: %ld", pessoas[indice].cpf);
     printf("\n Idade: %d", pessoas[indice].idade);
-    printf("\n Cidade: %c", pessoas[indice].cidade);
+    printf("\n Cidade: %s", pessoas[indice].cidade);
     
     printf("\n Inadimplencias: \n");
     for (int i = 0; i < pessoas[indice].numInadimplencias; i++){
-        printf("\n %c", pessoas[indice].inadimplencias[i]);
+        printf("\n %s", pessoas[indice].inadimplencias[i]);
     }
 
     printf("\n Passagens: ");
     for (int i = 0; i < pessoas[indice].numPassagens; i++){
-        printf("\n %c", pessoas[indice].passagens[i]);
+        printf("\n %s", pessoas[indice].passagens[i]);
     }
 
 }
@@ -125,13 +125,13 @@ void prisaoAndamento(int tipo, regularViatura *regulares, especialViatura *espec
 
     int qnt;
 
-    printf("\n Indíviduo(s) conduzido(s) para DP: ");
+    printf("\n Quantidade de indíviduo(s) conduzido(s) para DP: ");
     scanf(" %d", &qnt);
     printf("\n CPF: ");
 
     long *individuos = (long *) calloc(qnt, sizeof(long));
 
-    int cpf;
+    long cpf;
     for (int i = 0; i < qnt; i++){
         scanf("\n %ld", &cpf);
         individuos[i] = cpf;
@@ -142,7 +142,7 @@ void prisaoAndamento(int tipo, regularViatura *regulares, especialViatura *espec
     printf("\n 2 - Voltar para o Menu Principal");
     printf("\n Opção: ");
 
-    printf(" %d", &op);
+    scanf(" %d", &op);
 
     if (op == 1){
         if(tipo == 1){
@@ -465,14 +465,14 @@ void viaturaEmUso(regularViatura *regulares, int &sizeRegular, especialViatura *
             }  
         }
 
-    if (tipo = 1){
+    if (tipo == 1){
         if (regulares[indice].listaReforco == NULL && regulares[indice].listaPrioritarias == NULL && regulares[indice].listaChamadas == NULL)
         {
             regulares[indice].estado = 0;
             viaturaModoRonda();
         } 
         
-        if (regulares[indice].estado = 0){
+        if (regulares[indice].estado == 0){
             int acao = 1;
             regularViatura *viaturaLogada = &regulares[indice]; 
 
@@ -546,7 +546,7 @@ void viaturaEmUso(regularViatura *regulares, int &sizeRegular, especialViatura *
                 }
         }
 
-        if (regulares[indice].estado = 1){
+        if (regulares[indice].estado == 1){
             int prioridade;
             int acao = 1;
             regularViatura *viaturaLogada = &regulares[indice]; 
@@ -601,7 +601,7 @@ void viaturaEmUso(regularViatura *regulares, int &sizeRegular, especialViatura *
             viaturaModoRonda();
         } 
         
-        if (especiais[indice].estado = 0){
+        if (especiais[indice].estado == 0){
             int acao = 1;
             especialViatura *viaturaLogada = &especiais[indice]; 
 
@@ -654,7 +654,7 @@ void viaturaEmUso(regularViatura *regulares, int &sizeRegular, especialViatura *
 
         }
 
-        if (especiais[indice].estado = 1){
+        if (especiais[indice].estado == 1){
             int prioridade;
             int acao = 1;
             regularViatura *viaturaLogada = &regulares[indice]; 

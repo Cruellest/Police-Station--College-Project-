@@ -96,7 +96,7 @@ struct regularViatura{
 
     int estado;
 
-    int chamada = NULL;
+    int chamada = -1;
 
 };
 
@@ -116,7 +116,7 @@ struct especialViatura{
                 1 =  Atendendo chamada
                 2 = Levando para a DP */
 
-    int chamada = NULL;
+    int chamada = -1;
 
 };
 
