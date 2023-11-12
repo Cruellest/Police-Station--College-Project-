@@ -63,7 +63,7 @@ int main(){
         }
         else if(op == 2) //Viatura em Uso
         {
-
+            viaturaEmUso(regulares, sizeRegular, especiais, sizeEspecial, chamadas,  pessoas, amountofPeople());
         }
 
         else if(op == 3) //COPOM
