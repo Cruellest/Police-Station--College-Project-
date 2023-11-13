@@ -96,7 +96,11 @@ struct regularViatura{
 
     int qntChamadas = 0;
 
-    int estado;
+    int estado; /*0 = Em ronda (Livre)
+                1 =  Atendendo chamada
+                2 = Levando para a DP */;
+
+    int menuNeutro = 0;
 
     int chamada = -1;
 
@@ -117,6 +121,8 @@ struct especialViatura{
     int estado;  /*0 = Em ronda (Livre)
                 1 =  Atendendo chamada
                 2 = Levando para a DP */
+
+    int menuNeutro = 0;
 
     int chamada = -1;
 
