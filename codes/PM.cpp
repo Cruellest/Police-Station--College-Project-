@@ -48,7 +48,10 @@ int LoginPm(Policial *local){
     }
 
 int menuPM (Policial *local,int officer,listaChamada *localchamadas){
-    int op;
+    int op = -1;
+
+    while(op != 0){
+    printf("\e[1;1H\e[2J");
     printf("Menu PM (WIP)\n");
     printf("1 - Visualizar ocorrencias sem boletim\n2 - Escrever boletim de ocorrencia\nOpção: ");
     scanf(" %d",&op);
@@ -63,18 +66,24 @@ int menuPM (Policial *local,int officer,listaChamada *localchamadas){
             break;
         }
         else{
-            for(listaChamada *i = localchamadas; i == NULL; i = i->prox){
+            for(listaChamada *i = localchamadas; i != NULL; i = i->prox){
             if(i->chamada->estado == 3 && i->chamada->Boletim == false){
+                printf("Boletins sem Ocorrencia\n");
                 for (int j = 0; j < 4; j++)
                 {
                     if (strcmp(local[officer].guerra,i->chamada->policiais[j])==0)
                     {
-                        printf("%s\n",i->chamada->descricao);
-                        printf("%s\n\n",i->chamada->loc);
+                        printf("\e[1;1H\e[2J");
+                        printf("\nDescrição: %s\n",i->chamada->descricao);
+                        printf("Localização: %s\n\n",i->chamada->loc);
+
+                        printf("Boletim: %s\n",i->chamada->Boletim ? "Existente" : "Inexistente");
                     }
                     
                 }
-                
+                getchar();
+                getchar();
+                printf("Pressione enter");
             }    
             }
         break;
@@ -85,6 +94,7 @@ int menuPM (Policial *local,int officer,listaChamada *localchamadas){
     
     default:
         break;
+    }
     }
     return 0;
 }
