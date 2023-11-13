@@ -87,7 +87,7 @@ int main(){
         }
         else if(op == 6) //Comandante Geral
         {
-            CommanderLogin(policiais);
+            CommanderLogin(policiais,chamadas);
 
         }
 
