@@ -67,14 +67,22 @@ void pesquisarCPF(struct Pessoa *pessoas, int sizePessoas){
     printf("\n Idade: %d", pessoas[indice].idade);
     printf("\n Cidade: %s", pessoas[indice].cidade);
     
-    printf("\n Inadimplencias: \n");
+    printf("\n Inadimplencias: ");
     for (int i = 0; i < pessoas[indice].numInadimplencias; i++){
-        printf("\n %s", pessoas[indice].inadimplencias[i]);
+        if(i == pessoas[indice].numInadimplencias - 1){
+          printf("%s", pessoas[indice].inadimplencias[i]);  
+        } else {
+        printf("%s, ", pessoas[indice].inadimplencias[i]);
+        }
     }
 
     printf("\n Passagens: ");
     for (int i = 0; i < pessoas[indice].numPassagens; i++){
-        printf("\n %s", pessoas[indice].passagens[i]);
+        if(i == pessoas[indice].numPassagens - 1){
+          printf("%s", pessoas[indice].passagens[i]);  
+        } else {
+        printf("%s, ", pessoas[indice].passagens[i]);
+        }
     }
 
 }
@@ -176,12 +184,14 @@ void viaturaOcorrencia(regularViatura *regulares, especialViatura *especiais, in
 
     do{
 
-        printf("\n1 - Pesquisar por CPF");
-        printf("\n2 - Solicitar Reforços");
-        printf("\n3 - Prisão em Andandamento");
-        printf("\n4 - Encerrar Ocorrência");
+        printf("\n\n SPM - Viatura Ocorrências");
 
-        printf("\nOpção: ");
+        printf("\n 1 - Pesquisar por CPF");
+        printf("\n 2 - Solicitar Reforços");
+        printf("\n 3 - Prisão em Andandamento");
+        printf("\n 4 - Encerrar Ocorrência");
+
+        printf("\n Opção: ");
         scanf(" %d", &op);
 
         if(op == 1) //Pesquisar por CPF.

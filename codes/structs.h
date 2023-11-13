@@ -73,6 +73,8 @@ struct Chamada{
 
     bool Boletim = false;
 
+    int codigo;
+
 };
 
 struct listaChamada{

@@ -153,7 +153,6 @@ int distribui_chamada(struct listaChamada *&chamadas, regularViatura *regulares,
     } return -1;
 }
 
-
 int verif_reforco(struct listaChamada *&listaChamadas, struct Chamada *&codChamada)
 {
     struct listaChamada *copia;
@@ -227,9 +226,7 @@ void inserir_reforco_especial(struct Chamada *codChamada, struct especialViatura
     }
 }
 
-//passar nome policial
-
-void cadastrarChamada(struct listaChamada *&listaChamadas, struct regularViatura *regulares, struct especialViatura *especiais)
+void cadastrarChamada(struct listaChamada *&listaChamadas, struct regularViatura *regulares, struct especialViatura *especiais, int &contChamadas)
 {  
     int op1;
     listaChamada *copia = listaChamadas;
@@ -300,9 +297,11 @@ void cadastrarChamada(struct listaChamada *&listaChamadas, struct regularViatura
     printf("\n Localização: ");
     scanf(" %[^\n]", novaChamada->loc);
 
+    novaChamada->codigo = contChamadas;
+    contChamadas++;
+
     if (listaChamadas == NULL)
     {
-        printf("Entrou em Lista == Null\n");
         listaChamadas = (listaChamada *) malloc(sizeof(listaChamada));
         listaChamadas->chamada = novaChamada;
         listaChamadas->qntChamada = 1;

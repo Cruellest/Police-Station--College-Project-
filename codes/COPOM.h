@@ -12,5 +12,5 @@ void inserir_reforco_regular(struct Chamada *codChamada, struct regularViatura *
 
 void inserir_reforco_especial(struct Chamada *codChamada, struct especialViatura *especiais);
 
-void cadastrarChamada(struct listaChamada *&listaChamadas, struct regularViatura *regulares, struct especialViatura *especiais);
+void cadastrarChamada(struct listaChamada *&listaChamadas, struct regularViatura *regulares, struct especialViatura *especiais, int &contChamadas);
 #endif

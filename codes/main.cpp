@@ -18,7 +18,7 @@ int main(){
     /*
     op = opção;
     */
-    int op;
+    int op, contChamada;
     int qntViaturas = amountofViaturas();
     int qntPoliceOfficers = ammountofPoliceOfficers();
     int qntPessoas = amountofPeople();
@@ -32,6 +32,7 @@ int main(){
     Pessoa *pessoas = (Pessoa*) calloc(qntPessoas,sizeof(Pessoa));
     loadPeople(pessoas);
 
+    contChamada = 0;
 
     int sizeEspecial = 1;
     especialViatura *especiais = (especialViatura *) calloc(sizeEspecial,sizeof(especialViatura));
@@ -68,7 +69,7 @@ int main(){
 
         else if(op == 3) //COPOM
         {
-            cadastrarChamada(chamadas, regulares, especiais);
+            cadastrarChamada(chamadas, regulares, especiais, contChamada);
         }
         else if(op == 4) //Policial Militar
         {   
