@@ -75,6 +75,10 @@ struct Chamada{
 
     int codigo;
 
+    char BoletimTexto[3000];
+
+    
+
 };
 
 struct listaChamada{

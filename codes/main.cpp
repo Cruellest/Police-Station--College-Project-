@@ -82,7 +82,7 @@ int main(){
         }
         else if(op == 5) //Oficial
         {
-            officerLogin(policiais);
+            officerLogin(policiais,chamadas);
 
         }
         else if(op == 6) //Comandante Geral

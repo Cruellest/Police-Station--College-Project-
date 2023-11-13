@@ -8,7 +8,7 @@
 
 #include <stdio.h>
 
-int officerLogin(Policial *local){
+int officerLogin(Policial *local,listaChamada *localchamadas){
     
     int Policial = LoginPm(local);
 
@@ -22,21 +22,68 @@ int officerLogin(Policial *local){
             
             int op = -1;
 
-            printf("Menu Oficial (WIP)\n");
-            printf("1 - Excluir Boletim de Ocorrencia\n2 - Gerar Relatorio Oficial\nOpções: ");
-            scanf(" %d",&op);
-
-            switch (op)
+            while (op != 0)
             {
-            case 1: 
-                printf("Just a Place Holder\n");
-                getchar();
-                getchar();
-                break;
+                printf("SPM - Menu Oficial\n");
+                printf("1 - Excluir Boletim de Ocorrencia\n2 - Gerar Relatorio Oficial\n0 - Voltar ao menu\nOpções: ");
+                scanf(" %d",&op);
+
+                switch (op)
+                {
+                case 1: 
+
+                    int codigo;
+                    if(localchamadas == NULL)
+                    {
+                        printf("Não existem ocorrencias\n");
+                        getchar();
+                        getchar();
+                        break;
+                    }
+                    else{
+                        for(listaChamada *i = localchamadas; i != NULL; i = i->prox){
+                        if(i->chamada->estado == 3 && i->chamada->Boletim == true){
+                            printf("\e[1;1H\e[2J");
+                            printf(" Ocorrencias com Boletins\n");
+
+                                    printf("Codigo: %d\n",i->chamada->codigo);
+                                    printf("Descrição: %s\n",i->chamada->descricao);
+                                    printf("Localização: %s\n\n",i->chamada->loc);
+
+                                    printf("Boletim: %s\n",i->chamada->Boletim ? "Existente" : "Inexistente");
+                                    printf("Texto do Boletim: %s",i->chamada->BoletimTexto);
+
+                        }    
+                        }
+                                
+
+                            printf("\nDigite o codigo do Boletim que voce deseja excluir: ");
+                            scanf(" %d",&codigo);
+
+                            for(listaChamada *i = localchamadas; i != NULL; i = i->prox){
+                            if(i->chamada->codigo == codigo && i->chamada->Boletim == true){
+                                i->chamada->Boletim = false;
+                                strcpy(i->chamada->BoletimTexto,""); 
+                            }}
+
+                            printf("Boletim Excluido com sucesso\n");
+                            
+                            getchar();
+                            getchar();
+                            printf("\e[1;1H\e[2J");
+                    break;
+                    }                
+
+
+
+                
+                default:
+                    break;
+                }
+                }
             
-            default:
-                break;
-            }
+            
+            
         }
 
         else{
