@@ -356,17 +356,26 @@ void viaturaEstadoNeutro(regularViatura *regulares, int sizeRegular, especialVia
                 regulares[indice].menuNeutro = 1;
                 regularViatura *viaturaLogada = &regulares[indice]; 
 
-                if (viaturaLogada->listaReforco->chamada->estado == 3)
+                if (viaturaLogada->listaReforco != NULL)
                 {
-                    encerrarChamada(tipo, regulares, especiais, indice, 0, acao);
+                    if (viaturaLogada->listaReforco->chamada->estado == 3)
+                        {
+                            encerrarChamada(tipo, regulares, especiais, indice, 0, acao);
+                        }
                 }
-                if (viaturaLogada->listaPrioritarias->chamada->estado == 3)
+                if (viaturaLogada->listaPrioritarias != NULL)
                 {
-                    encerrarChamada(tipo, regulares, especiais, indice, 1, acao);
+                    if (viaturaLogada->listaPrioritarias->chamada->estado == 3)
+                        {
+                            encerrarChamada(tipo, regulares, especiais, indice, 1, acao);
+                        }
                 }
+                if (viaturaLogada->listaChamadas != NULL)
+                {
                     if (viaturaLogada->listaChamadas->chamada->estado == 3)
-                {
-                    encerrarChamada(tipo, regulares, especiais, indice, 2, acao);
+                        {
+                            encerrarChamada(tipo, regulares, especiais, indice, 2, acao);
+                        }
                 }
 
                 if (viaturaLogada->listaReforco != NULL) {
@@ -468,13 +477,20 @@ void viaturaEstadoNeutro(regularViatura *regulares, int sizeRegular, especialVia
                 especiais[indice].menuNeutro = 1;
                 especialViatura *viaturaLogada = &especiais[indice];
 
-                if (viaturaLogada->listaReforco->chamada->estado == 3)
+                if (viaturaLogada->listaReforco != NULL)
                 {
-                    encerrarChamada(tipo, regulares, especiais, indice, 0, acao);
+                    if (viaturaLogada->listaReforco->chamada->estado == 3)
+                        {
+                            encerrarChamada(tipo, regulares, especiais, indice, 0, acao);
+                        }
                 }
-                if (viaturaLogada->listaChamadas->chamada->estado == 3)
+
+                if (viaturaLogada->listaChamadas != NULL)
                 {
-                    encerrarChamada(tipo, regulares, especiais, indice, 2, acao);
+                    if (viaturaLogada->listaChamadas->chamada->estado == 3)
+                        {
+                            encerrarChamada(tipo, regulares, especiais, indice, 1, acao);
+                        }
                 }
 
                 if (viaturaLogada->listaReforco != NULL) {
