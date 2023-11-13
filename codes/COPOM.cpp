@@ -18,76 +18,8 @@ int distribui_chamada(struct listaChamada *&chamadas, regularViatura *regulares,
 
     if (copia == NULL){
         return - 1;
-    } else if (copia != NULL || copia->qntAtendida < copia->qntChamada)
-    {
-        if(copia->prox == NULL){
-            if(copia->chamada->qntViaturas > 0)
-            {
-                novo = (listaChamada *) malloc(sizeof(listaChamada));
-                novo->prox = NULL;
-                novo->chamada = copia->chamada;
-
-                if(copia->chamada->tipo == 1)
-                {
-                    for (int i = 0; i < 4; i++){
-                        strcpy(novo->chamada->policiais[i], regulares[0].policiais[i]);
-                    }
-
-                    if(copia->chamada->prioridade == 1)
-                    {
-                        if(regulares[0].listaPrioritarias == NULL)
-                        {
-                            regulares[0].listaPrioritarias = novo;
-                            regulares[0].qntChamadas = regulares[0].qntChamadas + 1;
-                        } else {
-                            auxiliar = regulares[0].listaPrioritarias;
-                            regulares[0].qntChamadas = regulares[0].qntChamadas + 1;
-                            while(auxiliar->prox != NULL)
-                            {    
-                                auxiliar = auxiliar->prox;
-                            }
-                                auxiliar->prox = novo; 
-                            }
-                    } else {
-                        if(regulares[0].listaChamadas == NULL)
-                        {
-                            regulares[0].listaChamadas = novo;
-                            regulares[0].qntChamadas = regulares[0].qntChamadas + 1;
-                        } else {
-                            auxiliar = regulares[0].listaChamadas;
-                            regulares[0].qntChamadas = regulares[0].qntChamadas + 1;
-                            while(auxiliar->prox != NULL)
-                            {
-                                auxiliar = auxiliar->prox;
-                            }
-                            auxiliar->prox = novo; 
-                        }
-                    }
-                } else {
-                    for (int i = 0; i < 4; i++)
-                    {
-                        strcpy(novo->chamada->policiais[i], especiais[0].policiais[i]);
-                    }
-                    if(especiais[0].listaChamadas == NULL)
-                    {
-                        especiais[0].listaChamadas = novo;
-                        especiais[0].qntChamadas = regulares[0].qntChamadas + 1;
-                    } else {
-                        auxiliar = especiais[0].listaChamadas;
-                        especiais[0].qntChamadas = regulares[0].qntChamadas + 1;
-                        while(auxiliar->prox != NULL)
-                        {
-                            auxiliar = auxiliar->prox;
-                        }
-                        auxiliar->prox = novo; 
-                    }
-                }
-                copia->chamada->qntViaturas = copia->chamada->qntViaturas - 1;
-                copia->qntAtendida++;
-            }
-            copia = copia->prox;
-        } else {
-            while(copia->prox != NULL)
+    } else {
+            while(copia != NULL)
             {
                 if(copia->chamada->qntViaturas > 0)
                 {
@@ -97,20 +29,25 @@ int distribui_chamada(struct listaChamada *&chamadas, regularViatura *regulares,
 
                     if(copia->chamada->tipo == 1)
                     {
+                        for (int i = 0; i < 4; i++){
+                            strcpy(novo->chamada->policiais[i], regulares[0].policiais[i]);
+                        }
+
                         if(copia->chamada->prioridade == 1)
                         {
-                            if(regulares[0].listaPrioritarias == NULL){
+                            if(regulares[0].listaPrioritarias == NULL)
+                            {
                                 regulares[0].listaPrioritarias = novo;
                                 regulares[0].qntChamadas = regulares[0].qntChamadas + 1;
                             } else {
                                 auxiliar = regulares[0].listaPrioritarias;
                                 regulares[0].qntChamadas = regulares[0].qntChamadas + 1;
-                                while(auxiliar->prox != NULL)
-                                {
+                                while(auxiliar != NULL)
+                                {    
                                     auxiliar = auxiliar->prox;
                                 }
-                                auxiliar->prox = novo; 
-                            }
+                                    auxiliar = novo; 
+                                }
                         } else {
                             if(regulares[0].listaChamadas == NULL)
                             {
@@ -119,14 +56,18 @@ int distribui_chamada(struct listaChamada *&chamadas, regularViatura *regulares,
                             } else {
                                 auxiliar = regulares[0].listaChamadas;
                                 regulares[0].qntChamadas = regulares[0].qntChamadas + 1;
-                                while(auxiliar->prox != NULL)
-                                {
+                                while(auxiliar != NULL)
+                                {    
                                     auxiliar = auxiliar->prox;
                                 }
-                                auxiliar->prox = novo; 
+                                    auxiliar = novo; 
                             }
                         }
                     } else {
+                        for (int i = 0; i < 4; i++)
+                        {
+                            strcpy(novo->chamada->policiais[i], especiais[0].policiais[i]);
+                        }
                         if(especiais[0].listaChamadas == NULL)
                         {
                             especiais[0].listaChamadas = novo;
@@ -134,22 +75,20 @@ int distribui_chamada(struct listaChamada *&chamadas, regularViatura *regulares,
                         } else {
                             auxiliar = especiais[0].listaChamadas;
                             especiais[0].qntChamadas = regulares[0].qntChamadas + 1;
-                            while(auxiliar->prox != NULL)
-                            {
+                            while(auxiliar != NULL)
+                            {    
                                 auxiliar = auxiliar->prox;
                             }
-                            auxiliar->prox = novo; 
+                                auxiliar = novo;
                         }
                     }
                     copia->chamada->qntViaturas = copia->chamada->qntViaturas - 1;
-                    copia->qntAtendida++;
                 }
                 copia = copia->prox;
             }
         } 
         
         return 1;
-    } return -1;
 }
 
 int verif_reforco(struct listaChamada *&listaChamadas, struct Chamada *&codChamada)
@@ -230,7 +169,7 @@ void cadastrarChamada(struct listaChamada *&listaChamadas, struct regularViatura
     int op1;
     listaChamada *copia = listaChamadas;
 
-    Chamada *novaChamada = (Chamada *) malloc(sizeof(Chamada));
+    Chamada novaChamada;
 
     Chamada *codChamada = (Chamada *) malloc(sizeof(Chamada));
     codChamada = NULL;
@@ -270,9 +209,9 @@ void cadastrarChamada(struct listaChamada *&listaChamadas, struct regularViatura
     printf("\n Selecione o tipo de polícia: ");
     scanf("%d", &tipo);
 
-    novaChamada->tipo = tipo;
+    novaChamada.tipo = tipo;
 
-    if(novaChamada->tipo == 1)
+    if(novaChamada.tipo == 1)
     {
         printf("\n\n 1 - Chamada Prioritária");
         printf("\n 2 - Chamada Não Prioritária");
@@ -281,39 +220,35 @@ void cadastrarChamada(struct listaChamada *&listaChamadas, struct regularViatura
         printf("\n Selecione a prioridade da chamada: ");
         scanf("%d", &prioridade);
 
-        novaChamada->prioridade = prioridade;
+        novaChamada.prioridade = prioridade;
     }
 
     int qnt;
     printf("\n Viaturas Necessárias: ");
     scanf("%d", &qnt);
-    novaChamada->qntViaturas = qnt;
+    novaChamada.qntViaturas = qnt;
 
     printf("\n Descrição: ");
-    scanf(" %[^\n]", novaChamada->descricao);
+    scanf(" %[^\n]", novaChamada.descricao);
 
     printf("\n Localização: ");
-    scanf(" %[^\n]", novaChamada->loc);
+    scanf(" %[^\n]", novaChamada.loc);
 
-    novaChamada->codigo = contChamadas;
+    novaChamada.codigo = contChamadas;
     contChamadas++;
 
     if (listaChamadas == NULL)
     {
         listaChamadas = (listaChamada *) malloc(sizeof(listaChamada));
-        listaChamadas->chamada = novaChamada;
-        listaChamadas->qntChamada = 1;
-        listaChamadas->qntAtendida = 0;
+        listaChamadas->chamada = &novaChamada;
         listaChamadas->prox = NULL;
     } else {
-        while(copia->prox != NULL)
+        while(copia != NULL)
         {
             copia = copia->prox;
         }
         copia = (listaChamada *) malloc(sizeof(listaChamada));
-        copia->chamada = novaChamada;
-        copia->qntChamada++;
-        listaChamadas->qntAtendida = 0;
+        copia->chamada = &novaChamada;
         copia->prox = NULL;
     }
 

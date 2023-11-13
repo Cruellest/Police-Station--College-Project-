@@ -15,7 +15,7 @@
 #include "quicksortViatura.h"
 #endif
 
-void encerrarChamada(int tipo, regularViatura *regulares, especialViatura *especiais, int indice, int prioridade, int &acao)
+void encerrarChamada(int tipo, regularViatura *&regulares, especialViatura *&especiais, int indice, int prioridade, int &acao)
 {
         if (tipo == 1)
         {
@@ -88,7 +88,7 @@ void pesquisarCPF(struct Pessoa *pessoas, int sizePessoas){
 
 }
 
-void solicitarReforco(int tipo, regularViatura *regulares, especialViatura *especiais, int indice, int prioridade)
+void solicitarReforco(int tipo, regularViatura *&regulares, especialViatura *&especiais, int indice, int prioridade)
 {
 
     int op;
@@ -129,7 +129,7 @@ void solicitarReforco(int tipo, regularViatura *regulares, especialViatura *espe
 
 }
 
-void prisaoAndamento(int tipo, regularViatura *regulares, especialViatura *especiais, int indice, int &opcao, int &acao)
+void prisaoAndamento(int tipo, regularViatura *&regulares, especialViatura *&especiais, int indice, int &opcao, int &acao)
 {
 
     int qnt;
@@ -187,7 +187,7 @@ void prisaoAndamento(int tipo, regularViatura *regulares, especialViatura *espec
 
 }
 
-void viaturaOcorrencia(regularViatura *regulares, especialViatura *especiais, int tipo, int indice, int prioridade, Pessoa *pessoas, int sizePessoa, int &acao)
+void viaturaOcorrencia(regularViatura *&regulares, especialViatura *&especiais, int tipo, int indice, int prioridade, Pessoa *pessoas, int sizePessoa, int &acao)
 {
 
     int op;
@@ -246,7 +246,7 @@ void viaturaModoRonda()
 
 }
 
-void viaturaEstadoNeutro(regularViatura *regulares, int sizeRegular, especialViatura *especiais, int sizeEspecial, listaChamada *&chamadas, int tipo, int viaturaCode,  Pessoa *pessoas, int sizePessoa)
+void viaturaEstadoNeutro(regularViatura *&regulares, int sizeRegular, especialViatura *&especiais, int sizeEspecial, listaChamada *&chamadas, int tipo, int viaturaCode,  Pessoa *pessoas, int sizePessoa)
 {
     int op2, indice;
 
@@ -299,7 +299,6 @@ void viaturaEstadoNeutro(regularViatura *regulares, int sizeRegular, especialVia
                 }
             }
 
-
     if(op2 != 2){
         
         if (tipo == 1)
@@ -309,37 +308,8 @@ void viaturaEstadoNeutro(regularViatura *regulares, int sizeRegular, especialVia
             quicksortEspecial(especiais, 0, sizeEspecial);
         }
 
-        int distribuiu = distribui_chamada(chamadas, regulares, especiais);
+        distribui_chamada(chamadas, regulares, especiais);
 
-        if (distribuiu < 0){
-            
-            if(tipo == 1){
-                for(int i = 0; i < sizeRegular; i++)
-                {
-                    if (viaturaCode == regulares[i].viatura->codigo)
-                    {
-                        indice = i;
-                        break;
-                    }
-                }
-                regulares[indice].menuNeutro = 1;
-                regulares[indice].estado = 0;
-            } else {
-                for(int i = 0; i < sizeEspecial; i++)
-                {
-                    if (viaturaCode == especiais[i].viatura->codigo)
-                    {
-                        indice = i;
-                        break;
-                    }
-                }
-                especiais[indice].menuNeutro = 1;
-                especiais[indice].estado = 0;
-            }
-
-            viaturaModoRonda();
-
-        } else {
             int indice, acao;
 
             if(tipo == 1)
@@ -458,7 +428,8 @@ void viaturaEstadoNeutro(regularViatura *regulares, int sizeRegular, especialVia
                     }else if (acao == 3){
                         viaturaEstadoNeutro(regulares, sizeRegular, especiais, sizeEspecial, chamadas, tipo, viaturaCode, pessoas, sizePessoa);
                     }
-                } else {
+
+                } else if (viaturaLogada->listaChamadas == NULL && viaturaLogada->listaPrioritarias == NULL && viaturaLogada->listaReforco == NULL){
                     regulares[indice].estado = 0;
                     viaturaModoRonda();
                 }
@@ -546,27 +517,29 @@ void viaturaEstadoNeutro(regularViatura *regulares, int sizeRegular, especialVia
                     }else if (acao == 3){
                         viaturaEstadoNeutro(regulares, sizeRegular, especiais, sizeEspecial, chamadas, tipo, viaturaCode, pessoas, sizePessoa);
                     }  
-                } else {
+                } else if (viaturaLogada->listaChamadas == NULL && viaturaLogada->listaReforco == NULL){
                     especiais[indice].estado = 0;
                     viaturaModoRonda();
                 }
             }
-        }
+        
 
 
     } else {
         if(tipo == 1)
         {
+            regulares[indice].viatura->emUso = 0;
             sizeRegular = sizeRegular - 1;
             regulares = (regularViatura *) realloc(regulares, sizeRegular * sizeof(regularViatura));
         } else {
+            regulares[indice].viatura->emUso = 0;
             sizeRegular = sizeEspecial - 1;
             especiais = (especialViatura *) realloc(especiais, sizeEspecial * sizeof(especialViatura));
         }
     }
 }
 
-void viaturaEmUso(regularViatura *regulares, int &sizeRegular, especialViatura *especiais, int &sizeEspecial, listaChamada *&chamadas,  Pessoa *pessoas, int sizePessoa)
+void viaturaEmUso(regularViatura *&regulares, int &sizeRegular, especialViatura *&especiais, int &sizeEspecial, listaChamada *&chamadas,  Pessoa *pessoas, int sizePessoa)
 {
 
     int viaturaCode, tipo;
@@ -724,7 +697,7 @@ void viaturaEmUso(regularViatura *regulares, int &sizeRegular, especialViatura *
 }
 //alocar dinamicamente viaturas;
 
-void viaturaLogin(Viatura *viaturas, int size, regularViatura *regulares, int &sizeRegular, especialViatura *especiais, int &sizeEspecial, listaChamada *listaChamadas, Pessoa *pessoas, int sizePessoa) 
+void viaturaLogin(Viatura *&viaturas, int size, regularViatura *&regulares, int &sizeRegular, especialViatura *&especiais, int &sizeEspecial, listaChamada *&listaChamadas, Pessoa *pessoas, int sizePessoa) 
 {
     /*Starting variables:*/
     int tipo;
