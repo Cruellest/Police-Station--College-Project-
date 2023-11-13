@@ -43,6 +43,7 @@ void encerrarChamada(int tipo, regularViatura *regulares, especialViatura *espec
                 especiais[indice].listaReforco = especiais[indice].listaReforco->prox;
             } 
         }
+        acao = 3; 
 }
 
 void pesquisarCPF(struct Pessoa *pessoas, int sizePessoas){
@@ -224,7 +225,6 @@ void viaturaOcorrencia(regularViatura *regulares, especialViatura *especiais, in
         if(op == 4)
         {
             encerrarChamada(tipo, regulares, especiais, indice, prioridade, acao);
-            acao = 3; 
         }
 
 }
@@ -370,7 +370,7 @@ void viaturaEstadoNeutro(regularViatura *regulares, int sizeRegular, especialVia
 
                     int prioridade = 0;
                     viaturaLogada->chamada = prioridade;
-                    while(acao != 2 && acao != 3)
+                    while(acao != 2 && acao != 3 && acao != 4)
                     {
                         viaturaLogada->estado = 1;
                         viaturaOcorrencia(regulares, especiais, tipo, indice, prioridade, pessoas, sizePessoa, acao);
@@ -379,7 +379,9 @@ void viaturaEstadoNeutro(regularViatura *regulares, int sizeRegular, especialVia
                     if (acao == 2){
                         encerrarChamada(tipo, regulares, especiais, indice, prioridade, acao);
                         viaturaEstadoNeutro(regulares, sizeRegular, especiais, sizeEspecial, chamadas, tipo, viaturaCode, pessoas, sizePessoa);
-                    }                
+                    }else if (acao == 3){
+                        viaturaEstadoNeutro(regulares, sizeRegular, especiais, sizeEspecial, chamadas, tipo, viaturaCode, pessoas, sizePessoa);
+                    }               
                 
                 } else if (viaturaLogada->listaPrioritarias != NULL && viaturaLogada->listaReforco == NULL){
                     printf("\e[1;1H\e[2J");
@@ -395,16 +397,16 @@ void viaturaEstadoNeutro(regularViatura *regulares, int sizeRegular, especialVia
 
                     int prioridade = 1;
                     viaturaLogada->chamada = prioridade;
-                    while(acao != 2 && acao != 3)
+                    while(acao != 2 && acao != 3 && acao != 4)
                     {
                         viaturaLogada->estado = 1;
                         viaturaOcorrencia(regulares, especiais, tipo, indice, prioridade, pessoas, sizePessoa, acao);
                     }
 
                     if (acao == 2){
+                        encerrarChamada(tipo, regulares, especiais, indice, prioridade, acao);
                         viaturaEstadoNeutro(regulares, sizeRegular, especiais, sizeEspecial, chamadas, tipo, viaturaCode, pessoas, sizePessoa);
                     }else if (acao == 3){
-                        encerrarChamada(tipo, regulares, especiais, indice, prioridade, acao);
                         viaturaEstadoNeutro(regulares, sizeRegular, especiais, sizeEspecial, chamadas, tipo, viaturaCode, pessoas, sizePessoa);
                     }
 
@@ -422,16 +424,16 @@ void viaturaEstadoNeutro(regularViatura *regulares, int sizeRegular, especialVia
 
                     int prioridade = 2;
                     viaturaLogada->chamada = prioridade;
-                    while(acao != 2 && acao != 3)
+                    while(acao != 2 && acao != 3 && acao != 4)
                     {
                         viaturaLogada->estado = 1;
                         viaturaOcorrencia(regulares, especiais, tipo, indice, prioridade, pessoas, sizePessoa, acao);
                     }
 
                     if (acao == 2){
+                        encerrarChamada(tipo, regulares, especiais, indice, prioridade, acao);
                         viaturaEstadoNeutro(regulares, sizeRegular, especiais, sizeEspecial, chamadas, tipo, viaturaCode, pessoas, sizePessoa);
                     }else if (acao == 3){
-                        encerrarChamada(tipo, regulares, especiais, indice, prioridade, acao);
                         viaturaEstadoNeutro(regulares, sizeRegular, especiais, sizeEspecial, chamadas, tipo, viaturaCode, pessoas, sizePessoa);
                     }
                 }
@@ -465,16 +467,16 @@ void viaturaEstadoNeutro(regularViatura *regulares, int sizeRegular, especialVia
 
                     int prioridade = 0;
                     viaturaLogada->chamada = prioridade;
-                    while(acao != 2 && acao != 3)
+                    while(acao != 2 && acao != 3 && acao != 4)
                     {
                         viaturaLogada->estado = 1;
                         viaturaOcorrencia(regulares, especiais, tipo, indice, prioridade, pessoas, sizePessoa, acao);
                     }
 
-                    if (acao == 3){
-                        viaturaEstadoNeutro(regulares, sizeRegular, especiais, sizeEspecial, chamadas, tipo, viaturaCode, pessoas, sizePessoa);
-                    }else if (acao == 2){
+                    if (acao == 2){
                         encerrarChamada(tipo, regulares, especiais, indice, prioridade, acao);
+                        viaturaEstadoNeutro(regulares, sizeRegular, especiais, sizeEspecial, chamadas, tipo, viaturaCode, pessoas, sizePessoa);
+                    }else if (acao == 3){
                         viaturaEstadoNeutro(regulares, sizeRegular, especiais, sizeEspecial, chamadas, tipo, viaturaCode, pessoas, sizePessoa);
                     } 
 
@@ -492,17 +494,18 @@ void viaturaEstadoNeutro(regularViatura *regulares, int sizeRegular, especialVia
 
                     int prioridade = 1;
                     viaturaLogada->chamada = prioridade;
-                    while(acao != 2 && acao != 3)
+                    while(acao != 2 && acao != 3 && acao != 4)
                     {
                         viaturaLogada->estado = 1;
                         viaturaOcorrencia(regulares, especiais, tipo, indice, prioridade, pessoas, sizePessoa, acao);
                     }
+
                     if (acao == 2){
-                        viaturaEstadoNeutro(regulares, sizeRegular, especiais, sizeEspecial, chamadas, tipo, viaturaCode, pessoas, sizePessoa);
-                    }else if (acao == 3){
                         encerrarChamada(tipo, regulares, especiais, indice, prioridade, acao);
                         viaturaEstadoNeutro(regulares, sizeRegular, especiais, sizeEspecial, chamadas, tipo, viaturaCode, pessoas, sizePessoa);
-                    }    
+                    }else if (acao == 3){
+                        viaturaEstadoNeutro(regulares, sizeRegular, especiais, sizeEspecial, chamadas, tipo, viaturaCode, pessoas, sizePessoa);
+                    }  
                 }
             }
         }
