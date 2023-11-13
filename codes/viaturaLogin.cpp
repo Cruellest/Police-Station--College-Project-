@@ -625,7 +625,7 @@ void viaturaLogin(Viatura *viaturas, int size, regularViatura *regulares, int &s
     {
         printf("\n Viatura selecionada em uso. Insira outro código;");
         printf("\n Código da Viatura: ");
-        scanf("%d", &viaturaCode);
+        scanf(" %d", &viaturaCode);
         viaturaVetor = buscaBinaria(viaturas, size, viaturaCode);
     }
     viaturas[viaturaVetor].emUso = 1;
@@ -642,7 +642,7 @@ void viaturaLogin(Viatura *viaturas, int size, regularViatura *regulares, int &s
         {
                 printf("\n Viatura selecionada em uso. Insira outro código;");
                 printf("\n Código da Viatura: ");
-                scanf("%d", &viaturaCode);
+                scanf(" %d", &viaturaCode);
                 viaturaVetor = buscaBinaria(viaturas, size, viaturaCode);
         }
         viaturas[viaturaVetor].emUso = 1;
@@ -658,7 +658,7 @@ void viaturaLogin(Viatura *viaturas, int size, regularViatura *regulares, int &s
 
         printf("\n Quantidade de PMs invalida! Autorização de embarque negada.");
         printf("\n Quantidade de PMs: ");
-        scanf("%d", &quantidadePM);
+        scanf(" %d", &quantidadePM);
     }
 
 
@@ -678,7 +678,7 @@ void viaturaLogin(Viatura *viaturas, int size, regularViatura *regulares, int &s
                 regulares[0].listaReforco = (listaChamada *) malloc(sizeof(listaChamada));
                 regulares[0].listaReforco = NULL;
 
-                printf("\n Identificação dos PMs:");
+                printf("\n Identificação dos PMs: ");
                 for (int i = 0; i < quantidadePM; i++)
                 {
                     scanf(" %s", regulares[0].policiais[i]);
@@ -700,7 +700,7 @@ void viaturaLogin(Viatura *viaturas, int size, regularViatura *regulares, int &s
                 regulares[sizeRegular - 1].listaReforco = (listaChamada *) malloc(sizeof(listaChamada));
                 regulares[sizeRegular - 1].listaReforco = NULL;
 
-                printf("\n Identificação dos PMs:");
+                printf("\n Identificação dos PMs: ");
                 for (int i = 0; i < quantidadePM; i++)
                 {
                     scanf(" %s", regulares[sizeRegular - 1].policiais[i]);;
@@ -718,7 +718,7 @@ void viaturaLogin(Viatura *viaturas, int size, regularViatura *regulares, int &s
                 especiais[0].listaReforco = (listaChamada *) malloc(sizeof(listaChamada));
                 especiais[0].listaReforco = NULL;
 
-                printf("\n Identificação dos PMs:");
+                printf("\n Identificação dos PMs: ");
                 for (int i = 0; i < quantidadePM; i++)
                 {
                     scanf(" %s", especiais[0].policiais[i]);
@@ -737,7 +737,7 @@ void viaturaLogin(Viatura *viaturas, int size, regularViatura *regulares, int &s
                 especiais[sizeEspecial - 1].listaReforco = (listaChamada *) malloc(sizeof(listaChamada));
                 especiais[sizeEspecial - 1].listaReforco = NULL;
 
-                printf("\n Identificação dos PMs:");
+                printf("\n Identificação dos PMs: ");
                 for (int i = 0; i < quantidadePM; i++)
                 {
                     scanf(" %s", especiais[sizeEspecial - 1].policiais[i]);
