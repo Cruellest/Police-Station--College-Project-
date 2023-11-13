@@ -135,11 +135,11 @@ void prisaoAndamento(int tipo, regularViatura *regulares, especialViatura *espec
     int qnt;
 
         printf("\e[1;1H\e[2J");
-        printf(" SPM - Viatura: Prisão em Andamento");
+        printf(" SPM - Viatura: Prisão em Andamento\n");
 
     if(regulares[indice].estado != 2)
     {
-        printf("\n\n Quantidade de indíviduo(s) conduzido(s) para DP: ");
+        printf("\n Quantidade de indíviduo(s) conduzido(s) para DP: ");
         scanf(" %d", &qnt);
         printf("\n CPF: ");
 
@@ -154,7 +154,7 @@ void prisaoAndamento(int tipo, regularViatura *regulares, especialViatura *espec
 
     int op;
 
-    printf("\n\n 1 - Confirmar retorno da DP");
+    printf("\n 1 - Confirmar retorno da DP");
     printf("\n 2 - Voltar para o Menu Principal");
     printf("\n Opção: ");
 
