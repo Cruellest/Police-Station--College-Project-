@@ -47,7 +47,6 @@ void encerrarChamada(int tipo, regularViatura *regulares, especialViatura *espec
         
 }
 
-
 void pesquisarCPF(struct Pessoa *pessoas, int sizePessoas){
 
     long cpfIndividuo;

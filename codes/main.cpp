@@ -68,7 +68,7 @@ int main(){
 
         else if(op == 3) //COPOM
         {
-            cadastrarChamada(chamadas, sizeRegular, regulares, sizeEspecial, especiais);
+            cadastrarChamada(chamadas, regulares, especiais);
         }
         else if(op == 4) //Policial Militar
         {   

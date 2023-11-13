@@ -30,9 +30,13 @@ int distribui_chamada(struct listaChamada *&chamadas, regularViatura *regulares,
 
                 if(copia->chamada->tipo == 1)
                 {
+                    for (int i = 0; i < 4; i++){
+                        strcpy(novo->chamada->policiais[i], regulares[0].policiais[i]);
+                    }
                     if(copia->chamada->prioridade == 1)
                     {
-                        if(regulares[0].listaPrioritarias == NULL){
+                        if(regulares[0].listaPrioritarias == NULL)
+                        {
                             regulares[0].listaPrioritarias = novo;
                             regulares[0].qntChamadas = regulares[0].qntChamadas + 1;
                         } else {
@@ -60,6 +64,10 @@ int distribui_chamada(struct listaChamada *&chamadas, regularViatura *regulares,
                         }
                     }
                 } else {
+                    for (int i = 0; i < 4; i++)
+                    {
+                        strcpy(novo->chamada->policiais[i], especiais[0].policiais[i]);
+                    }
                     if(especiais[0].listaChamadas == NULL)
                     {
                         especiais[0].listaChamadas = novo;
@@ -220,7 +228,7 @@ void inserir_reforco_especial(struct Chamada *codChamada, struct especialViatura
 
 //passar nome policial
 
-void cadastrarChamada(struct listaChamada *&listaChamadas, int sizeRegular, struct regularViatura *regulares, int sizeEspecial, struct especialViatura *especiais)
+void cadastrarChamada(struct listaChamada *&listaChamadas, struct regularViatura *regulares, struct especialViatura *especiais)
 {  
     int op1;
     listaChamada *copia = listaChamadas;
