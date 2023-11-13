@@ -1,3 +1,5 @@
+010
+regular
 001
 regular
 002
@@ -16,5 +18,3 @@ regular
 regular
 009
 especializada
-010
-regular

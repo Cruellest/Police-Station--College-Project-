@@ -24,7 +24,7 @@ int separaRegular(int p, int sizeVetor, regularViatura *vetor)
         do 
         {
             i++;
-        } while (vetor[i].qntChamadas > x);
+        } while (vetor[i].qntChamadas < x);
 
         if(i < j)
         {
@@ -72,7 +72,7 @@ int separaEspecial(int p, int sizeVetor, especialViatura *vetor)
         do 
         {
             i++;
-        } while (vetor[i].qntChamadas > x);
+        } while (vetor[i].qntChamadas < x);
 
         if(i < j)
         {
@@ -121,7 +121,7 @@ int separaViatura(int p, int sizeVetor, Viatura *vetor)
         do 
         {
             i++;
-        } while (vetor[i].codigo > x);
+        } while (vetor[i].codigo < x);
 
         if(i < j)
         {

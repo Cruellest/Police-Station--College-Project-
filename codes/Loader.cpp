@@ -3,6 +3,9 @@
 #ifndef STRUCTS_H
 #include "structs.h"
 #endif
+#ifndef QUICKSORTVIATURA_H
+#include "quicksortViatura.h"
+#endif
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -65,6 +68,7 @@ int loadViaturas(Viatura *local){
     }
     //closing the file
     fclose(viaturas);
+    quicksortViatura(local,0,amountofViaturas());
     return 0;
 }
 
