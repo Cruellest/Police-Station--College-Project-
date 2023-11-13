@@ -652,7 +652,7 @@ void viaturaLogin(Viatura *viaturas, int size, regularViatura *regulares, int &s
     scanf("%d", &quantidadePM);
 
     //checks and error handling:
-a    while((tipo == 1 && quantidadePM < 2) || (quantidadePM > 4)
+    while((tipo == 1 && quantidadePM < 2) || (quantidadePM > 4)
         || (tipo == 2 && quantidadePM != 4))
     {
 
