@@ -90,47 +90,7 @@ int menuPM (Policial *local,int officer,listaChamada *localchamadas){
             }    
             }
         break;
-        }
-
-        
-    case 2:
-    int codigo;
-
-    if(localchamadas == NULL)
-        {
-            printf("Não existem ocorrencias\n");
-            getchar();
-            getchar();
-            break;
-        }
-        else{
-
-            printf("Por Favor digite o Codigo da Chamada: ");
-            scanf("%d",&codigo);
-
-            for(listaChamada *i = localchamadas; i != NULL; i = i->prox){
-            if(i->chamada->codigo == codigo && i->chamada->Boletim == false){
-                printf("Boletins sem Ocorrencia\n");
-                for (int j = 0; j < 4; j++)
-                {
-                    if (strcmp(local[officer].guerra,i->chamada->policiais[j])==0)
-                    {
-                        printf("\e[1;1H\e[2J");
-                        printf("Codigo: %d\n",i->chamada->codigo);
-                        printf("Descrição: %s\n",i->chamada->descricao);
-                        printf("Localização: %s\n\n",i->chamada->loc);
-
-                        printf("Boletim: %s\n",i->chamada->Boletim ? "Existente" : "Inexistente");
-                    }
-                    
-                }
-                printf("\nPressione enter");
-                getchar();
-                getchar();
-            }    
-
-
-    break;    
+        } 
     
     default:
         break;
