@@ -45,16 +45,17 @@ int main(){
 
     //(WIP) UI for menu
     do{
-        //printf("\e[1;1H\e[2J");
-
-        printf("\n1 - Viatura Login");
-        printf("\n2 - Viatura em Uso");
-        printf("\n3 - COPOM");
-        printf("\n4 - Policial Militar");
-        printf("\n5 - Oficial");
-        printf("\n6 - Comandante Geral");
-        printf("\n0 - Encerrar Programa");
-        printf("\nOpção: ");
+        printf("\e[1;1H\e[2J");
+        printf(" SPM - Funcionalidades");
+        
+        printf("\n\n 1 - Viatura Login");
+        printf("\n 2 - Viatura em Uso");
+        printf("\n 3 - COPOM");
+        printf("\n 4 - Policial Militar");
+        printf("\n 5 - Oficial");
+        printf("\n 6 - Comandante Geral");
+        printf("\n 0 - Encerrar Programa");
+        printf("\n Opção: ");
         scanf("%d", &op);
 
         if(op == 1) //Viatura Login

@@ -12,7 +12,6 @@
 
 int distribui_chamada(struct listaChamada *&chamadas, regularViatura *regulares, especialViatura *especiais)
 {
-    printf("Entrou em distribui.");
     struct listaChamada *copia, *novo, *auxiliar;
 
     copia = chamadas;
@@ -235,17 +234,13 @@ void cadastrarChamada(struct listaChamada *&listaChamadas, struct regularViatura
 
     Chamada *codChamada = (Chamada *) malloc(sizeof(Chamada));
     codChamada = NULL;
-
-    printf("\n SPM - COPOM");
+    printf("\e[1;1H\e[2J");
+    printf(" SPM - COPOM");
 
     int temReforco = verif_reforco(listaChamadas, codChamada);
 
-    if (temReforco > 0){
-        printf("\nTem reforço.");
-    }
-
     while (temReforco > 0){
-        printf("\n\n SOLICITAÇÃO DE REFORÇO!");
+        printf("\n\n Solicitação de Reforço Recebida");
         printf("\n 1 - Atender");
         printf("\n 2 - Negar");
         printf("\n Opção: ");
@@ -263,31 +258,34 @@ void cadastrarChamada(struct listaChamada *&listaChamadas, struct regularViatura
         }
         temReforco = verif_reforco(listaChamadas, codChamada);
     }
+    printf("\e[1;1H\e[2J");
+    printf(" SPM - COPOM");
 
-    printf("\n\n Cadastrar nova chamada:");
-    printf("\n 1 - Polícia Regular");
+    printf("\n\n Cadastrar Nova Chamada");
+    
+    printf("\n\n 1 - Polícia Regular");
     printf("\n 2 - Polícia Especializada");
     
     int tipo;
-    printf("\n\n Selecione o tipo de polícia: ");
+    printf("\n Selecione o tipo de polícia: ");
     scanf("%d", &tipo);
 
     novaChamada->tipo = tipo;
 
     if(novaChamada->tipo == 1)
     {
-        printf("\n 1 - Chamada Prioritária");
+        printf("\n\n 1 - Chamada Prioritária");
         printf("\n 2 - Chamada Não Prioritária");
     
         int prioridade;
-        printf("\n\n Selecione a prioridade da chamada: ");
+        printf("\n Selecione a prioridade da chamada: ");
         scanf("%d", &prioridade);
 
         novaChamada->prioridade = prioridade;
     }
 
     int qnt;
-    printf("\n 1 - Viaturas Necessárias: ");
+    printf("\n Viaturas Necessárias: ");
     scanf("%d", &qnt);
     novaChamada->qntViaturas = qnt;
 
