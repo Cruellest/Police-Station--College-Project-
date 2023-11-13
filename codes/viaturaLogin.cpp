@@ -450,7 +450,7 @@ void viaturaEstadoNeutro(regularViatura *regulares, int sizeRegular, especialVia
                         viaturaEstadoNeutro(regulares, sizeRegular, especiais, sizeEspecial, chamadas, tipo, viaturaCode, pessoas, sizePessoa);
                     }
                 } else {
-                    especiais[indice].estado = 0;
+                    regulares[indice].estado = 0;
                     viaturaModoRonda();
                 }
 
