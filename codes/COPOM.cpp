@@ -33,6 +33,7 @@ int distribui_chamada(struct listaChamada *&chamadas, regularViatura *regulares,
                     for (int i = 0; i < 4; i++){
                         strcpy(novo->chamada->policiais[i], regulares[0].policiais[i]);
                     }
+
                     if(copia->chamada->prioridade == 1)
                     {
                         if(regulares[0].listaPrioritarias == NULL)

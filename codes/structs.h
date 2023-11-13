@@ -9,6 +9,8 @@ struct Viatura{
     int tipo; /* 1 = Policial Regular
                  2 = Policia Especializada */
 
+    int emUso = 0;
+
 };
 
 //Struct of the officers
