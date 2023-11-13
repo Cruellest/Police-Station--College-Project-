@@ -27,7 +27,16 @@ int CommanderLogin(Policial *local){
             switch (op)
             {
             case 1: 
-                printf("Just a Place Holder\n");
+
+                FILE *oficio;
+
+                oficio = fopen("oficio_ocorrencias.txt", "w");
+
+
+
+
+                printf("Oficio Gerado\n");
+                fclose(oficio);
                 getchar();
                 getchar();
                 break;
