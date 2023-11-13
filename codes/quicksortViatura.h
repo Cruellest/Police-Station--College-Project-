@@ -2,16 +2,16 @@
 #define QUICKSORTVIATURA_H
 #include "quicksortViatura.cpp"
 
-int separaRegular(int p, int sizeVetor, regularViatura *vetor);
+int separaRegular(int p, int sizeVetor, regularViatura *&vetor);
 
-void quicksortRegular(regularViatura *vetor, int p, int sizeVetor);
+void quicksortRegular(regularViatura *&vetor, int p, int sizeVetor);
 
-int separaEspecial(int p, int sizeVetor, especialViatura *vetor);
+int separaEspecial(int p, int sizeVetor, especialViatura *&vetor);
 
-void quicksortEspecial(especialViatura *vetor, int p, int sizeVetor);
+void quicksortEspecial(especialViatura *&vetor, int p, int sizeVetor);
 
-int separaViatura(int p, int sizeVetor, Viatura *vetor);
+int separaViatura(int p, int sizeVetor, Viatura *&vetor);
 
-void quicksortViatura(Viatura *vetor, int p, int sizeVetor);
+void quicksortViatura(Viatura *&vetor, int p, int sizeVetor);
 
 #endif // !QUICKSORTVIATURA_H

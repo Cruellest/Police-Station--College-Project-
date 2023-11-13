@@ -6,9 +6,11 @@
 #include <string.h>
 #include <stdlib.h>
 
-int separaRegular(int p, int sizeVetor, regularViatura *vetor)
+int separaRegular(int p, int sizeVetor, regularViatura *&vetor)
 {
-    int x, i, j, aux;
+    int x, i, j;
+
+    regularViatura aux;
 
     x = vetor[p].qntChamadas;
     i = p - 1;
@@ -28,9 +30,9 @@ int separaRegular(int p, int sizeVetor, regularViatura *vetor)
 
         if(i < j)
         {
-            aux = vetor[i].qntChamadas;
-            vetor[i].qntChamadas = vetor[j].qntChamadas;
-            vetor[j].qntChamadas = aux;
+            aux = vetor[i];
+            vetor[i] = vetor[j];
+            vetor[j] = aux;
         } else {
             return j;
         }
@@ -40,7 +42,7 @@ int separaRegular(int p, int sizeVetor, regularViatura *vetor)
 
 }
 
-void quicksortRegular(regularViatura *vetor, int p, int sizeVetor)
+void quicksortRegular(regularViatura *&vetor, int p, int sizeVetor)
 {
 
     int q;
@@ -54,9 +56,10 @@ void quicksortRegular(regularViatura *vetor, int p, int sizeVetor)
 
 }
 
-int separaEspecial(int p, int sizeVetor, especialViatura *vetor)
+int separaEspecial(int p, int sizeVetor, especialViatura *&vetor)
 {
-    int x, i, j, aux;
+    int x, i, j;
+    especialViatura aux;
 
     x = vetor[p].qntChamadas;
     i = p - 1;
@@ -76,9 +79,9 @@ int separaEspecial(int p, int sizeVetor, especialViatura *vetor)
 
         if(i < j)
         {
-            aux = vetor[i].qntChamadas;
-            vetor[i].qntChamadas = vetor[j].qntChamadas;
-            vetor[j].qntChamadas = aux;
+            aux = vetor[i];
+            vetor[i] = vetor[j];
+            vetor[j] = aux;
         } else {
             return j;
         }
@@ -88,7 +91,7 @@ int separaEspecial(int p, int sizeVetor, especialViatura *vetor)
 
 }
 
-void quicksortEspecial(especialViatura *vetor, int p, int sizeVetor)
+void quicksortEspecial(especialViatura *&vetor, int p, int sizeVetor)
 {
 
     int q;
@@ -103,9 +106,10 @@ void quicksortEspecial(especialViatura *vetor, int p, int sizeVetor)
 }
 
 
-int separaViatura(int p, int sizeVetor, Viatura *vetor)
+int separaViatura(int p, int sizeVetor, Viatura *&vetor)
 {
-    int x, i, j, aux;
+    int x, i, j;
+    Viatura aux;
 
     x = vetor[p].codigo;
     i = p - 1;
@@ -125,9 +129,9 @@ int separaViatura(int p, int sizeVetor, Viatura *vetor)
 
         if(i < j)
         {
-            aux = vetor[i].codigo;
-            vetor[i].codigo = vetor[j].codigo;
-            vetor[j].codigo = aux;
+            aux = vetor[i];
+            vetor[i] = vetor[j];
+            vetor[j] = aux;
         } else {
             return j;
         }
@@ -137,7 +141,7 @@ int separaViatura(int p, int sizeVetor, Viatura *vetor)
 
 }
 
-void quicksortViatura(Viatura *vetor, int p, int sizeVetor)
+void quicksortViatura(Viatura *&vetor, int p, int sizeVetor)
 {
 
     int q;
