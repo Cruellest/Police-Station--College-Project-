@@ -356,14 +356,21 @@ void viaturaEstadoNeutro(regularViatura *regulares, int sizeRegular, especialVia
                 regulares[indice].menuNeutro = 1;
                 regularViatura *viaturaLogada = &regulares[indice]; 
 
+                if (viaturaLogada->listaReforco->chamada->estado == 3)
+                {
+                    encerrarChamada(tipo, regulares, especiais, indice, 0, acao);
+                }
+                if (viaturaLogada->listaPrioritarias->chamada->estado == 3)
+                {
+                    encerrarChamada(tipo, regulares, especiais, indice, 1, acao);
+                }
+                    if (viaturaLogada->listaChamadas->chamada->estado == 3)
+                {
+                    encerrarChamada(tipo, regulares, especiais, indice, 2, acao);
+                }
                 if (viaturaLogada->listaReforco != NULL) {
                     printf("\e[1;1H\e[2J");
                     printf(" SPM - Solicitação de Reforço");
-                    
-                    if (viaturaLogada->listaReforco->chamada->estado != 3)
-                    {
-                        encerrarChamada(tipo, regulares, especiais, indice, 0, acao);
-                    }
 
                     printf("\n\n Descricao: %s", viaturaLogada->listaReforco->chamada->descricao); 
                     printf("\n Localização: %s", viaturaLogada->listaReforco->chamada->loc);   
@@ -392,11 +399,6 @@ void viaturaEstadoNeutro(regularViatura *regulares, int sizeRegular, especialVia
                     printf("\e[1;1H\e[2J");
                     printf(" SPM - Chamada Policial Prioritária");
 
-                    if (viaturaLogada->listaPrioritarias->chamada->estado != 3)
-                    {
-                        encerrarChamada(tipo, regulares, especiais, indice, 1, acao);
-                    }
-
                     printf("\n\n Descricao: %s", viaturaLogada->listaPrioritarias->chamada->descricao); 
                     printf("\n Localização: %s", viaturaLogada->listaPrioritarias->chamada->loc);   
 
@@ -423,11 +425,6 @@ void viaturaEstadoNeutro(regularViatura *regulares, int sizeRegular, especialVia
                 } else if (viaturaLogada->listaChamadas != NULL && viaturaLogada->listaPrioritarias == NULL && viaturaLogada->listaReforco == NULL){
                     printf("\e[1;1H\e[2J");
                     printf(" SPM - Chamada Policial");
-
-                    if (viaturaLogada->listaChamadas->chamada->estado != 3)
-                    {
-                        encerrarChamada(tipo, regulares, especiais, indice, 2, acao);
-                    }
 
                     printf("\n\n Descricao: %s", viaturaLogada->listaChamadas->chamada->descricao); 
                     printf("\n Localização: %s", viaturaLogada->listaChamadas->chamada->loc);   
@@ -467,15 +464,22 @@ void viaturaEstadoNeutro(regularViatura *regulares, int sizeRegular, especialVia
                 especiais[indice].menuNeutro = 1;
                 especialViatura *viaturaLogada = &especiais[indice];
 
+                if (viaturaLogada->listaReforco->chamada->estado == 3)
+                {
+                    encerrarChamada(tipo, regulares, especiais, indice, 0, acao);
+                }
+                if (viaturaLogada->listaPrioritarias->chamada->estado == 3)
+                {
+                    encerrarChamada(tipo, regulares, especiais, indice, 1, acao);
+                }
+                    if (viaturaLogada->listaChamadas->chamada->estado == 3)
+                {
+                    encerrarChamada(tipo, regulares, especiais, indice, 2, acao);
+                }
 
                 if (viaturaLogada->listaReforco != NULL) {
                     printf("\e[1;1H\e[2J");
                     printf(" SPM - Solicitção de Reforço");
-
-                    if (viaturaLogada->listaReforco->chamada->estado != 3)
-                    {
-                        encerrarChamada(tipo, regulares, especiais, indice, 0, acao);
-                    }
 
                     printf("\n\n Descricao: %s", viaturaLogada->listaReforco->chamada->descricao); 
                     printf("\n Localização: %s", viaturaLogada->listaReforco->chamada->loc);   
@@ -503,11 +507,6 @@ void viaturaEstadoNeutro(regularViatura *regulares, int sizeRegular, especialVia
                 } else if (viaturaLogada->listaChamadas != NULL && viaturaLogada->listaReforco == NULL){
                     printf("\e[1;1H\e[2J");
                     printf(" SPM - Chamada Policial");
-
-                    if (viaturaLogada->listaChamadas->chamada->estado != 3)
-                    {
-                        encerrarChamada(tipo, regulares, especiais, indice, 1, acao);
-                    }
 
                     printf("\n\n Descricao: %s", viaturaLogada->listaChamadas->chamada->descricao); 
                     printf("\n Localização: %s", viaturaLogada->listaChamadas->chamada->loc);   
