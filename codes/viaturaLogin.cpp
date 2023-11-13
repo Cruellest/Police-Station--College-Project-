@@ -448,6 +448,9 @@ void viaturaEstadoNeutro(regularViatura *regulares, int sizeRegular, especialVia
                     }else if (acao == 3){
                         viaturaEstadoNeutro(regulares, sizeRegular, especiais, sizeEspecial, chamadas, tipo, viaturaCode, pessoas, sizePessoa);
                     }
+                } else {
+                    regulares[indice].estado = 0;
+                    viaturaModoRonda();
                 }
 
                     
@@ -468,11 +471,7 @@ void viaturaEstadoNeutro(regularViatura *regulares, int sizeRegular, especialVia
                 {
                     encerrarChamada(tipo, regulares, especiais, indice, 0, acao);
                 }
-                if (viaturaLogada->listaPrioritarias->chamada->estado == 3)
-                {
-                    encerrarChamada(tipo, regulares, especiais, indice, 1, acao);
-                }
-                    if (viaturaLogada->listaChamadas->chamada->estado == 3)
+                if (viaturaLogada->listaChamadas->chamada->estado == 3)
                 {
                     encerrarChamada(tipo, regulares, especiais, indice, 2, acao);
                 }
@@ -530,6 +529,11 @@ void viaturaEstadoNeutro(regularViatura *regulares, int sizeRegular, especialVia
                     }else if (acao == 3){
                         viaturaEstadoNeutro(regulares, sizeRegular, especiais, sizeEspecial, chamadas, tipo, viaturaCode, pessoas, sizePessoa);
                     }  
+                } else {
+                    especiais[indice].estado = 0;
+                    viaturaModoRonda();
+                }
+
                 }
             }
         }
