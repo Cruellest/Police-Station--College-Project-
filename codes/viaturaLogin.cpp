@@ -368,6 +368,7 @@ void viaturaEstadoNeutro(regularViatura *regulares, int sizeRegular, especialVia
                 {
                     encerrarChamada(tipo, regulares, especiais, indice, 2, acao);
                 }
+
                 if (viaturaLogada->listaReforco != NULL) {
                     printf("\e[1;1H\e[2J");
                     printf(" SPM - Solicitação de Reforço");
@@ -449,7 +450,7 @@ void viaturaEstadoNeutro(regularViatura *regulares, int sizeRegular, especialVia
                         viaturaEstadoNeutro(regulares, sizeRegular, especiais, sizeEspecial, chamadas, tipo, viaturaCode, pessoas, sizePessoa);
                     }
                 } else {
-                    regulares[indice].estado = 0;
+                    especiais[indice].estado = 0;
                     viaturaModoRonda();
                 }
 
@@ -532,8 +533,6 @@ void viaturaEstadoNeutro(regularViatura *regulares, int sizeRegular, especialVia
                 } else {
                     especiais[indice].estado = 0;
                     viaturaModoRonda();
-                }
-
                 }
             }
         }
