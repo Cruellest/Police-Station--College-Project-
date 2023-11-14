@@ -69,9 +69,9 @@ int menuPM (Policial *local,int officer,listaChamada *&localchamadas){
         }
         else{
             printf("\e[1;1H\e[2J");
+                printf("Ocorrencias sem Boletins\n\n");
             for(listaChamada *i = localchamadas; i != NULL; i = i->prox){
             if(i->chamada.estado == 3 && i->chamada.Boletim == false){
-                printf("Ocorrencias sem Boletins\n\n");
                 for (int j = 0; j < 4; j++)
                 {
                     if (strcmp(local[officer].guerra,i->chamada.policiais[j])==0)
@@ -84,11 +84,11 @@ int menuPM (Policial *local,int officer,listaChamada *&localchamadas){
                     }
                     
                 }
+            }    
+            }
                 printf("\nPressione enter");
                 getchar();
                 getchar();
-            }    
-            }
         break;
         }
 
