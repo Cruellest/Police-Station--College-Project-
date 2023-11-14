@@ -20,7 +20,7 @@ int CommanderLogin(Policial *local,listaChamada *localchamadas){
             
             int op = -1;
 
-            printf("Menu Comandante Geral (WIP)\n");
+            printf("SPM - Menu Comandante Geral\n");
             printf("1 - Gerar Oficio de Ocorrencias\nOpções: ");
             scanf(" %d",&op);
 
@@ -49,7 +49,7 @@ int CommanderLogin(Policial *local,listaChamada *localchamadas){
                             fprintf(oficio," %s",i->chamada.policiais[j]);
                         }
 
-                        fprintf(oficio,"\n");
+                        fprintf(oficio,"\n\n");
                         
 
                     }

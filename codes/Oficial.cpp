@@ -78,9 +78,9 @@ int officerLogin(Policial *local,listaChamada *localchamadas){
 
                     FILE *relatorio;
 
-                    fopen("relatorio_oficial.txt","w");
+                    relatorio = fopen("relatorio_oficial.txt","w");
 
-                    
+                    fprintf(relatorio,"Policiais\n");                    
 
 
                     break;
