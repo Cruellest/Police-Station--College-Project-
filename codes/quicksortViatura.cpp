@@ -154,3 +154,43 @@ void quicksortViatura(Viatura *&vetor, int p, int sizeVetor)
     }
 
 }
+
+int separaPolicia(int p, int sizeVetor, Policial *&vetor){
+
+    int x,i,j;
+    Policial aux;
+
+    x = vetor[p].nome[0];
+    i = p - 1;
+    j = sizeVetor + 1;
+
+while(1){
+    do{
+        j--;
+    }while(vetor[j].nome[0] > x);
+    
+    do{
+        i++;
+    }while (vetor[i].nome[0] < x);
+    
+    if(i<j){
+        aux = vetor[i];
+        vetor[i] = vetor[j];
+        vetor[j] = aux;
+    }
+    else{
+        return j;
+    }
+}
+}
+
+void quicksortPoliciais(Policial *&vetor,int p,int sizeVetor){
+    int q;
+
+    if(p<sizeVetor){
+        q = separaPolicia(p,sizeVetor,vetor);
+        quicksortPoliciais(vetor, p, q);
+        quicksortPoliciais(vetor,q+1 , sizeVetor);
+
+    }
+}
