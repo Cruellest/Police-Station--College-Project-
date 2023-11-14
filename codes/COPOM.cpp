@@ -254,6 +254,8 @@ void cadastrarChamada(struct listaChamada *&listaChamadas, struct regularViatura
         copia->prox = novo;
     }
 
+    listaChamadas->cont = contChamadas;
+
 }
 /*celula *novo, *p;
 novo = (celula*) malloc(sizeof(celula));

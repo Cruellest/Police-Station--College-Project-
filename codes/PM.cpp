@@ -47,7 +47,7 @@ int LoginPm(Policial *local){
     return -1;
     }
 
-int menuPM (Policial *local,int officer,listaChamada *localchamadas){
+int menuPM (Policial *local,int officer,listaChamada *&localchamadas){
     int op = -1;
 
     while(op != 0){

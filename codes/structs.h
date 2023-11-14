@@ -66,7 +66,7 @@ struct Chamada{
 
     int qntViaturas = 0;
 
-    int estado = 0; /*0 = Não inicializada 
+    int estado; /*0 = Não inicializada 
                 1 = Inicializada
                 2 =  Prisão em andamento
                 3 = Encerrada */
@@ -83,6 +83,7 @@ struct Chamada{
 
 struct listaChamada{
     struct Chamada chamada;
+    int cont;
     struct listaChamada *prox;
 };
 
