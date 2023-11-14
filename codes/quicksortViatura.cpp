@@ -155,28 +155,28 @@ void quicksortViatura(Viatura *&vetor, int p, int sizeVetor)
 
 }
 
-int separaPolicia(int p, int sizeVetor, Policial *&vetor){
+int separaPolicia(int p, int sizeVetor, char **vetor){
 
     int x,i,j;
-    Policial aux;
+    char aux[30];
 
-    x = vetor[p].nome[0];
+    x = vetor[p][0];
     i = p - 1;
     j = sizeVetor + 1;
 
 while(1){
     do{
         j--;
-    }while(vetor[j].nome[0] > x);
+    }while(vetor[j][0] > x);
     
     do{
         i++;
-    }while (vetor[i].nome[0] < x);
+    }while (vetor[i][0] < x);
     
     if(i<j){
-        aux = vetor[i];
-        vetor[i] = vetor[j];
-        vetor[j] = aux;
+        strcpy(aux,vetor[i]);
+        strcpy(vetor[i],vetor[j]);
+        strcpy(vetor[j],aux);
     }
     else{
         return j;
@@ -184,7 +184,7 @@ while(1){
 }
 }
 
-void quicksortPoliciais(Policial *&vetor,int p,int sizeVetor){
+void quicksortPoliciais(char **vetor,int p,int sizeVetor){
     int q;
 
     if(p<sizeVetor){

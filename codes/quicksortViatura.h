@@ -14,4 +14,8 @@ int separaViatura(int p, int sizeVetor, Viatura *&vetor);
 
 void quicksortViatura(Viatura *&vetor, int p, int sizeVetor);
 
+int separaPolicia(int p, int sizeVetor, char **vetor);
+
+void quicksortPoliciais(char **vetor,int p,int sizeVetor);
+
 #endif // !QUICKSORTVIATURA_H

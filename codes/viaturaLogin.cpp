@@ -366,24 +366,27 @@ void viaturaEstadoNeutro(regularViatura *&regulares, int sizeRegular, especialVi
 
                 if (viaturaLogada->listaReforco != NULL)
                 {
-                    if (viaturaLogada->listaReforco->chamada.estado == 3)
-                        {
-                            encerrarChamada(tipo, regulares, especiais, indice, 0, acao, chamadas);
+                    for(listaChamada *p = chamadas; p != NULL; p = p->prox){
+                        if(regulares[indice].listaReforco->chamada.codigo == p->chamada.codigo && p->chamada.codigo == 3){
+                            encerrarChamada(tipo, regulares, especiais, indice, 1, acao, chamadas);
                         }
+                    }
                 }
                 if (viaturaLogada->listaPrioritarias != NULL)
                 {
-                    if (viaturaLogada->listaPrioritarias->chamada.estado == 3)
-                        {
+                    for(listaChamada *p = chamadas; p != NULL; p = p->prox){
+                        if(regulares[indice].listaPrioritarias->chamada.codigo == p->chamada.codigo && p->chamada.codigo == 3){
                             encerrarChamada(tipo, regulares, especiais, indice, 1, acao, chamadas);
                         }
+                    }
                 }
                 if (viaturaLogada->listaChamadas != NULL)
                 {
-                    if (viaturaLogada->listaChamadas->chamada.estado == 3)
-                        {
-                            encerrarChamada(tipo, regulares, especiais, indice, 2, acao, chamadas);
+                    for(listaChamada *p = chamadas; p != NULL; p = p->prox){
+                        if(regulares[indice].listaChamadas->chamada.codigo == p->chamada.codigo && p->chamada.codigo == 3){
+                            encerrarChamada(tipo, regulares, especiais, indice, 1, acao, chamadas);
                         }
+                    }
                 }
 
                 if (viaturaLogada->listaReforco != NULL) {
@@ -488,18 +491,20 @@ void viaturaEstadoNeutro(regularViatura *&regulares, int sizeRegular, especialVi
 
                 if (viaturaLogada->listaReforco != NULL)
                 {
-                    if (viaturaLogada->listaReforco->chamada.estado == 3)
-                        {
+                    for(listaChamada *p = chamadas; p != NULL; p = p->prox){
+                        if(especiais[indice].listaReforco->chamada.codigo == p->chamada.codigo && p->chamada.codigo == 3){
                             encerrarChamada(tipo, regulares, especiais, indice, 0, acao, chamadas);
                         }
+                    }
                 }
 
                 if (viaturaLogada->listaChamadas != NULL)
                 {
-                    if (viaturaLogada->listaChamadas->chamada.estado == 3)
-                        {
+                    for(listaChamada *p = chamadas; p != NULL; p = p->prox){
+                        if(especiais[indice].listaChamadas->chamada.codigo == p->chamada.codigo && p->chamada.codigo == 3){
                             encerrarChamada(tipo, regulares, especiais, indice, 1, acao, chamadas);
                         }
+                    }
                 }
 
                 if (viaturaLogada->listaReforco != NULL) {
