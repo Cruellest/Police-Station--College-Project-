@@ -41,12 +41,12 @@ int CommanderLogin(Policial *local,listaChamada *localchamadas){
                     fputs("Ocorrencias - \n",oficio);
 
                     for(listaChamada *i = localchamadas; i != NULL; i = i->prox){
-                        fprintf(oficio,"Tipo Policia: %d\n",i->chamada->tipo);
-                        fprintf(oficio,"Descrição %s - Localização %s\n",i->chamada->descricao,i->chamada->loc);
+                        fprintf(oficio,"Tipo Policia: %d\n",i->chamada.tipo);
+                        fprintf(oficio,"Descrição %s - Localização %s\n",i->chamada.descricao,i->chamada.loc);
                         fprintf(oficio,"Policiais:");
                         for (int j = 0; j < 4; j++)
                         {
-                            fprintf(oficio," %s",i->chamada->policiais[j]);
+                            fprintf(oficio," %s",i->chamada.policiais[j]);
                         }
 
                         fprintf(oficio,"\n");

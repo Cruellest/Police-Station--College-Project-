@@ -82,7 +82,7 @@ struct Chamada{
 };
 
 struct listaChamada{
-    struct Chamada *chamada;
+    struct Chamada chamada;
     struct listaChamada *prox;
 };
 

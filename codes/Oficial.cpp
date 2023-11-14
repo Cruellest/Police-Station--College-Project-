@@ -42,16 +42,16 @@ int officerLogin(Policial *local,listaChamada *localchamadas){
                     }
                     else{
                         for(listaChamada *i = localchamadas; i != NULL; i = i->prox){
-                        if(i->chamada->estado == 3 && i->chamada->Boletim == true){
+                        if(i->chamada.estado == 3 && i->chamada.Boletim == true){
                             printf("\e[1;1H\e[2J");
                             printf(" Ocorrencias com Boletins\n");
 
-                                    printf("Codigo: %d\n",i->chamada->codigo);
-                                    printf("Descrição: %s\n",i->chamada->descricao);
-                                    printf("Localização: %s\n\n",i->chamada->loc);
+                                    printf("Codigo: %d\n",i->chamada.codigo);
+                                    printf("Descrição: %s\n",i->chamada.descricao);
+                                    printf("Localização: %s\n\n",i->chamada.loc);
 
-                                    printf("Boletim: %s\n",i->chamada->Boletim ? "Existente" : "Inexistente");
-                                    printf("Texto do Boletim: %s",i->chamada->BoletimTexto);
+                                    printf("Boletim: %s\n",i->chamada.Boletim ? "Existente" : "Inexistente");
+                                    printf("Texto do Boletim: %s",i->chamada.BoletimTexto);
 
                         }    
                         }
@@ -61,9 +61,9 @@ int officerLogin(Policial *local,listaChamada *localchamadas){
                             scanf(" %d",&codigo);
 
                             for(listaChamada *i = localchamadas; i != NULL; i = i->prox){
-                            if(i->chamada->codigo == codigo && i->chamada->Boletim == true){
-                                i->chamada->Boletim = false;
-                                strcpy(i->chamada->BoletimTexto,""); 
+                            if(i->chamada.codigo == codigo && i->chamada.Boletim == true){
+                                i->chamada.Boletim = false;
+                                strcpy(i->chamada.BoletimTexto,""); 
                             }}
 
                             printf("Boletim Excluido com sucesso\n");

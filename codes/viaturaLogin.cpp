@@ -22,24 +22,24 @@ void encerrarChamada(int tipo, regularViatura *&regulares, especialViatura *&esp
             regulares[indice].estado = 0;
             if (prioridade == 2)
             {
-                regulares[indice].listaChamadas->chamada->estado = 3;
+                regulares[indice].listaChamadas->chamada.estado = 3;
                 regulares[indice].listaChamadas = regulares[indice].listaChamadas->prox;
             } else if (prioridade == 1)
             {
-                regulares[indice].listaPrioritarias->chamada->estado = 3;
+                regulares[indice].listaPrioritarias->chamada.estado = 3;
                 regulares[indice].listaPrioritarias = regulares[indice].listaPrioritarias->prox;
             } else if (prioridade == 0){
-                regulares[indice].listaReforco->chamada->estado = 3;
+                regulares[indice].listaReforco->chamada.estado = 3;
                 regulares[indice].listaReforco = regulares[indice].listaReforco->prox;
             }
         } else {
             especiais[indice].estado = 0;
             if (prioridade == 1)
             {
-                especiais[indice].listaChamadas->chamada->estado = 3;
+                especiais[indice].listaChamadas->chamada.estado = 3;
                 especiais[indice].listaChamadas = especiais[indice].listaChamadas->prox;
             } else if (prioridade == 0){
-                especiais[indice].listaReforco->chamada->estado = 3;
+                especiais[indice].listaReforco->chamada.estado = 3;
                 especiais[indice].listaReforco = especiais[indice].listaReforco->prox;
             } 
         }
@@ -107,19 +107,19 @@ void solicitarReforco(int tipo, regularViatura *&regulares, especialViatura *&es
         {
             if (prioridade == 2)
             {
-                regulares[indice].listaChamadas->chamada->reforco = true;
+                regulares[indice].listaChamadas->chamada.reforco = true;
             } else if (prioridade == 1)
             {
-                regulares[indice].listaPrioritarias->chamada->reforco = true;
+                regulares[indice].listaPrioritarias->chamada.reforco = true;
             } else if (prioridade == 0){
-                regulares[indice].listaReforco->chamada->reforco = true;
+                regulares[indice].listaReforco->chamada.reforco = true;
             }
         } else {
             if (prioridade == 1)
             {
-                especiais[indice].listaChamadas->chamada->reforco = true;
+                especiais[indice].listaChamadas->chamada.reforco = true;
             } else if (prioridade == 0){
-                especiais[indice].listaReforco->chamada->reforco = true;
+                especiais[indice].listaReforco->chamada.reforco = true;
             } 
         }
     }
@@ -328,21 +328,21 @@ void viaturaEstadoNeutro(regularViatura *&regulares, int sizeRegular, especialVi
 
                 if (viaturaLogada->listaReforco != NULL)
                 {
-                    if (viaturaLogada->listaReforco->chamada->estado == 3)
+                    if (viaturaLogada->listaReforco->chamada.estado == 3)
                         {
                             encerrarChamada(tipo, regulares, especiais, indice, 0, acao);
                         }
                 }
                 if (viaturaLogada->listaPrioritarias != NULL)
                 {
-                    if (viaturaLogada->listaPrioritarias->chamada->estado == 3)
+                    if (viaturaLogada->listaPrioritarias->chamada.estado == 3)
                         {
                             encerrarChamada(tipo, regulares, especiais, indice, 1, acao);
                         }
                 }
                 if (viaturaLogada->listaChamadas != NULL)
                 {
-                    if (viaturaLogada->listaChamadas->chamada->estado == 3)
+                    if (viaturaLogada->listaChamadas->chamada.estado == 3)
                         {
                             encerrarChamada(tipo, regulares, especiais, indice, 2, acao);
                         }
@@ -352,8 +352,8 @@ void viaturaEstadoNeutro(regularViatura *&regulares, int sizeRegular, especialVi
                     printf("\e[1;1H\e[2J");
                     printf(" SPM - Solicitação de Reforço");
 
-                    printf("\n\n Descricao: %s", viaturaLogada->listaReforco->chamada->descricao); 
-                    printf("\n Localização: %s", viaturaLogada->listaReforco->chamada->loc);   
+                    printf("\n\n Descricao: %s", viaturaLogada->listaReforco->chamada.descricao); 
+                    printf("\n Localização: %s", viaturaLogada->listaReforco->chamada.loc);   
                    
                     printf("\n\n 1 - Confirmada Ação Policial\n 2 - Reforço Dispensado");
                     printf("\n Opção: ");
@@ -379,8 +379,8 @@ void viaturaEstadoNeutro(regularViatura *&regulares, int sizeRegular, especialVi
                     printf("\e[1;1H\e[2J");
                     printf(" SPM - Chamada Policial Prioritária");
 
-                    printf("\n\n Descricao: %s", viaturaLogada->listaPrioritarias->chamada->descricao); 
-                    printf("\n Localização: %s", viaturaLogada->listaPrioritarias->chamada->loc);   
+                    printf("\n\n Descricao: %s", viaturaLogada->listaPrioritarias->chamada.descricao); 
+                    printf("\n Localização: %s", viaturaLogada->listaPrioritarias->chamada.loc);   
 
                     printf("\n\n 1 - Confirmada Ação Policial\n 2 - Ação Policial Dispensado");
                     printf("\n Opção: ");
@@ -406,8 +406,8 @@ void viaturaEstadoNeutro(regularViatura *&regulares, int sizeRegular, especialVi
                     printf("\e[1;1H\e[2J");
                     printf(" SPM - Chamada Policial");
 
-                    printf("\n\n Descricao: %s", viaturaLogada->listaChamadas->chamada->descricao); 
-                    printf("\n Localização: %s", viaturaLogada->listaChamadas->chamada->loc);   
+                    printf("\n\n Descricao: %s", viaturaLogada->listaChamadas->chamada.descricao); 
+                    printf("\n Localização: %s", viaturaLogada->listaChamadas->chamada.loc);   
  
                     printf("\n\n 1 - Confirmada Ação Policial\n 2 - Ação Policial Dispensado");
                     printf("\n Opção: ");
@@ -450,7 +450,7 @@ void viaturaEstadoNeutro(regularViatura *&regulares, int sizeRegular, especialVi
 
                 if (viaturaLogada->listaReforco != NULL)
                 {
-                    if (viaturaLogada->listaReforco->chamada->estado == 3)
+                    if (viaturaLogada->listaReforco->chamada.estado == 3)
                         {
                             encerrarChamada(tipo, regulares, especiais, indice, 0, acao);
                         }
@@ -458,7 +458,7 @@ void viaturaEstadoNeutro(regularViatura *&regulares, int sizeRegular, especialVi
 
                 if (viaturaLogada->listaChamadas != NULL)
                 {
-                    if (viaturaLogada->listaChamadas->chamada->estado == 3)
+                    if (viaturaLogada->listaChamadas->chamada.estado == 3)
                         {
                             encerrarChamada(tipo, regulares, especiais, indice, 1, acao);
                         }
@@ -468,8 +468,8 @@ void viaturaEstadoNeutro(regularViatura *&regulares, int sizeRegular, especialVi
                     printf("\e[1;1H\e[2J");
                     printf(" SPM - Solicitção de Reforço");
 
-                    printf("\n\n Descricao: %s", viaturaLogada->listaReforco->chamada->descricao); 
-                    printf("\n Localização: %s", viaturaLogada->listaReforco->chamada->loc);   
+                    printf("\n\n Descricao: %s", viaturaLogada->listaReforco->chamada.descricao); 
+                    printf("\n Localização: %s", viaturaLogada->listaReforco->chamada.loc);   
 
                     printf("\n\n 1 - Confirmada Ação Policial\n 2 - Reforço Dispensado");
                     printf("\n Opção: ");
@@ -495,8 +495,8 @@ void viaturaEstadoNeutro(regularViatura *&regulares, int sizeRegular, especialVi
                     printf("\e[1;1H\e[2J");
                     printf(" SPM - Chamada Policial");
 
-                    printf("\n\n Descricao: %s", viaturaLogada->listaChamadas->chamada->descricao); 
-                    printf("\n Localização: %s", viaturaLogada->listaChamadas->chamada->loc);   
+                    printf("\n\n Descricao: %s", viaturaLogada->listaChamadas->chamada.descricao); 
+                    printf("\n Localização: %s", viaturaLogada->listaChamadas->chamada.loc);   
 
                     printf("\n\n 1 - Confirmada Ação Policial\n 2 - Ação Policial Dispensado");
                     printf("\n Opção: ");
@@ -532,7 +532,7 @@ void viaturaEstadoNeutro(regularViatura *&regulares, int sizeRegular, especialVi
             sizeRegular = sizeRegular - 1;
             regulares = (regularViatura *) realloc(regulares, sizeRegular * sizeof(regularViatura));
         } else {
-            regulares[indice].viatura->emUso = 0;
+            especiais[indice].viatura->emUso = 0;
             sizeRegular = sizeEspecial - 1;
             especiais = (especialViatura *) realloc(especiais, sizeEspecial * sizeof(especialViatura));
         }

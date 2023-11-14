@@ -70,17 +70,17 @@ int menuPM (Policial *local,int officer,listaChamada *localchamadas){
         else{
             printf("\e[1;1H\e[2J");
             for(listaChamada *i = localchamadas; i != NULL; i = i->prox){
-            if(i->chamada->estado == 3 && i->chamada->Boletim == false){
+            if(i->chamada.estado == 3 && i->chamada.Boletim == false){
                 printf("Ocorrencias sem Boletins\n\n");
                 for (int j = 0; j < 4; j++)
                 {
-                    if (strcmp(local[officer].guerra,i->chamada->policiais[j])==0)
+                    if (strcmp(local[officer].guerra,i->chamada.policiais[j])==0)
                     {
-                        printf("Codigo: %d\n",i->chamada->codigo);
-                        printf("Descrição: %s\n",i->chamada->descricao);
-                        printf("Localização: %s\n\n",i->chamada->loc);
+                        printf("Codigo: %d\n",i->chamada.codigo);
+                        printf("Descrição: %s\n",i->chamada.descricao);
+                        printf("Localização: %s\n\n",i->chamada.loc);
 
-                        printf("Boletim: %s\n",i->chamada->Boletim ? "Existente" : "Inexistente");
+                        printf("Boletim: %s\n",i->chamada.Boletim ? "Existente" : "Inexistente");
                     }
                     
                 }
@@ -111,11 +111,11 @@ int menuPM (Policial *local,int officer,listaChamada *localchamadas){
 
             for (listaChamada *i = localchamadas; i != NULL;i = i->prox)
             {
-                if((i->chamada->codigo == codigo) &&  (i->chamada->Boletim == false)){
+                if((i->chamada.codigo == codigo) &&  (i->chamada.Boletim == false)){
 
                     printf("Digite o texto do Boletim: \n");
-                    scanf(" %[^\n]",i->chamada->BoletimTexto);
-                    i->chamada->Boletim = true;
+                    scanf(" %[^\n]",i->chamada.BoletimTexto);
+                    i->chamada.Boletim = true;
 
                 }
             }
