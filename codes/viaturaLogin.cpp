@@ -167,7 +167,7 @@ void solicitarReforco(int tipo, regularViatura *&regulares, especialViatura *&es
 
 }
 
-void prisaoAndamento(int tipo, regularViatura *&regulares, especialViatura *&especiais, int indice, int &opcao, int &acao)
+void prisaoAndamento(int tipo, regularViatura *&regulares, especialViatura *&especiais, int indice, int &opcao, int &acao, int prioridade)
 {
 
     int qnt;
@@ -175,18 +175,52 @@ void prisaoAndamento(int tipo, regularViatura *&regulares, especialViatura *&esp
         printf("\e[1;1H\e[2J");
         printf(" SPM - Viatura: Prisão em Andamento\n");
 
-    if(regulares[indice].estado != 2)
-    {
-        printf("\n Quantidade de indíviduo(s) conduzido(s) para DP: ");
-        scanf(" %d", &qnt);
-        printf("\n CPF: ");
+    if (tipo == 1){
+        if(regulares[indice].estado != 2)
+        {
+            printf("\n Quantidade de indíviduo(s) conduzido(s) para DP: ");
+            scanf(" %d", &qnt);
+            printf("\n CPF: ");
 
-        long *individuos = (long *) calloc(qnt, sizeof(long));
+            long cpf;
 
-        long cpf;
-        for (int i = 0; i < qnt; i++){
-            scanf("\n %ld", &cpf);
-            individuos[i] = cpf;
+            if (prioridade == 0){
+                for (int i = 0; i < qnt; i++){
+                scanf("\n %ld", &cpf);
+                regulares[indice].listaReforco->chamada.presos[i] = cpf;
+                } 
+            } else if (prioridade == 1){
+                for (int i = 0; i < qnt; i++){
+                scanf("\n %ld", &cpf);
+                regulares[indice].listaPrioritarias->chamada.presos[i] = cpf;
+                } 
+            }else if (prioridade == 2){
+                for (int i = 0; i < qnt; i++){
+                scanf("\n %ld", &cpf);
+                regulares[indice].listaChamadas->chamada.presos[i] = cpf;
+                }
+            }
+
+        }
+    } else {
+        if(especiais[indice].estado != 2)
+        {
+            printf("\n Quantidade de indíviduo(s) conduzido(s) para DP: ");
+            scanf(" %d", &qnt);
+            printf("\n CPF: ");
+
+            long cpf;
+            if (prioridade == 0){
+                for (int i = 0; i < qnt; i++){
+                scanf("\n %ld", &cpf);
+                especiais[indice].listaReforco->chamada.presos[i] = cpf;
+                } 
+            } else if (prioridade == 1){
+                for (int i = 0; i < qnt; i++){
+                scanf("\n %ld", &cpf);
+                especiais[indice].listaChamadas->chamada.presos[i] = cpf;
+                } 
+            }
         }
     }
 
@@ -255,7 +289,7 @@ void viaturaOcorrencia(regularViatura *&regulares, especialViatura *&especiais, 
 
         else if(op == 3) //Prisão em andamento
         {
-            prisaoAndamento(tipo, regulares, especiais, indice, op, acao);
+            prisaoAndamento(tipo, regulares, especiais, indice, op, acao, prioridade);
         }
 
         } while (op != 4 && op != 5);
@@ -669,7 +703,7 @@ void viaturaEmUso(regularViatura *&regulares, int &sizeRegular, especialViatura 
             }
 
             do {
-                prisaoAndamento(tipo, regulares, especiais, indice, op, acao);
+                prisaoAndamento(tipo, regulares, especiais, indice, op, acao, prioridade);
             } while (op != 4 && op != 5);
 
             if(op == 4)
@@ -725,7 +759,7 @@ void viaturaEmUso(regularViatura *&regulares, int &sizeRegular, especialViatura 
             }
 
             do {
-                prisaoAndamento(tipo, regulares, especiais, indice, op, acao);
+                prisaoAndamento(tipo, regulares, especiais, indice, op, acao, prioridade);
             } while (op != 4 && op != 5);
 
             if(op == 4)
@@ -810,10 +844,10 @@ void viaturaLogin(Viatura *&viaturas, int size, regularViatura *&regulares, int 
         scanf(" %d", &quantidadePM);
     }
 
-
     /*Saving data into their corresponding vectors:*/
     if (tipo == 1)
     {
+        regulares[0].qntPM = quantidadePM;
             if (sizeRegular == 1)
             {
                 regulares[0].viatura = &viaturas[viaturaVetor];
@@ -832,6 +866,7 @@ void viaturaLogin(Viatura *&viaturas, int size, regularViatura *&regulares, int 
                 {
                     scanf(" %s", regulares[0].policiais[i]);
                 }
+
 
                 sizeRegular++;
 
@@ -857,6 +892,7 @@ void viaturaLogin(Viatura *&viaturas, int size, regularViatura *&regulares, int 
                 sizeRegular++;
             }
     } else {
+        especiais[0].qntPM = quantidadePM;
             if (sizeEspecial == 1)
             {
                 especiais[0].viatura = &viaturas[viaturaVetor];
