@@ -42,11 +42,11 @@ int distribui_chamada(struct listaChamada *&chamadas, regularViatura *&regulares
                             } else {
                                 auxiliar = regulares[0].listaPrioritarias;
                                 regulares[0].qntChamadas = regulares[0].qntChamadas + 1;
-                                while(auxiliar != NULL)
+                                while(auxiliar->prox != NULL)
                                 {    
                                     auxiliar = auxiliar->prox;
                                 }
-                                    auxiliar = novo; 
+                                    auxiliar->prox = novo; 
                                 }
                         } else {
                             if(regulares[0].listaChamadas == NULL)
@@ -56,11 +56,11 @@ int distribui_chamada(struct listaChamada *&chamadas, regularViatura *&regulares
                             } else {
                                 auxiliar = regulares[0].listaChamadas;
                                 regulares[0].qntChamadas = regulares[0].qntChamadas + 1;
-                                while(auxiliar != NULL)
+                                while(auxiliar->prox != NULL)
                                 {    
                                     auxiliar = auxiliar->prox;
                                 }
-                                    auxiliar = novo; 
+                                    auxiliar->prox = novo; 
                             }
                         }
                     } else {
@@ -75,11 +75,11 @@ int distribui_chamada(struct listaChamada *&chamadas, regularViatura *&regulares
                         } else {
                             auxiliar = especiais[0].listaChamadas;
                             especiais[0].qntChamadas = regulares[0].qntChamadas + 1;
-                            while(auxiliar != NULL)
-                            {    
-                                auxiliar = auxiliar->prox;
-                            }
-                                auxiliar = novo;
+                                while(auxiliar->prox != NULL)
+                                {    
+                                    auxiliar = auxiliar->prox;
+                                }
+                                    auxiliar->prox = novo; 
                         }
                     }
                     copia->chamada.qntViaturas = copia->chamada.qntViaturas - 1;
@@ -167,7 +167,7 @@ void inserir_reforco_especial(struct Chamada *codChamada, struct especialViatura
 void cadastrarChamada(struct listaChamada *&listaChamadas, struct regularViatura *&regulares, struct especialViatura *&especiais, int &contChamadas)
 {  
     int op1;
-    listaChamada *copia = listaChamadas;
+    listaChamada *copia;
 
     Chamada novaChamada;
 
@@ -237,19 +237,34 @@ void cadastrarChamada(struct listaChamada *&listaChamadas, struct regularViatura
     novaChamada.codigo = contChamadas;
     contChamadas++;
 
+    listaChamada *novo = (listaChamada *) malloc(sizeof(listaChamada));
+    novo->prox = NULL;
+    novo->chamada = novaChamada;
+
     if (listaChamadas == NULL)
     {
         listaChamadas = (listaChamada *) malloc(sizeof(listaChamada));
-        listaChamadas->chamada = novaChamada;
-        listaChamadas->prox = NULL;
+        listaChamadas = novo;
     } else {
-        while(copia != NULL)
+        copia = listaChamadas;
+        while(copia->prox != NULL)
         {
             copia = copia->prox;
         }
-        copia = (listaChamada *) malloc(sizeof(listaChamada));
-        copia->chamada = novaChamada;
-        copia->prox = NULL;
+        copia->prox = novo;
     }
 
 }
+/*celula *novo, *p;
+novo = (celula*) malloc(sizeof(celula));
+novo->prox = NULL;
+
+novo->chave = x;
+if(lst == NULL) lista esta vazia
+lst = novo;
+else{
+p = lst;
+while(p->prox != NULL)
+p = p->prox;
+p->prox = novo;
+}*/

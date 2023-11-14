@@ -20,6 +20,7 @@ void encerrarChamada(int tipo, regularViatura *&regulares, especialViatura *&esp
         if (tipo == 1)
         {
             regulares[indice].estado = 0;
+            regulares[indice].menuNeutro = 0;
             if (prioridade == 2)
             {
                 regulares[indice].listaChamadas->chamada.estado = 3;
@@ -34,6 +35,7 @@ void encerrarChamada(int tipo, regularViatura *&regulares, especialViatura *&esp
             }
         } else {
             especiais[indice].estado = 0;
+            especiais[indice].menuNeutro = 0;
             if (prioridade == 1)
             {
                 especiais[indice].listaChamadas->chamada.estado = 3;
