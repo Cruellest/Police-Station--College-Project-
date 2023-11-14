@@ -20,7 +20,7 @@ int main(){
     */
     int op, contChamada;
     int qntViaturas = amountofViaturas();
-    int qntPoliceOfficers = ammountofPoliceOfficers()-1;
+    int qntPoliceOfficers = ammountofPoliceOfficers();
     int qntPessoas = amountofPeople();
 
     //This piece of code dynamicaly alocates all the files arrays and load the data from the files

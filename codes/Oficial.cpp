@@ -74,7 +74,16 @@ int officerLogin(Policial *local,listaChamada *localchamadas){
                     break;
                     }                
 
+                    case 2:
 
+                    FILE *relatorio;
+
+                    fopen("relatorio_oficial.txt","w");
+
+                    
+
+
+                    break;
 
                 
                 default:

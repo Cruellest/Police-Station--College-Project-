@@ -149,9 +149,9 @@ int loadPoliceOfficers(Policial *local){
        
         i++;
     }
-    quicksortPoliciais(local,0,ammountofPoliceOfficers());
+    
     //Closing the file
-
+    fclose(policiais);
     return 0;
 }
 
