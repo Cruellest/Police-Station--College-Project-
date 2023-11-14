@@ -58,7 +58,7 @@ struct Chamada{
 
     char loc[1000];
 
-    char policiais[4][26];
+    char policiais[24][26];
 
     bool reforco = false;
 
@@ -77,19 +77,21 @@ struct Chamada{
 
     char BoletimTexto[3000];
 
+    long presos[10];
     
 
 };
 
 struct listaChamada{
     struct Chamada chamada;
-    int cont;
     struct listaChamada *prox;
 };
 
 struct regularViatura{
 
     struct Viatura *viatura;
+
+    int qntPM;
     
     char policiais[4][26];
 
@@ -114,6 +116,8 @@ struct regularViatura{
 struct especialViatura{
 
     struct Viatura *viatura;
+
+    int qntPM;
     
     char policiais[4][26];
 
