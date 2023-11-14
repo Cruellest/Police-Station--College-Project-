@@ -213,7 +213,7 @@ void cadastrarChamada(struct listaChamada *&listaChamadas, struct regularViatura
 
     if(novaChamada.tipo == 1)
     {
-        printf("\n\n 1 - Chamada Prioritária");
+        printf("\n 1 - Chamada Prioritária");
         printf("\n 2 - Chamada Não Prioritária");
     
         int prioridade;
